@@ -3,7 +3,7 @@ SharpPi is a high-level C# wrapper/utility library for Linux on the Raspberry Pi
 Access to the low-level API will be available soon, once it's cleaned up.
 
 What it can do:
-- Draw graphics directly to the display (no X11 required) with OpenGL.
+- Draw graphics directly to the display (no X11 required) with OpenGL([OpenTK](https://github.com/opentk/opentk))
 - Integrates [Dear ImGUI](https://github.com/ocornut/imgui) with OpenGL in a simple to use API, using [ImGui.NET](https://github.com/mellinoe/ImGui.NET) as the underlaying wrapper.
 - Get raw input directly from Linux kernel (/dev/input), mouse and keyboard support built-in.
 - Encode/Decode H264 video streams using [Cisco's OpenH264](https://github.com/cisco/openh264) implementation.
