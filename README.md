@@ -12,13 +12,16 @@ What it can do:
 - Start processes and get the output.
 
 Features:
-- A wrapper for encoding/decoding video streams with Cisco's OpenH264 implementation.
-- An opengl wrapper (OpenTK) for drawing graphics directly to the screen (no X required.)
+- A wrapper for encoding/decoding video streams.
+- An OpenGL wrapper for drawing graphics.
 - A GPIO utility library for interfacing with the Raspberry Pi GPIO.
-- An OS utility library for doing things such as connecting to/scanning for wifi networks, setting device hostname, get rpi model type, easily start subprocesses & process output, and much more!
+- An OS utility library for doing things such as connecting to/scanning for wifi networks, setting device hostname, get rpi model type, start processes/get output, and much more!
 
 References:
+- OpenTK: https://github.com/opentk/opentk
 - Dear ImGUI: https://github.com/ocornut/imgui
 - ImGui.NET: https://github.com/mellinoe/ImGui.NET
 - Cisco's OpenH264: https://github.com/cisco/openh264
-- OpenTK: https://github.com/opentk/opentk
+
+Notes:
+All of the included compiled libaries were built on the Raspberry Pi 3B+ in Raspbain Buster.
