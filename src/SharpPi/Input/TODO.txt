@@ -1,0 +1,2 @@
+﻿- Add wifi features such as creating access points and such
+- Add bluetooth features
