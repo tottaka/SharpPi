@@ -5,6 +5,7 @@ using OpenTK;
 using OpenTK.Graphics.ES20;
 using GraphicsContext = OpenTK.Graphics.GraphicsContext;
 
+using SharpPi.Native;
 using ImGuiNET;
 
 namespace SharpPi.Graphics
@@ -37,7 +38,7 @@ namespace SharpPi.Graphics
         private static readonly object RenderLock = new object();
         internal static readonly ContextHandle DummyHandle = new ContextHandle(new IntPtr(0xDEADBEEF));
         internal static ContextHandle GetContext() => DummyHandle;
-        internal static IntPtr GetProcAddress(string procName) => NativeMethods.DL.Sym(EGLContext.GLESv2_Lib, procName);
+        internal static IntPtr GetProcAddress(string procName) => EGLContext.GLESv2_Lib.GetFunctionLocation(procName);
 
         /// <summary>
         /// Initialize the VideoCore driver. Call this before doing anything with VideoCore/OpenGL.

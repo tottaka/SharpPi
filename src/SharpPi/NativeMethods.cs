@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
 namespace SharpPi.Native
@@ -22,10 +23,12 @@ namespace SharpPi.Native
             public const string DynamicLink = "libdl";
         }
 
+        private static Dictionary<string, DynamicLibrary> CachedLibraries = new Dictionary<string, DynamicLibrary>();
+
         /// <summary>
         /// Dynamic Link Library (libdl)
         /// </summary>
-        public abstract class DL
+        public class DynamicLibrary : IDisposable
         {
             /// <summary>
             /// I think this means force load all the symbols even if we're not using them yet.
@@ -33,16 +36,87 @@ namespace SharpPi.Native
             public const int FLAGS_RTLD_NOW = 2;
 
             /// <summary>
+            /// The handle to the loaded library.
+            /// </summary>
+            public IntPtr Location { get; private set; }
+            public bool IsDisposed { get; private set; }
+
+            private Dictionary<string, IntPtr> FunctionLocations;
+
+            private DynamicLibrary(IntPtr loc)
+            {
+                Location = loc;
+                FunctionLocations = new Dictionary<string, IntPtr>();
+            }
+
+            ~DynamicLibrary()
+            {
+                Dispose();
+            }
+
+            public IntPtr GetFunctionLocation(string procAddress)
+            {
+                if (FunctionLocations.ContainsKey(procAddress))
+                    return FunctionLocations[procAddress];
+
+                IntPtr location = Sym(Location, procAddress);
+                if (location == IntPtr.Zero)
+                    throw new DllNotFoundException("Unable to load symbol '" + procAddress + "'.");
+
+                FunctionLocations.Add(procAddress, location);
+                return FunctionLocations[procAddress];
+            }
+
+            public void Dispose()
+            {
+                if (!IsDisposed)
+                {
+                    if (Close(Location) != 0)
+                        throw new Exception("DynamicLink Error: " + GetError());
+                    IsDisposed = true;
+                }
+            }
+
+            public static DynamicLibrary Load(string fileName, int flags)
+            {
+                if (CachedLibraries.ContainsKey(fileName))
+                    return CachedLibraries[fileName];
+
+                IntPtr location = Open(fileName, flags);
+                if (location == IntPtr.Zero)
+                    throw new DllNotFoundException("Could not open library '" + fileName + "'.");
+
+                CachedLibraries.Add(fileName, new DynamicLibrary(location));
+                return CachedLibraries[fileName];
+            }
+
+            /// <summary>
             /// Loads the dynamic library file named by the null-terminated string filename and returns an opaque "handle" for the dynamic library.
             /// </summary>
             [DllImport(Library.DynamicLink, EntryPoint = "dlopen")]
-            public static extern IntPtr Open(string fileName, int flags);
+            private static extern IntPtr Open(string fileName, int flags);
 
             /// <summary>
             /// TBI
             /// </summary>
             [DllImport(Library.DynamicLink, EntryPoint = "dlsym")]
-            public static extern IntPtr Sym(IntPtr handle, string funcName);
+            private static extern IntPtr Sym(IntPtr handle, string funcName);
+
+            /// <summary>
+            /// Decrements the reference count on the dynamic library handle handle.
+            /// If the reference count drops to zero and no other loaded libraries use symbols in it, then the dynamic library is unloaded.
+            /// </summary>
+            /// <returns>0 on success, and nonzero on error.</returns>
+            [DllImport(Library.DynamicLink, EntryPoint = "dlclose")]
+            private static extern int Close(IntPtr handle);
+
+            /// <summary>
+            /// Returns a human readable string describing the most recent error that occurred from dlopen(), dlsym() or dlclose() since the last call to dlerror().
+            /// It returns <see cref="null"/> if no errors have occurred since initialization or since it was last called.
+            /// </summary>
+            /// <returns></returns>
+            [DllImport(Library.DynamicLink, EntryPoint = "dlerror")]
+            private static extern string GetError();
         }
     }
 

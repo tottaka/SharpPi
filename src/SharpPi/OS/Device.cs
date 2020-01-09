@@ -2,6 +2,7 @@
 using System.IO;
 using System.Net;
 using SharpPi.Graphics;
+using SharpPi.Native;
 
 namespace SharpPi
 {

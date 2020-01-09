@@ -104,7 +104,7 @@ namespace SharpPi.Graphics
         public static readonly bool IsPBufferSupported = true;
 
         private static bool GL_Initialized { get; set; }
-        public static IntPtr GLESv2_Lib { get; private set; }
+        public static NativeMethods.DynamicLibrary GLESv2_Lib { get; private set; }
 
         /// <summary>
 		/// Default constructor.
@@ -113,8 +113,7 @@ namespace SharpPi.Graphics
         {
             if (!GL_Initialized)
             {
-                if ((GLESv2_Lib = NativeMethods.DL.Open(gl_lib, NativeMethods.DL.FLAGS_RTLD_NOW)) == IntPtr.Zero)
-                    throw new InvalidOperationException("Failed to load GLESv2 library...");
+                GLESv2_Lib = NativeMethods.DynamicLibrary.Load(gl_lib, NativeMethods.DynamicLibrary.FLAGS_RTLD_NOW);
                 GL_Initialized = true;
             }
         }

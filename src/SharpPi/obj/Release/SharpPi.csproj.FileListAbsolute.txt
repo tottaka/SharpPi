@@ -1,0 +1,16 @@
+H:\GitHub\SharpPi\src\SharpPi\obj\Release\SharpPi.csprojAssemblyReference.cache
+H:\GitHub\SharpPi\src\SharpPi\obj\Release\SharpPi.Properties.Resources.resources
+H:\GitHub\SharpPi\src\SharpPi\obj\Release\SharpPi.csproj.GenerateResource.cache
+H:\GitHub\SharpPi\src\SharpPi\obj\Release\SharpPi.csproj.CoreCompileInputs.cache
+H:\GitHub\SharpPi\src\SharpPi\bin\Release\SharpPi.dll.config
+H:\GitHub\SharpPi\src\SharpPi\bin\Release\SharpPi.xml
+H:\GitHub\SharpPi\src\SharpPi\bin\Release\SharpPi.dll
+H:\GitHub\SharpPi\src\SharpPi\bin\Release\SharpPi.pdb
+H:\GitHub\SharpPi\src\SharpPi\bin\Release\OpenTK.dll
+H:\GitHub\SharpPi\src\SharpPi\bin\Release\System.Runtime.CompilerServices.Unsafe.dll
+H:\GitHub\SharpPi\src\SharpPi\bin\Release\OpenTK.pdb
+H:\GitHub\SharpPi\src\SharpPi\bin\Release\OpenTK.xml
+H:\GitHub\SharpPi\src\SharpPi\bin\Release\System.Runtime.CompilerServices.Unsafe.xml
+H:\GitHub\SharpPi\src\SharpPi\obj\Release\SharpPi.csproj.CopyComplete
+H:\GitHub\SharpPi\src\SharpPi\obj\Release\SharpPi.dll
+H:\GitHub\SharpPi\src\SharpPi\obj\Release\SharpPi.pdb

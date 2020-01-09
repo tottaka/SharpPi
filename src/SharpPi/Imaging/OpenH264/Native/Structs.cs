@@ -28,27 +28,28 @@ namespace SharpPi.Native
 	            int SetOption(ISVCEncoder*, ENCODER_OPTION eOptionId, void* pOption);
 	            int GetOption(ISVCEncoder*, ENCODER_OPTION eOptionId, void* pOption);
             }
-
-            [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
-            public struct ISVCDecoder
-            {
-                int Initialize(ISVCDecoder*, const SDecodingParam* pParam);
-                int Uninitialize(ISVCDecoder*);
-
-	            DecodingState DecodeFrame(ISVCDecoder*, const unsigned char* pSrc, const int iSrcLen, unsigned char** ppDst, int* pStride, int* iWidth, int* iHeight);
-
-                DecodingState DecodeFrameNoDelay(ISVCDecoder*, const unsigned char* pSrc, const int iSrcLen, unsigned char** ppDst, SBufferInfo* pDstInfo);
-
-	            DecodingState DecodeFrame2(ISVCDecoder*, const unsigned char* pSrc, const int iSrcLen, unsigned char** ppDst, SBufferInfo* pDstInfo);
-
-	            DecodingState DecodeParser(ISVCDecoder*, const unsigned char* pSrc, const int iSrcLen, SParserBsInfo* pDstInfo);
-
-	            DecodingState DecodeFrameEx(ISVCDecoder*, const unsigned char* pSrc, const int iSrcLen, unsigned char* pDst, int iDstStride, int* iDstLen, int* iWidth, int* iHeight, int* iColorFormat);
-
-                int SetOption(ISVCDecoder*, DecoderOption eOptionId, void* pOption);
-	            int GetOption(ISVCDecoder*, DecoderOption eOptionId, void* pOption);
-            }
             */
+
+            //[StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
+            public abstract class ISVCDecoder
+            {
+                public extern virtual int Initialize(ref SDecodingParam pParam);
+                public extern virtual int Uninitialize();
+
+                public extern virtual DecodingState DecodeFrame(byte[] pSrc, int iSrcLen, ref byte[] ppDst, ref int pStride, ref int iWidth, ref int iHeight);
+
+                public extern virtual DecodingState DecodeFrameNoDelay(byte[] pSrc, int iSrcLen, ref byte[] ppDst, ref SBufferInfo pDstInfo);
+
+                public extern virtual DecodingState DecodeFrame2(byte[] pSrc, int iSrcLen, ref byte[] ppDst, ref SBufferInfo pDstInfo);
+
+                public extern virtual DecodingState DecodeParser(byte[] pSrc, int iSrcLen, ref SParserBsInfo pDstInfo);
+
+                public extern virtual DecodingState DecodeFrameEx(byte[] pSrc, int iSrcLen, byte[] pDst, int iDstStride, ref int iDstLen, ref int iWidth, ref int iHeight, ref int iColorFormat);
+
+                public extern virtual int SetOption(DecoderOption eOptionId, IntPtr pOption);
+                public extern virtual int GetOption(DecoderOption eOptionId, IntPtr pOption);
+            }
+
             /// <summary>
             /// Define a new struct to show the property of video bitstream.
             /// </summary>
@@ -77,7 +78,7 @@ namespace SharpPi.Native
                 /// File name of reconstructed frame used for PSNR calculation based debug.
                 /// </summary>
                 // this might be a string???
-                public char* pFileNameRestructed;
+                public string pFileNameRestructed;
 
                 /// <summary>
                 /// CPU load.

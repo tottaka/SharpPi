@@ -1,0 +1,3069 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SharpPi</name>
+    </assembly>
+    <members>
+        <member name="T:SharpPi.Native.NativeMethods">
+            <summary>
+            Generic native methods
+            https://docs.microsoft.com/en-us/dotnet/framework/interop/marshaling-classes-structures-and-unions
+            https://limbioliong.wordpress.com/2011/06/03/passing-structures-between-managed-and-unmanaged-code/
+            https://www.codeproject.com/Articles/66244/Marshaling-with-C-Chapter-2-Marshaling-Simple-Type
+            </summary>
+        </member>
+        <member name="T:SharpPi.Native.NativeMethods.H264">
+            <summary>
+            Cisco OpenH264
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.H264.UCHAR_MAX">
+            <summary>
+            UCHAR_MAX
+            </summary>
+        </member>
+        <member name="T:SharpPi.Native.NativeMethods.H264.DecodingState">
+            <summary>
+            Decoding status
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.H264.DecodingState.dsErrorFree">
+            <summary>
+            No error
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.H264.DecodingState.dsFramePending">
+            <summary>
+            Need more throughput to generate a frame output.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.H264.DecodingState.dsRefLost">
+            <summary>
+            Layer lost at reference frame with temporal id 0.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.H264.DecodingState.dsBitstreamError">
+            <summary>
+            Bitstream error (maybe broken internal frame?)
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.H264.DecodingState.dsDepLayerLost">
+            <summary>
+            Dependented layer is ever lost.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.H264.DecodingState.dsNoParamSets">
+            <summary>
+            No parameter set NALs involved.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.H264.DecodingState.dsDataErrorConcealed">
+            <summary>
+            Current data error concealed specified.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.H264.DecodingState.dsInvalidArgument">
+            <summary>
+            Invalid argument specified.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.H264.DecodingState.dsInitialOptExpected">
+            <summary>
+            Initializing operation is expected.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.H264.DecodingState.dsOutOfMemory">
+            <summary>
+            Out of memory due to new request.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.H264.DecodingState.dsDstBufNeedExpan">
+            <summary>
+            Actual picture size exceeds size of dst pBuffer feed in decoder, resize required.
+            </summary>
+        </member>
+        <member name="T:SharpPi.Native.NativeMethods.H264.DecoderOption">
+            <summary>
+            Option types introduced in decoder application
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.H264.DecoderOption.DECODER_OPTION_END_OF_STREAM">
+            <summary>
+            End of stream flag.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.H264.DecoderOption.DECODER_OPTION_VCL_NAL">
+            <summary>
+            Feedback whether or not the current AU for application layer has VCL NAL.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.H264.DecoderOption.DECODER_OPTION_TEMPORAL_ID">
+            <summary>
+            Feedback temporal id for application layer.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.H264.DecoderOption.DECODER_OPTION_FRAME_NUM">
+            <summary>
+            Feedback current decoded frame number.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.H264.DecoderOption.DECODER_OPTION_IDR_PIC_ID">
+            <summary>
+            Feedback current frame belongs to which IDR period.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.H264.DecoderOption.DECODER_OPTION_LTR_MARKING_FLAG">
+            <summary>
+            Feedback whether current frame mark is an LTR.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.H264.DecoderOption.DECODER_OPTION_LTR_MARKED_FRAME_NUM">
+            <summary>
+            Feedback frame num marked by current Frame.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.H264.DecoderOption.DECODER_OPTION_ERROR_CON_IDC">
+            <summary>
+            Indicate decoder error concealment method.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.H264.DecoderOption.DECODER_OPTION_TRACE_LEVEL">
+            <summary>
+            Not Implemented
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.H264.DecoderOption.DECODER_OPTION_TRACE_CALLBACK">
+            <summary>
+            A void (*)(void* context, int level, const char* message) function which receives log messages.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.H264.DecoderOption.DECODER_OPTION_TRACE_CALLBACK_CONTEXT">
+            <summary>
+            Context info of trace callback.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.H264.DecoderOption.DECODER_OPTION_GET_STATISTICS">
+            <summary>
+            Feedback decoder statistics.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.H264.DecoderOption.DECODER_OPTION_GET_SAR_INFO">
+            <summary>
+            Feedback decoder Sample Aspect Ratio info in Vui.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.H264.DecoderOption.DECODER_OPTION_PROFILE">
+            <summary>
+            Get current AU profile info (only used in GetOption.)
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.H264.DecoderOption.DECODER_OPTION_LEVEL">
+            <summary>
+            Get current AU level info (only used in GetOption.)
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.H264.DecoderOption.DECODER_OPTION_STATISTICS_LOG_INTERVAL">
+            <summary>
+            Set log output interval.
+            </summary>
+        </member>
+        <member name="T:SharpPi.Native.NativeMethods.H264.VideoBitstreamType">
+            <summary>
+            Enumerate the type of video bitstream which is provided to decoder.
+            </summary>
+        </member>
+        <member name="T:SharpPi.Native.NativeMethods.H264.ErrorConIDC">
+            <summary>
+            Enumerate the type of error concealment methods
+            </summary>
+        </member>
+        <member name="T:SharpPi.Native.NativeMethods.H264.SVideoProperty">
+            <summary>
+            Define a new struct to show the property of video bitstream.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.H264.SVideoProperty.size">
+            <summary>
+            Size of the struct.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.H264.SVideoProperty.eVideoBsType">
+            <summary>
+            Video stream type (AVC/SVC)
+            </summary>
+        </member>
+        <member name="T:SharpPi.Native.NativeMethods.H264.SDecodingParam">
+            <summary>
+            SVC Decoding Parameters, reserved here and potential applicable in the future.
+            SDecodingParam, *PDecodingParam;
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.H264.SDecodingParam.pFileNameRestructed">
+            <summary>
+            File name of reconstructed frame used for PSNR calculation based debug.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.H264.SDecodingParam.uiCpuLoad">
+            <summary>
+            CPU load.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.H264.SDecodingParam.uiTargetDqLayer">
+            <summary>
+            Setting target dq layer id.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.H264.SDecodingParam.eEcActiveIdc">
+            <summary>
+            Whether active error concealment feature in decoder.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.H264.SDecodingParam.bParseOnly">
+            <summary>
+            Decoder for parse only, no reconstruction. When it is true, SPS/PPS size should not exceed SPS_PPS_BS_SIZE (128). Otherwise, it will return error info.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.H264.SDecodingParam.sVideoProperty">
+            <summary>
+            Video stream property.
+            </summary>
+        </member>
+        <member name="T:SharpPi.Native.NativeMethods.H264.SParserBsInfo">
+            <summary>
+            Structure for parse only output.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.H264.SParserBsInfo.iNalNum">
+            <summary>
+            Total NAL number in current AU.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.H264.SParserBsInfo.pNalLenInByte">
+            <summary>
+            Each nal length.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.H264.SParserBsInfo.pDstBuff">
+            <summary>
+            Output dest buffer for parsed bitstream.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.H264.SParserBsInfo.iSpsWidthInPixel">
+            <summary>
+            Required SPS width info.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.H264.SParserBsInfo.iSpsHeightInPixel">
+            <summary>
+            Required SPS height info.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.H264.SParserBsInfo.uiInBsTimeStamp">
+            <summary>
+            Input BS timestamp.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.H264.SParserBsInfo.uiOutBsTimeStamp">
+            <summary>
+            Output BS timestamp.
+            </summary>
+        </member>
+        <member name="T:SharpPi.Native.NativeMethods.H264.SBufferInfo">
+            <summary>
+            Buffer info
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.H264.SBufferInfo.iBufferStatus">
+            <summary>
+            0: one frame data is not ready; 1: one frame data is ready.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.H264.SBufferInfo.uiInBsTimeStamp">
+            <summary>
+            input BS timestamp.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.H264.SBufferInfo.uiOutYuvTimeStamp">
+            <summary>
+            Output YUV timestamp, when bufferstatus is 1.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.H264.SBufferInfo.Data">
+            <summary>
+            Output buffer info.
+            </summary>
+        </member>
+        <member name="T:SharpPi.Native.NativeMethods.H264.SSysMEMBuffer">
+            <summary>
+            Structure for decoder memery
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.H264.SSysMEMBuffer.iWidth">
+            <summary>
+            Width of decoded pic for display.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.H264.SSysMEMBuffer.iHeight">
+            <summary>
+            Height of decoded pic for display.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.H264.SSysMEMBuffer.iFormat">
+            <summary>
+            Type is "EVideoFormatType"
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.H264.SSysMEMBuffer.iStride">
+            <summary>
+            Stride of 2 component.
+            </summary>
+        </member>
+        <member name="T:SharpPi.Native.NativeMethods.H264.UsrData">
+            <summary>
+            Output buffer info
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.H264.UsrData.sSystemBuffer">
+            <summary>
+            Memory info for one picture
+            </summary>
+        </member>
+        <member name="T:SharpPi.Native.NativeMethods.Library">
+            <summary>
+            Contains static dependency library locations.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Library.GPIO">
+            <summary>
+            Default: libbcm2835.so
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Library.EGL">
+            <summary>
+            Default: /opt/vc/lib/libbrcmEGL.so
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Library.VideoCore">
+            <summary>
+            Default: /opt/vc/lib/libbcm_host.so
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Library.OpenH264">
+            <summary>
+            The path to Cisco's OpenH264 library file.
+            Default: /home/pi/scripts/libopenh264.so
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Library.DynamicLink">
+            <summary>
+            Default: libdl
+            </summary>
+        </member>
+        <member name="T:SharpPi.Native.NativeMethods.Egl">
+            <summary>
+            EGL_VERSION_1_4
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.DEFAULT_DISPLAY">
+            <summary>
+            [EGL] Value of EGL_DEFAULT_DISPLAY symbol.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.MULTISAMPLE_RESOLVE_BOX_BIT">
+            <summary>
+            [EGL] Value of EGL_MULTISAMPLE_RESOLVE_BOX_BIT symbol.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.MULTISAMPLE_RESOLVE">
+            <summary>
+            <para>
+            [EGL] Egl.QuerySurface: Returns the filter used when resolving the multisample buffer. The filter may be either 
+            Egl.MULTISAMPLE_RESOLVE_DEFAULT or Egl.MULTISAMPLE_RESOLVE_BOX, as described for Egl.SurfaceAttrib.
+            </para>
+            <para>
+            [EGL] Egl.SurfaceAttrib: Specifies the filter to use when resolving the multisample buffer (this may occur when swapping 
+            or copying the surface, or when changing the client API context bound to the surface). A value of 
+            Egl.MULTISAMPLE_RESOLVE_DEFAULT chooses the default implementation-defined filtering method, while 
+            Egl.MULTISAMPLE_RESOLVE_BOX chooses a one-pixel wide box filter placing equal weighting on all multisample values. The 
+            initial value of Egl.MULTISAMPLE_RESOLVE is Egl.MULTISAMPLE_RESOLVE_DEFAULT.
+            </para>
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.MULTISAMPLE_RESOLVE_DEFAULT">
+            <summary>
+            [EGL] Value of EGL_MULTISAMPLE_RESOLVE_DEFAULT symbol.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.MULTISAMPLE_RESOLVE_BOX">
+            <summary>
+            [EGL] Value of EGL_MULTISAMPLE_RESOLVE_BOX symbol.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.OPENGL_API">
+            <summary>
+            [EGL] Value of EGL_OPENGL_API symbol.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.OPENGL_BIT">
+            <summary>
+            [EGL] Value of EGL_OPENGL_BIT symbol.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.SWAP_BEHAVIOR_PRESERVED_BIT">
+            <summary>
+            [EGL] Value of EGL_SWAP_BEHAVIOR_PRESERVED_BIT symbol.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.CONFORMANT">
+            <summary>
+            <para>
+            [EGL] Egl.ChooseConfig: Must be followed by a bitmask indicating which types of client API contexts created with respect 
+            to the frame buffer configuration config must pass the required conformance tests for that API. Mask bits include: 
+            Egl.OPENGL_BIT Config supports creating OpenGL contexts. Egl.OPENGL_ES_BIT Config supports creating OpenGL ES 1.0 and/or 
+            1.1 contexts. Egl.OPENGL_ES2_BIT Config supports creating OpenGL ES 2.0 contexts. Egl.OPENVG_BIT Config supports 
+            creating OpenVG contexts. For example, if the bitmask is set to Egl.OPENGL_ES_BIT, only frame buffer configurations that 
+            support creating conformant OpenGL ES contexts will match. The default value is zero. Most EGLConfigs should be 
+            conformant for all supported client APIs, and it is rarely desirable to select a nonconformant config. Conformance 
+            requirements limit the number of non-conformant configs that an implementation can define.
+            </para>
+            <para>
+            [EGL] Egl.GetConfigAttrib: Returns a bitmask indicating which client API contexts created with respect to this config 
+            are conformant.
+            </para>
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.CONTEXT_CLIENT_VERSION">
+            <summary>
+            <para>
+            [EGL] Egl.CreateContext: Must be followed by an integer that determines which version of an OpenGL ES context to create. 
+            A value of 1 specifies creation of an OpenGL ES 1.x context. An attribute value of 2 specifies creation of an OpenGL ES 
+            2.x context. The default value is 1. This attribute can only be specified when creating a OpenGL ES context (e.g. when 
+            the current rendering API is Egl.OPENGL_ES_API).
+            </para>
+            <para>
+            [EGL] Egl.QueryContext: Returns the version of the client API which the context supports, as specified at context 
+            creation time. The resulting value is only meaningful for an OpenGL ES context.
+            </para>
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.MATCH_NATIVE_PIXMAP">
+            <summary>
+            [EGL] Egl.ChooseConfig: Must be followed by the handle of a valid native pixmap, cast to EGLint, or Egl.NONE. If the 
+            value is not Egl.NONE, only configs which support creating pixmap surfaces with this pixmap using 
+            Egl.CreatePixmapSurface will match this attribute. If the value is Egl.NONE, then configs are not matched for this 
+            attribute. The default value is Egl.NONE. Egl.MATCH_NATIVE_PIXMAP was introduced due to the difficulty of determining an 
+            EGLConfig compatibile with a native pixmap using only color component sizes.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.OPENGL_ES2_BIT">
+            <summary>
+            [EGL] Value of EGL_OPENGL_ES2_BIT symbol.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.VG_ALPHA_FORMAT">
+            <summary>
+            <para>
+            [EGL] Egl.CreatePbufferSurface: Specifies how alpha values are interpreted by OpenVG when rendering to the surface. If 
+            its value is Egl.VG_ALPHA_FORMAT_NONPRE, then alpha values are not premultipled. If its value is 
+            Egl.VG_ALPHA_FORMAT_PRE, then alpha values are premultiplied. The default value of Egl.VG_ALPHA_FORMAT is 
+            Egl.VG_ALPHA_FORMAT_NONPRE.
+            </para>
+            <para>
+            [EGL] Egl.CreatePixmapSurface: Specifies how alpha values are interpreted by OpenVG when rendering to the surface. If 
+            its value is Egl.VG_ALPHA_FORMAT_NONPRE, then alpha values are not premultipled. If its value is 
+            Egl.VG_ALPHA_FORMAT_PRE, then alpha values are premultiplied. The default value of Egl.VG_ALPHA_FORMAT is 
+            Egl.VG_ALPHA_FORMAT_NONPRE.
+            </para>
+            <para>
+            [EGL] Egl.CreateWindowSurface: Specifies how alpha values are interpreted by OpenVG when rendering to the surface. If 
+            its value is Egl.VG_ALPHA_FORMAT_NONPRE, then alpha values are not premultipled. If its value is 
+            Egl.VG_ALPHA_FORMAT_PRE, then alpha values are premultiplied. The default value of Egl.VG_ALPHA_FORMAT is 
+            Egl.VG_ALPHA_FORMAT_NONPRE.
+            </para>
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.VG_ALPHA_FORMAT_NONPRE">
+            <summary>
+            [EGL] Value of EGL_VG_ALPHA_FORMAT_NONPRE symbol.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.VG_ALPHA_FORMAT_PRE">
+            <summary>
+            [EGL] Value of EGL_VG_ALPHA_FORMAT_PRE symbol.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.VG_ALPHA_FORMAT_PRE_BIT">
+            <summary>
+            [EGL] Value of EGL_VG_ALPHA_FORMAT_PRE_BIT symbol.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.VG_COLORSPACE">
+            <summary>
+            <para>
+            [EGL] Egl.CreatePbufferSurface: Specifies the color space used by OpenVG when rendering to the surface. If its value is 
+            Egl.VG_COLORSPACE_sRGB, then a non-linear, perceptually uniform color space is assumed, with a corresponding 
+            VGImageFormat of form Egl.*. If its value is Egl.VG_COLORSPACE_LINEAR, then a linear color space is assumed, with a 
+            corresponding VGImageFormat of form Egl.*. The default value of Egl.VG_COLORSPACE is Egl.VG_COLORSPACE_sRGB.
+            </para>
+            <para>
+            [EGL] Egl.CreatePixmapSurface: Specifies the color space used by OpenVG when rendering to the surface. If its value is 
+            Egl.VG_COLORSPACE_sRGB, then a non-linear, perceptually uniform color space is assumed, with a corresponding 
+            VGImageFormat of form Egl.*. If its value is Egl.VG_COLORSPACE_LINEAR, then a linear color space is assumed, with a 
+            corresponding VGImageFormat of form Egl.*. The default value of Egl.VG_COLORSPACE is Egl.VG_COLORSPACE_sRGB.
+            </para>
+            <para>
+            [EGL] Egl.CreateWindowSurface: Specifies the color space used by OpenVG when rendering to the surface. If its value is 
+            Egl.VG_COLORSPACE_sRGB, then a non-linear, perceptually uniform color space is assumed, with a corresponding 
+            VGImageFormat of form Egl.*. If its value is Egl.VG_COLORSPACE_LINEAR, then a linear color space is assumed, with a 
+            corresponding VGImageFormat of form Egl.*. The default value of Egl.VG_COLORSPACE is Egl.VG_COLORSPACE_sRGB.
+            </para>
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.VG_COLORSPACE_LINEAR_BIT">
+            <summary>
+            [EGL] Value of EGL_VG_COLORSPACE_LINEAR_BIT symbol.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.ALPHA_MASK_SIZE">
+            <summary>
+            <para>
+            [EGL] Egl.ChooseConfig: Must be followed by a nonnegative integer that indicates the desired alpha mask buffer size, in 
+            bits. The smallest alpha mask buffers of at least the specified size are preferred. The default value is zero. The alpha 
+            mask buffer is used only by OpenGL and OpenGL ES client APIs.
+            </para>
+            <para>
+            [EGL] Egl.GetConfigAttrib: Returns the number of bits in the alpha mask buffer.
+            </para>
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.BUFFER_PRESERVED">
+            <summary>
+            [EGL] Value of EGL_BUFFER_PRESERVED symbol.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.BUFFER_DESTROYED">
+            <summary>
+            [EGL] Value of EGL_BUFFER_DESTROYED symbol.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.CLIENT_APIS">
+            <summary>
+            [EGL] Egl.QueryString: Returns a string describing which client rendering APIs are supported. The string contains a 
+            space-separate list of API names. The list must include at least one of OpenGL, OpenGL_ES, or OpenVG. These strings 
+            correspond respectively to values Egl.OPENGL_API, Egl.OPENGL_ES_API, and Egl.OPENVG_API of the Egl.BindAPI, api 
+            argument.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.COLORSPACE_sRGB">
+            <summary>
+            [EGL] Value of EGL_COLORSPACE_sRGB symbol.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.COLORSPACE_LINEAR">
+            <summary>
+            [EGL] Value of EGL_COLORSPACE_LINEAR symbol.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.COLOR_BUFFER_TYPE">
+            <summary>
+            <para>
+            [EGL] Egl.ChooseConfig: Must be followed by one of Egl.RGB_BUFFER or Egl.LUMINANCE_BUFFER. Egl.RGB_BUFFER indicates an 
+            RGB color buffer; in this case, attributes Egl.RED_SIZE, Egl.GREEN_SIZE and Egl.BLUE_SIZE must be non-zero, and 
+            Egl.LUMINANCE_SIZE must be zero. Egl.LUMINANCE_BUFFER indicates a luminance color buffer. In this case Egl.RED_SIZE, 
+            Egl.GREEN_SIZE, Egl.BLUE_SIZE must be zero, and Egl.LUMINANCE_SIZE must be non-zero. For both RGB and luminance color 
+            buffers, Egl.ALPHA_SIZE may be zero or non-zero.
+            </para>
+            <para>
+            [EGL] Egl.GetConfigAttrib: Returns the color buffer type. Possible types are Egl.RGB_BUFFER and Egl.LUMINANCE_BUFFER.
+            </para>
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.CONTEXT_CLIENT_TYPE">
+            <summary>
+            [EGL] Egl.QueryContext: Returns the type of client API which the context supports (one of Egl.OPENGL_API, 
+            Egl.OPENGL_ES_API, or Egl.OPENVG_API).
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.DISPLAY_SCALING">
+            <summary>
+            [EGL] Value of EGL_DISPLAY_SCALING symbol.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.HORIZONTAL_RESOLUTION">
+            <summary>
+            [EGL] Egl.QuerySurface: Returns the horizontal dot pitch of the display on which a window surface is visible. The value 
+            returned is equal to the actual dot pitch, in pixels/meter, multiplied by the constant value Egl.DISPLAY_SCALING.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.LUMINANCE_BUFFER">
+            <summary>
+            [EGL] Value of EGL_LUMINANCE_BUFFER symbol.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.LUMINANCE_SIZE">
+            <summary>
+            <para>
+            [EGL] Egl.ChooseConfig: Must be followed by a nonnegative integer that indicates the desired size of the luminance 
+            component of the color buffer, in bits. If this value is zero, color buffers with the smallest luminance component size 
+            are preferred. Otherwise, color buffers with the largest luminance component of at least the specified size are 
+            preferred. The default value is zero.
+            </para>
+            <para>
+            [EGL] Egl.GetConfigAttrib: Returns the number of bits of luminance stored in the luminance buffer.
+            </para>
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.OPENGL_ES_BIT">
+            <summary>
+            [EGL] Value of EGL_OPENGL_ES_BIT symbol.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.OPENVG_BIT">
+            <summary>
+            [EGL] Value of EGL_OPENVG_BIT symbol.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.OPENGL_ES_API">
+            <summary>
+            [EGL] Value of EGL_OPENGL_ES_API symbol.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.OPENVG_API">
+            <summary>
+            [EGL] Value of EGL_OPENVG_API symbol.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.OPENVG_IMAGE">
+            <summary>
+            [EGL] Value of EGL_OPENVG_IMAGE symbol.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.PIXEL_ASPECT_RATIO">
+            <summary>
+            [EGL] Egl.QuerySurface: Returns the aspect ratio of an individual pixel (the ratio of a pixel's width to its height). 
+            The value returned is equal to the actual aspect ratio multiplied by the constant value Egl.DISPLAY_SCALING.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.RENDERABLE_TYPE">
+            <summary>
+            <para>
+            [EGL] Egl.ChooseConfig: Must be followed by a bitmask indicating which types of client API contexts the frame buffer 
+            configuration must support creating with Egl.CreateContext). Mask bits are the same as for attribute Egl.CONFORMANT. The 
+            default value is Egl.OPENGL_ES_BIT.
+            </para>
+            <para>
+            [EGL] Egl.GetConfigAttrib: Returns a bitmask indicating the types of supported client API contexts.
+            </para>
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.RENDER_BUFFER">
+            <summary>
+            <para>
+            [EGL] Egl.CreateWindowSurface: Specifies which buffer should be used for client API rendering to the window. If its 
+            value is Egl.SINGLE_BUFFER, then client APIs should render directly into the visible window. If its value is 
+            Egl.BACK_BUFFER, then client APIs should render into the back buffer. The default value of Egl.RENDER_BUFFER is 
+            Egl.BACK_BUFFER. Client APIs may not be able to respect the requested rendering buffer. To determine the actual buffer 
+            being rendered to by a context, call Egl.QueryContext.
+            </para>
+            <para>
+            [EGL] Egl.QueryContext: Returns the buffer which client API rendering via the context will use. The value returned 
+            depends on properties of both the context, and the surface to which the context is bound: If the context is bound to a 
+            pixmap surface, then Egl.SINGLE_BUFFER will be returned. If the context is bound to a pbuffer surface, then 
+            Egl.BACK_BUFFER will be returned. If the context is bound to a window surface, then either Egl.BACK_BUFFER or 
+            Egl.SINGLE_BUFFER may be returned. The value returned depends on both the buffer requested by the setting of the 
+            Egl.RENDER_BUFFER property of the surface (which may be queried by calling eglQuerySurface), and on the client API (not 
+            all client APIs support single-buffer rendering to window surfaces). If the context is not bound to a surface, such as 
+            an OpenGL ES context bound to a framebuffer object, then Egl.NONE will be returned.
+            </para>
+            <para>
+            [EGL] Egl.QuerySurface: Returns the buffer which client API rendering is requested to use. For a window surface, this is 
+            the same attribute value specified when the surface was created. For a pbuffer surface, it is always Egl.BACK_BUFFER. 
+            For a pixmap surface, it is always Egl.SINGLE_BUFFER. To determine the actual buffer being rendered to by a context, 
+            call Egl.QueryContext.
+            </para>
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.RGB_BUFFER">
+            <summary>
+            [EGL] Value of EGL_RGB_BUFFER symbol.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.SINGLE_BUFFER">
+            <summary>
+            [EGL] Value of EGL_SINGLE_BUFFER symbol.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.SWAP_BEHAVIOR">
+            <summary>
+            <para>
+            [EGL] Egl.QuerySurface: Returns the effect on the color buffer when posting a surface with Egl.SwapBuffers. Swap 
+            behavior may be either Egl.BUFFER_PRESERVED or Egl.BUFFER_DESTROYED, as described for Egl.SurfaceAttrib.
+            </para>
+            <para>
+            [EGL] Egl.SurfaceAttrib: Specifies the effect on the color buffer of posting a surface with Egl.SwapBuffers. A value of 
+            Egl.BUFFER_PRESERVED indicates that color buffer contents are unaffected, while Egl.BUFFER_DESTROYED indicates that 
+            color buffer contents may be destroyed or changed by the operation. The initial value of Egl.SWAP_BEHAVIOR is chosen by 
+            the implementation.
+            </para>
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.UNKNOWN">
+            <summary>
+            [EGL] Value of EGL_UNKNOWN symbol.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.VERTICAL_RESOLUTION">
+            <summary>
+            [EGL] Egl.QuerySurface: Returns the vertical dot pitch of the display on which a window surface is visible. The value 
+            returned is equal to the actual dot pitch, in pixels/meter, multiplied by the constant value Egl.DISPLAY_SCALING.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.BACK_BUFFER">
+            <summary>
+            [EGL] Value of EGL_BACK_BUFFER symbol.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.BIND_TO_TEXTURE_RGB">
+            <summary>
+            <para>
+            [EGL] Egl.ChooseConfig: Must be followed by Egl.DONT_CARE, Egl.TRUE, or Egl.FALSE. If Egl.TRUE is specified, then only 
+            frame buffer configurations that support binding of color buffers to an OpenGL ES RGB texture will be considered. 
+            Currently only frame buffer configurations that support pbuffers allow this. The default value is Egl.DONT_CARE.
+            </para>
+            <para>
+            [EGL] Egl.GetConfigAttrib: Returns Egl.TRUE if color buffers can be bound to an RGB texture, Egl.FALSE otherwise.
+            </para>
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.BIND_TO_TEXTURE_RGBA">
+            <summary>
+            <para>
+            [EGL] Egl.ChooseConfig: Must be followed by one of Egl.DONT_CARE, Egl.TRUE, or Egl.FALSE. If Egl.TRUE is specified, then 
+            only frame buffer configurations that support binding of color buffers to an OpenGL ES RGBA texture will be considered. 
+            Currently only frame buffer configurations that support pbuffers allow this. The default value is Egl.DONT_CARE.
+            </para>
+            <para>
+            [EGL] Egl.GetConfigAttrib: Returns Egl.TRUE if color buffers can be bound to an RGBA texture, Egl.FALSE otherwise.
+            </para>
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.CONTEXT_LOST">
+            <summary>
+            [EGL] Egl.GetError: A power management event has occurred. The application must destroy all contexts and reinitialise 
+            OpenGL ES state and objects to continue rendering.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.MIN_SWAP_INTERVAL">
+            <summary>
+            <para>
+            [EGL] Egl.ChooseConfig: Must be followed by a integer that indicates the minimum value that can be passed to 
+            eglSwapInterval. The default value is Egl.DONT_CARE.
+            </para>
+            <para>
+            [EGL] Egl.GetConfigAttrib: Returns the minimum value that can be passed to eglSwapInterval.
+            </para>
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.MAX_SWAP_INTERVAL">
+            <summary>
+            <para>
+            [EGL] Egl.ChooseConfig: Must be followed by a integer that indicates the maximum value that can be passed to 
+            Egl.SwapInterval. The default value is Egl.DONT_CARE.
+            </para>
+            <para>
+            [EGL] Egl.GetConfigAttrib: Returns the maximum value that can be passed to eglSwapInterval.
+            </para>
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.MIPMAP_TEXTURE">
+            <summary>
+            <para>
+            [EGL] Egl.CreatePbufferFromClientBuffer: Specifies whether storage for mipmaps should be allocated. Space for mipmaps 
+            will be set aside if the attribute value is Egl.TRUE and Egl.TEXTURE_FORMAT is not Egl.NO_TEXTURE. The default value is 
+            Egl.FALSE.
+            </para>
+            <para>
+            [EGL] Egl.CreatePbufferSurface: Specifies whether storage for mipmaps should be allocated. Space for mipmaps will be set 
+            aside if the attribute value is Egl.TRUE and Egl.TEXTURE_FORMAT is not Egl.NO_TEXTURE. The default value is Egl.FALSE.
+            </para>
+            <para>
+            [EGL] Egl.QuerySurface: Returns Egl.TRUE if texture has mipmaps, Egl.FALSE otherwise.
+            </para>
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.MIPMAP_LEVEL">
+            <summary>
+            <para>
+            [EGL] Egl.QuerySurface: Returns which level of the mipmap to render to, if texture has mipmaps.
+            </para>
+            <para>
+            [EGL] Egl.SurfaceAttrib: For mipmap textures, the Egl.MIPMAP_LEVEL attribute indicates which level of the mipmap should 
+            be rendered. If the value of this attribute is outside the range of supported mipmap levels, the closest valid mipmap 
+            level is selected for rendering. The default value is Egl..
+            </para>
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.NO_TEXTURE">
+            <summary>
+            [EGL] Value of EGL_NO_TEXTURE symbol.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.TEXTURE_2D">
+            <summary>
+            [EGL] Value of EGL_TEXTURE_2D symbol.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.TEXTURE_FORMAT">
+            <summary>
+            <para>
+            [EGL] Egl.CreatePbufferFromClientBuffer: Specifies the format of the texture that will be created when a pbuffer is 
+            bound to a texture map. Possible values are Egl.NO_TEXTURE, Egl.TEXTURE_RGB, and Egl.TEXTURE_RGBA. The default value is 
+            Egl.NO_TEXTURE.
+            </para>
+            <para>
+            [EGL] Egl.CreatePbufferSurface: Specifies the format of the texture that will be created when a pbuffer is bound to a 
+            texture map. Possible values are Egl.NO_TEXTURE, Egl.TEXTURE_RGB, and Egl.TEXTURE_RGBA. The default value is 
+            Egl.NO_TEXTURE.
+            </para>
+            <para>
+            [EGL] Egl.QuerySurface: Returns format of texture. Possible values are Egl.NO_TEXTURE, Egl.TEXTURE_RGB, and 
+            Egl.TEXTURE_RGBA.
+            </para>
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.TEXTURE_RGB">
+            <summary>
+            [EGL] Value of EGL_TEXTURE_RGB symbol.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.TEXTURE_RGBA">
+            <summary>
+            [EGL] Value of EGL_TEXTURE_RGBA symbol.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.TEXTURE_TARGET">
+            <summary>
+            <para>
+            [EGL] Egl.CreatePbufferFromClientBuffer: Specifies the target for the texture that will be created when the pbuffer is 
+            created with a texture format of Egl.TEXTURE_RGB or Egl.TEXTURE_RGBA. Possible values are Egl.NO_TEXTURE, or 
+            Egl.TEXTURE_2D. The default value is Egl.NO_TEXTURE.
+            </para>
+            <para>
+            [EGL] Egl.CreatePbufferSurface: Specifies the target for the texture that will be created when the pbuffer is created 
+            with a texture format of Egl.TEXTURE_RGB or Egl.TEXTURE_RGBA. Possible values are Egl.NO_TEXTURE, or Egl.TEXTURE_2D. The 
+            default value is Egl.NO_TEXTURE.
+            </para>
+            <para>
+            [EGL] Egl.QuerySurface: Returns type of texture. Possible values are Egl.NO_TEXTURE, or Egl.TEXTURE_2D.
+            </para>
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.ALPHA_SIZE">
+            <summary>
+            <para>
+            [EGL] Egl.ChooseConfig: Must be followed by a nonnegative integer that indicates the desired size of the alpha component 
+            of the color buffer, in bits. If this value is zero, color buffers with the smallest alpha component size are preferred. 
+            Otherwise, color buffers with the largest alpha component of at least the specified size are preferred. The default 
+            value is zero.
+            </para>
+            <para>
+            [EGL] Egl.GetConfigAttrib: Returns the number of bits of alpha stored in the color buffer.
+            </para>
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.BAD_ACCESS">
+            <summary>
+            [EGL] Egl.GetError: EGL cannot access a requested resource (for example a context is bound in another thread).
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.BAD_ALLOC">
+            <summary>
+            [EGL] Egl.GetError: EGL failed to allocate resources for the requested operation.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.BAD_ATTRIBUTE">
+            <summary>
+            [EGL] Egl.GetError: An unrecognized attribute or attribute value was passed in the attribute list.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.BAD_CONFIG">
+            <summary>
+            [EGL] Egl.GetError: An EGLConfig argument does not name a valid EGL frame buffer configuration.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.BAD_CONTEXT">
+            <summary>
+            [EGL] Egl.GetError: An EGLContext argument does not name a valid EGL rendering context.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.BAD_CURRENT_SURFACE">
+            <summary>
+            [EGL] Egl.GetError: The current surface of the calling thread is a window, pixel buffer or pixmap that is no longer 
+            valid.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.BAD_DISPLAY">
+            <summary>
+            [EGL] Egl.GetError: An EGLDisplay argument does not name a valid EGL display connection.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.BAD_MATCH">
+            <summary>
+            [EGL] Egl.GetError: Arguments are inconsistent (for example, a valid context requires buffers not supplied by a valid 
+            surface).
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.BAD_NATIVE_PIXMAP">
+            <summary>
+            [EGL] Egl.GetError: A NativePixmapType argument does not refer to a valid native pixmap.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.BAD_NATIVE_WINDOW">
+            <summary>
+            [EGL] Egl.GetError: A NativeWindowType argument does not refer to a valid native window.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.BAD_PARAMETER">
+            <summary>
+            [EGL] Egl.GetError: One or more argument values are invalid.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.BAD_SURFACE">
+            <summary>
+            [EGL] Egl.GetError: An EGLSurface argument does not name a valid surface (window, pixel buffer or pixmap) configured for 
+            GL rendering.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.BLUE_SIZE">
+            <summary>
+            <para>
+            [EGL] Egl.ChooseConfig: Must be followed by a nonnegative integer that indicates the desired size of the blue component 
+            of the color buffer, in bits. If this value is zero, color buffers with the smallest blue component size are preferred. 
+            Otherwise, color buffers with the largest blue component of at least the specified size are preferred. The default value 
+            is zero.
+            </para>
+            <para>
+            [EGL] Egl.GetConfigAttrib: Returns the number of bits of blue stored in the color buffer.
+            </para>
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.BUFFER_SIZE">
+            <summary>
+            <para>
+            [EGL] Egl.ChooseConfig: Must be followed by a nonnegative integer that indicates the desired color buffer size, in bits. 
+            The smallest color buffers of at least the specified size are preferred. The default value is zero. The color buffer 
+            size is the sum of Egl.RED_SIZE, Egl.GREEN_SIZE, Egl.BLUE_SIZE, and Egl.ALPHA_SIZE, and does not include any padding 
+            bits which may be present in the pixel format. It is usually preferable to specify desired sizes for these color 
+            components individually.
+            </para>
+            <para>
+            [EGL] Egl.GetConfigAttrib: Returns the depth of the color buffer. It is the sum of Egl.RED_SIZE, Egl.GREEN_SIZE, 
+            Egl.BLUE_SIZE, and Egl.ALPHA_SIZE.
+            </para>
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.CONFIG_CAVEAT">
+            <summary>
+            <para>
+            [EGL] Egl.ChooseConfig: Must be followed by Egl.DONT_CARE, Egl.NONE, Egl.SLOW_CONFIG, or Egl.NON_CONFORMANT_CONFIG. If 
+            Egl.DONT_CARE is specified, then configs are not matched for this attribute. The default value is Egl.DONT_CARE. If 
+            Egl.NONE is specified, then configs are matched for this attribute, but only configs with no caveats (neither 
+            Egl.SLOW_CONFIG or Egl.NON_CONFORMANT_CONFIG) will be considered. If Egl.SLOW_CONFIG is specified, then only slow 
+            configs configurations will be considered. The meaning of``slow'' is implementation-dependent, but typically indicates a 
+            non-hardware-accelerated (software) implementation. If Egl.NON_CONFORMANT_CONFIG is specified, then only configs 
+            supporting non-conformant OpenGL ES contexts will be considered. If the EGL version is 1.3 or later, caveat 
+            Egl.NON_CONFORMANT_CONFIG is obsolete, since the same information can be specified via the Egl.CONFORMANT attribute on a 
+            per-client-API basis, not just for OpenGL ES.
+            </para>
+            <para>
+            [EGL] Egl.GetConfigAttrib: Returns the caveats for the frame buffer configuration. Possible caveat values are Egl.NONE, 
+            Egl.SLOW_CONFIG, and Egl.NON_CONFORMANT.
+            </para>
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.CONFIG_ID">
+            <summary>
+            <para>
+            [EGL] Egl.ChooseConfig: Must be followed by a valid integer ID that indicates the desired EGL frame buffer 
+            configuration. When a Egl.CONFIG_ID is specified, all other attributes are ignored. The default value is Egl.DONT_CARE. 
+            The meaning of config IDs is implementation-dependent. They are used only to uniquely identify different frame buffer 
+            configurations.
+            </para>
+            <para>
+            [EGL] Egl.GetConfigAttrib: Returns the ID of the frame buffer configuration.
+            </para>
+            <para>
+            [EGL] Egl.QueryContext: Returns the ID of the EGL frame buffer configuration with respect to which the context was 
+            created.
+            </para>
+            <para>
+            [EGL] Egl.QuerySurface: Returns the ID of the EGL frame buffer configuration with respect to which the surface was 
+            created.
+            </para>
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.CORE_NATIVE_ENGINE">
+            <summary>
+            [EGL] Value of EGL_CORE_NATIVE_ENGINE symbol.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.DEPTH_SIZE">
+            <summary>
+            <para>
+            [EGL] Egl.ChooseConfig: Must be followed by a nonnegative integer that indicates the desired depth buffer size, in bits. 
+            The smallest depth buffers of at least the specified size is preferred. If the desired size is zero, frame buffer 
+            configurations with no depth buffer are preferred. The default value is zero. The depth buffer is used only by OpenGL 
+            and OpenGL ES client APIs.
+            </para>
+            <para>
+            [EGL] Egl.GetConfigAttrib: Returns the number of bits in the depth buffer.
+            </para>
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.DONT_CARE">
+            <summary>
+            [EGL] Value of EGL_DONT_CARE symbol.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.DRAW">
+            <summary>
+            [EGL] Value of EGL_DRAW symbol.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.EXTENSIONS">
+            <summary>
+            [EGL] Egl.QueryString: Returns a space separated list of supported extensions to EGL.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.FALSE">
+            <summary>
+            [EGL] Value of EGL_FALSE symbol.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.GREEN_SIZE">
+            <summary>
+            <para>
+            [EGL] Egl.ChooseConfig: Must be followed by a nonnegative integer that indicates the desired size of the green component 
+            of the color buffer, in bits. If this value is zero, color buffers with the smallest green component size are preferred. 
+            Otherwise, color buffers with the largest green component of at least the specified size are preferred. The default 
+            value is zero.
+            </para>
+            <para>
+            [EGL] Egl.GetConfigAttrib: Returns the number of bits of green stored in the color buffer.
+            </para>
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.HEIGHT">
+            <summary>
+            <para>
+            [EGL] Egl.CreatePbufferSurface: Specifies the required height of the pixel buffer surface. The default value is Egl..
+            </para>
+            <para>
+            [EGL] Egl.QuerySurface: Returns the height of the surface in pixels.
+            </para>
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.LARGEST_PBUFFER">
+            <summary>
+            <para>
+            [EGL] Egl.CreatePbufferSurface: Requests the largest available pixel buffer surface when the allocation would otherwise 
+            fail. Use Egl.QuerySurface to retrieve the dimensions of the allocated pixel buffer. The default value is Egl.FALSE.
+            </para>
+            <para>
+            [EGL] Egl.QuerySurface: Returns the same attribute value specified when the surface was created with 
+            Egl.CreatePbufferSurface. For a window or pixmap surface, value is not modified.
+            </para>
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.LEVEL">
+            <summary>
+            <para>
+            [EGL] Egl.ChooseConfig: Must be followed by an integer buffer level specification. This specification is honored 
+            exactly. Buffer level zero corresponds to the default frame buffer of the display. Buffer level one is the first overlay 
+            frame buffer, level two the second overlay frame buffer, and so on. Negative buffer levels correspond to underlay frame 
+            buffers. The default value is zero. Most imlementations do not support overlay or underlay planes (buffer levels other 
+            than zero).
+            </para>
+            <para>
+            [EGL] Egl.GetConfigAttrib: Returns the frame buffer level. Level zero is the default frame buffer. Positive levels 
+            correspond to frame buffers that overlay the default buffer and negative levels correspond to frame buffers that 
+            underlay the default buffer.
+            </para>
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.MAX_PBUFFER_HEIGHT">
+            <summary>
+            [EGL] Egl.GetConfigAttrib: Returns the maximum height of a pixel buffer surface in pixels.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.MAX_PBUFFER_PIXELS">
+            <summary>
+            [EGL] Egl.GetConfigAttrib: Returns the maximum size of a pixel buffer surface in pixels.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.MAX_PBUFFER_WIDTH">
+            <summary>
+            [EGL] Egl.GetConfigAttrib: Returns the maximum width of a pixel buffer surface in pixels.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.NATIVE_RENDERABLE">
+            <summary>
+            <para>
+            [EGL] Egl.ChooseConfig: Must be followed by Egl.DONT_CARE, Egl.TRUE, or Egl.FALSE. If Egl.TRUE is specified, then only 
+            frame buffer configurations that allow native rendering into the surface will be considered. The default value is 
+            Egl.DONT_CARE.
+            </para>
+            <para>
+            [EGL] Egl.GetConfigAttrib: Returns Egl.TRUE if native rendering APIs can render into the surface, Egl.FALSE otherwise.
+            </para>
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.NATIVE_VISUAL_ID">
+            <summary>
+            [EGL] Egl.GetConfigAttrib: Returns the ID of the associated native visual.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.NATIVE_VISUAL_TYPE">
+            <summary>
+            [EGL] Egl.GetConfigAttrib: Returns the type of the associated native visual.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.NONE">
+            <summary>
+            [EGL] Value of EGL_NONE symbol.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.NON_CONFORMANT_CONFIG">
+            <summary>
+            [EGL] Value of EGL_NON_CONFORMANT_CONFIG symbol.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.NOT_INITIALIZED">
+            <summary>
+            [EGL] Egl.GetError: EGL is not initialized, or could not be initialized, for the specified EGL display connection.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.NO_CONTEXT">
+            <summary>
+            [EGL] Value of EGL_NO_CONTEXT symbol.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.NO_DISPLAY">
+            <summary>
+            [EGL] Value of EGL_NO_DISPLAY symbol.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.NO_SURFACE">
+            <summary>
+            [EGL] Value of EGL_NO_SURFACE symbol.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.PBUFFER_BIT">
+            <summary>
+            [EGL] Value of EGL_PBUFFER_BIT symbol.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.PIXMAP_BIT">
+            <summary>
+            [EGL] Value of EGL_PIXMAP_BIT symbol.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.READ">
+            <summary>
+            [EGL] Value of EGL_READ symbol.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.RED_SIZE">
+            <summary>
+            <para>
+            [EGL] Egl.ChooseConfig: Must be followed by a nonnegative integer that indicates the desired size of the red component 
+            of the color buffer, in bits. If this value is zero, color buffers with the smallest red component size are preferred. 
+            Otherwise, color buffers with the largest red component of at least the specified size are preferred. The default value 
+            is zero.
+            </para>
+            <para>
+            [EGL] Egl.GetConfigAttrib: Returns the number of bits of red stored in the color buffer.
+            </para>
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.SAMPLES">
+            <summary>
+            <para>
+            [EGL] Egl.ChooseConfig: Must be followed by the minimum number of samples required in multisample buffers. 
+            Configurations with the smallest number of samples that meet or exceed the specified minimum number are preferred. Note 
+            that it is possible for color samples in the multisample buffer to have fewer bits than colors in the main color 
+            buffers. However, multisampled colors maintain at least as much color resolution in aggregate as the main color buffers.
+            </para>
+            <para>
+            [EGL] Egl.GetConfigAttrib: Returns the number of samples per pixel.
+            </para>
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.SAMPLE_BUFFERS">
+            <summary>
+            <para>
+            [EGL] Egl.ChooseConfig: Must be followed by the minimum acceptable number of multisample buffers. Configurations with 
+            the smallest number of multisample buffers that meet or exceed this minimum number are preferred. Currently operation 
+            with more than one multisample buffer is undefined, so only values of zero or one will produce a match. The default 
+            value is zero.
+            </para>
+            <para>
+            [EGL] Egl.GetConfigAttrib: Returns the number of multisample buffers.
+            </para>
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.SLOW_CONFIG">
+            <summary>
+            [EGL] Value of EGL_SLOW_CONFIG symbol.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.STENCIL_SIZE">
+            <summary>
+            <para>
+            [EGL] Egl.ChooseConfig: Must be followed by a nonnegative integer that indicates the desired stencil buffer size, in 
+            bits. The smallest stencil buffers of at least the specified size are preferred. If the desired size is zero, frame 
+            buffer configurations with no stencil buffer are preferred. The default value is zero. The stencil buffer is used only 
+            by OpenGL and OpenGL ES client APIs.
+            </para>
+            <para>
+            [EGL] Egl.GetConfigAttrib: Returns the number of bits in the stencil buffer.
+            </para>
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.SUCCESS">
+            <summary>
+            [EGL] Egl.GetError: The last function succeeded without error.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.SURFACE_TYPE">
+            <summary>
+            <para>
+            [EGL] Egl.ChooseConfig: Must be followed by a bitmask indicating which EGL surface types and capabilities the frame 
+            buffer configuration must support. Mask bits include: Egl.MULTISAMPLE_RESOLVE_BOX_BIT Config allows specifying box 
+            filtered multisample resolve behavior with Egl.SurfaceAttrib. Egl.PBUFFER_BIT Config supports creating pixel buffer 
+            surfaces. Egl.PIXMAP_BIT Config supports creating pixmap surfaces. Egl.SWAP_BEHAVIOR_PRESERVED_BIT Config allows setting 
+            swap behavior for color buffers with Egl.SurfaceAttrib. Egl.VG_ALPHA_FORMAT_PRE_BIT Config allows specifying OpenVG 
+            rendering with premultiplied alpha values at surface creation time (see Egl.CreatePbufferSurface, 
+            Egl.CreatePixmapSurface, and Egl.CreateWindowSurface). Egl.VG_COLORSPACE_LINEAR_BIT Config allows specifying OpenVG 
+            rendering in a linear colorspace at surface creation time (see Egl.CreatePbufferSurface, Egl.CreatePixmapSurface, and 
+            Egl.CreateWindowSurface). Egl.WINDOW_BIT Config supports creating window surfaces. For example, if the bitmask is set to 
+            Egl.WINDOW_BIT | Egl.PIXMAP_BIT, only frame buffer configurations that support both windows and pixmaps will be 
+            considered. The default value is Egl.WINDOW_BIT.
+            </para>
+            <para>
+            [EGL] Egl.GetConfigAttrib: Returns a bitmask indicating the types of supported EGL surfaces.
+            </para>
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.TRANSPARENT_BLUE_VALUE">
+            <summary>
+            <para>
+            [EGL] Egl.ChooseConfig: Must be followed by an integer value indicating the transparent blue value. The value must be 
+            between zero and the maximum color buffer value for blue. Only frame buffer configurations that use the specified 
+            transparent blue value will be considered. The default value is Egl.DONT_CARE. This attribute is ignored unless 
+            Egl.TRANSPARENT_TYPE is included in attrib_list and specified as Egl.TRANSPARENT_RGB.
+            </para>
+            <para>
+            [EGL] Egl.GetConfigAttrib: Returns the transparent blue value.
+            </para>
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.TRANSPARENT_GREEN_VALUE">
+            <summary>
+            <para>
+            [EGL] Egl.ChooseConfig: Must be followed by an integer value indicating the transparent green value. The value must be 
+            between zero and the maximum color buffer value for green. Only frame buffer configurations that use the specified 
+            transparent green value will be considered. The default value is Egl.DONT_CARE. This attribute is ignored unless 
+            Egl.TRANSPARENT_TYPE is included in attrib_list and specified as Egl.TRANSPARENT_RGB.
+            </para>
+            <para>
+            [EGL] Egl.GetConfigAttrib: Returns the transparent green value.
+            </para>
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.TRANSPARENT_RED_VALUE">
+            <summary>
+            <para>
+            [EGL] Egl.ChooseConfig: Must be followed by an integer value indicating the transparent red value. The value must be 
+            between zero and the maximum color buffer value for red. Only frame buffer configurations that use the specified 
+            transparent red value will be considered. The default value is Egl.DONT_CARE. This attribute is ignored unless 
+            Egl.TRANSPARENT_TYPE is included in attrib_list and specified as Egl.TRANSPARENT_RGB.
+            </para>
+            <para>
+            [EGL] Egl.GetConfigAttrib: Returns the transparent red value.
+            </para>
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.TRANSPARENT_RGB">
+            <summary>
+            [EGL] Value of EGL_TRANSPARENT_RGB symbol.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.TRANSPARENT_TYPE">
+            <summary>
+            <para>
+            [EGL] Egl.ChooseConfig: Must be followed by one of Egl.NONE or Egl.TRANSPARENT_RGB. If Egl.NONE is specified, then only 
+            opaque frame buffer configurations will be considered. If Egl.TRANSPARENT_RGB is specified, then only transparent frame 
+            buffer configurations will be considered. The default value is Egl.NONE. Most implementations support only opaque frame 
+            buffer configurations.
+            </para>
+            <para>
+            [EGL] Egl.GetConfigAttrib: Returns the type of supported transparency. Possible transparency values are: Egl.NONE, and 
+            Egl.TRANSPARENT_RGB.
+            </para>
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.TRUE">
+            <summary>
+            [EGL] Value of EGL_TRUE symbol.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.VENDOR">
+            <summary>
+            [EGL] Egl.QueryString: Returns the company responsible for this EGL implementation. This name does not change from 
+            release to release.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.VERSION">
+            <summary>
+            [EGL] Egl.QueryString: Returns a version or release number. The Egl.VERSION string is laid out as 
+            follows:major_version.minor_version space vendor_specific_info
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.WIDTH">
+            <summary>
+            <para>
+            [EGL] Egl.CreatePbufferSurface: Specifies the required width of the pixel buffer surface. The default value is Egl..
+            </para>
+            <para>
+            [EGL] Egl.QuerySurface: Returns the width of the surface in pixels.
+            </para>
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.Egl.WINDOW_BIT">
+            <summary>
+            [EGL] Value of EGL_WINDOW_BIT symbol.
+            </summary>
+        </member>
+        <member name="M:SharpPi.Native.NativeMethods.Egl.GetCurrentContext">
+            <summary>
+            [EGL] eglGetCurrentContext: return the current EGL rendering context
+            </summary>
+        </member>
+        <member name="M:SharpPi.Native.NativeMethods.Egl.BindAPI(System.UInt32)">
+            <summary>
+            [EGL] eglBindAPI: Set the current rendering API
+            </summary>
+            <param name="api">
+            Specifies the client API to bind, one of Egl.OPENGL_API, Egl.OPENGL_ES_API, or Egl.OPENVG_API.
+            </param>
+        </member>
+        <member name="M:SharpPi.Native.NativeMethods.Egl.QueryAPI">
+            <summary>
+            [EGL] eglQueryAPI: Query the current rendering API
+            </summary>
+        </member>
+        <member name="M:SharpPi.Native.NativeMethods.Egl.CreatePbufferFromClientBuffer(System.IntPtr,System.UInt32,System.IntPtr,System.IntPtr,System.Int32[])">
+            <summary>
+            [EGL] eglCreatePbufferFromClientBuffer: create a new EGL pixel buffer surface bound to an OpenVG image
+            </summary>
+            <param name="dpy">
+            A <see cref="T:IntPtr"/>.
+            </param>
+            <param name="buftype">
+            Specifies the type of client API buffer to be bound. Must be Egl.OPENVG_IMAGE, corresponding to an OpenVG VGImage 
+            buffer.
+            </param>
+            <param name="buffer">
+            Specifies the OpenVG VGImage handle of the buffer to be bound.
+            </param>
+            <param name="config">
+            Specifies the EGL frame buffer configuration that defines the frame buffer resource available to the surface.
+            </param>
+            <param name="attrib_list">
+            Specifies pixel buffer surface attributes. May be Egl. or empty (first attribute is Egl.NONE).
+            </param>
+        </member>
+        <member name="M:SharpPi.Native.NativeMethods.Egl.ReleaseThread">
+            <summary>
+            [EGL] eglReleaseThread: Release EGL per-thread state
+            </summary>
+        </member>
+        <member name="M:SharpPi.Native.NativeMethods.Egl.WaitClient">
+            <summary>
+            [EGL] eglWaitClient: Complete client API execution prior to subsequent native rendering calls
+            </summary>
+        </member>
+        <member name="M:SharpPi.Native.NativeMethods.Egl.BindTexImage(System.IntPtr,System.IntPtr,System.Int32)">
+            <summary>
+            [EGL] eglBindTexImage: Defines a two-dimensional texture image
+            </summary>
+            <param name="dpy">
+            A <see cref="T:IntPtr"/>.
+            </param>
+            <param name="surface">
+            Specifies the EGL surface.
+            </param>
+            <param name="buffer">
+            Specifies the texture image data.
+            </param>
+        </member>
+        <member name="M:SharpPi.Native.NativeMethods.Egl.ReleaseTexImage(System.IntPtr,System.IntPtr,System.Int32)">
+            <summary>
+            [EGL] eglReleaseTexImage: Releases a color buffer that is being used as a texture
+            </summary>
+            <param name="dpy">
+            A <see cref="T:IntPtr"/>.
+            </param>
+            <param name="surface">
+            Specifies the EGL surface.
+            </param>
+            <param name="buffer">
+            Specifies the texture image data.
+            </param>
+        </member>
+        <member name="M:SharpPi.Native.NativeMethods.Egl.SurfaceAttrib(System.IntPtr,System.IntPtr,System.Int32,System.Int32)">
+            <summary>
+            [EGL] eglSurfaceAttrib: set an EGL surface attribute
+            </summary>
+            <param name="dpy">
+            A <see cref="T:IntPtr"/>.
+            </param>
+            <param name="surface">
+            Specifies the EGL surface.
+            </param>
+            <param name="attribute">
+            Specifies the EGL surface attribute to set.
+            </param>
+            <param name="value">
+            Specifies the attributes required value.
+            </param>
+        </member>
+        <member name="M:SharpPi.Native.NativeMethods.Egl.SwapInterval(System.IntPtr,System.Int32)">
+            <summary>
+            [EGL] eglSwapInterval: specifies the minimum number of video frame periods per buffer swap for the window associated 
+            with the current context.
+            </summary>
+            <param name="dpy">
+            A <see cref="T:IntPtr"/>.
+            </param>
+            <param name="interval">
+            Specifies the minimum number of video frames that are displayed before a buffer swap will occur.
+            </param>
+        </member>
+        <member name="M:SharpPi.Native.NativeMethods.Egl.ChooseConfig(System.IntPtr,System.Int32[],System.IntPtr[],System.Int32,System.Int32[])">
+            <summary>
+            [EGL] eglChooseConfig: return a list of EGL frame buffer configurations that match specified attributes
+            </summary>
+            <param name="dpy">
+            A <see cref="T:IntPtr"/>.
+            </param>
+            <param name="attrib_list">
+            Specifies attributes required to match by configs.
+            </param>
+            <param name="configs">
+            Returns an array of frame buffer configurations.
+            </param>
+            <param name="config_size">
+            Specifies the size of the array of frame buffer configurations.
+            </param>
+            <param name="num_config">
+            Returns the number of frame buffer configurations returned.
+            </param>
+        </member>
+        <member name="M:SharpPi.Native.NativeMethods.Egl.CopyBuffers(System.IntPtr,System.IntPtr,System.IntPtr)">
+            <summary>
+            [EGL] eglCopyBuffers: copy EGL surface color buffer to a native pixmap
+            </summary>
+            <param name="dpy">
+            A <see cref="T:IntPtr"/>.
+            </param>
+            <param name="surface">
+            Specifies the EGL surface whose color buffer is to be copied.
+            </param>
+            <param name="target">
+            A <see cref="T:IntPtr"/>.
+            </param>
+        </member>
+        <member name="M:SharpPi.Native.NativeMethods.Egl.CreateContext(System.IntPtr,System.IntPtr,System.IntPtr,System.Int32[])">
+            <summary>
+            [EGL] eglCreateContext: create a new EGL rendering context
+            </summary>
+            <param name="dpy">
+            A <see cref="T:IntPtr"/>.
+            </param>
+            <param name="config">
+            Specifies the EGL frame buffer configuration that defines the frame buffer resource available to the rendering context.
+            </param>
+            <param name="share_context">
+            Specifies another EGL rendering context with which to share data, as defined by the client API corresponding to the 
+            contexts. Data is also shared with all other contexts with which <paramref name="share_context"/> shares data. 
+            Egl.NO_CONTEXT indicates that no sharing is to take place.
+            </param>
+            <param name="attrib_list">
+            Specifies attributes and attribute values for the context being created. Only the attribute Egl.CONTEXT_CLIENT_VERSION 
+            may be specified.
+            </param>
+        </member>
+        <member name="M:SharpPi.Native.NativeMethods.Egl.CreatePbufferSurface(System.IntPtr,System.IntPtr,System.Int32[])">
+            <summary>
+            [EGL] eglCreatePbufferSurface: create a new EGL pixel buffer surface
+            </summary>
+            <param name="dpy">
+            A <see cref="T:IntPtr"/>.
+            </param>
+            <param name="config">
+            Specifies the EGL frame buffer configuration that defines the frame buffer resource available to the surface.
+            </param>
+            <param name="attrib_list">
+            Specifies pixel buffer surface attributes. May be Egl. or empty (first attribute is Egl.NONE).
+            </param>
+        </member>
+        <member name="M:SharpPi.Native.NativeMethods.Egl.CreatePixmapSurface(System.IntPtr,System.IntPtr,System.IntPtr,System.Int32[])">
+            <summary>
+            [EGL] eglCreatePixmapSurface: create a new EGL pixmap surface
+            </summary>
+            <param name="dpy">
+            A <see cref="T:IntPtr"/>.
+            </param>
+            <param name="config">
+            Specifies the EGL frame buffer configuration that defines the frame buffer resource available to the surface.
+            </param>
+            <param name="pixmap">
+            A <see cref="T:IntPtr"/>.
+            </param>
+            <param name="attrib_list">
+            Specifies pixmap surface attributes. May be Egl. or empty (first attribute is Egl.NONE).
+            </param>
+        </member>
+        <member name="M:SharpPi.Native.NativeMethods.Egl.CreateWindowSurface(System.IntPtr,System.IntPtr,System.IntPtr,System.Int32[])">
+            <summary>
+            [EGL] eglCreateWindowSurface: create a new EGL window surface
+            </summary>
+            <param name="dpy">
+            A <see cref="T:IntPtr"/>.
+            </param>
+            <param name="config">
+            Specifies the EGL frame buffer configuration that defines the frame buffer resource available to the surface.
+            </param>
+            <param name="win">
+            A <see cref="T:IntPtr"/>.
+            </param>
+            <param name="attrib_list">
+            Specifies window surface attributes. May be Egl. or empty (first attribute is Egl.NONE).
+            </param>
+        </member>
+        <member name="M:SharpPi.Native.NativeMethods.Egl.DestroyContext(System.IntPtr,System.IntPtr)">
+            <summary>
+            [EGL] eglDestroyContext: destroy an EGL rendering context
+            </summary>
+            <param name="dpy">
+            A <see cref="T:IntPtr"/>.
+            </param>
+            <param name="ctx">
+            A <see cref="T:IntPtr"/>.
+            </param>
+        </member>
+        <member name="M:SharpPi.Native.NativeMethods.Egl.DestroySurface(System.IntPtr,System.IntPtr)">
+            <summary>
+            [EGL] eglDestroySurface: destroy an EGL surface
+            </summary>
+            <param name="dpy">
+            A <see cref="T:IntPtr"/>.
+            </param>
+            <param name="surface">
+            Specifies the EGL surface to be destroyed.
+            </param>
+        </member>
+        <member name="M:SharpPi.Native.NativeMethods.Egl.GetConfigAttrib(System.IntPtr,System.IntPtr,System.Int32,System.Int32[])">
+            <summary>
+            [EGL] eglGetConfigAttrib: return information about an EGL frame buffer configuration
+            </summary>
+            <param name="dpy">
+            A <see cref="T:IntPtr"/>.
+            </param>
+            <param name="config">
+            Specifies the EGL frame buffer configuration to be queried.
+            </param>
+            <param name="attribute">
+            Specifies the EGL rendering context attribute to be returned.
+            </param>
+            <param name="value">
+            Returns the requested value.
+            </param>
+        </member>
+        <member name="M:SharpPi.Native.NativeMethods.Egl.GetConfigAttrib(System.IntPtr,System.IntPtr,System.Int32,System.Int32@)">
+            <summary>
+            [EGL] eglGetConfigAttrib: return information about an EGL frame buffer configuration
+            </summary>
+            <param name="dpy">
+            A <see cref="T:IntPtr"/>.
+            </param>
+            <param name="config">
+            Specifies the EGL frame buffer configuration to be queried.
+            </param>
+            <param name="attribute">
+            Specifies the EGL rendering context attribute to be returned.
+            </param>
+            <param name="value">
+            Returns the requested value.
+            </param>
+        </member>
+        <member name="M:SharpPi.Native.NativeMethods.Egl.GetConfigs(System.IntPtr,System.IntPtr[],System.Int32,System.Int32[])">
+            <summary>
+            [EGL] eglGetConfigs: return a list of all EGL frame buffer configurations for a display
+            </summary>
+            <param name="dpy">
+            A <see cref="T:IntPtr"/>.
+            </param>
+            <param name="configs">
+            Returns a list of configs.
+            </param>
+            <param name="config_size">
+            Specifies the size of the list of configs.
+            </param>
+            <param name="num_config">
+            Returns the number of configs returned.
+            </param>
+        </member>
+        <member name="M:SharpPi.Native.NativeMethods.Egl.GetConfigs(System.IntPtr,System.IntPtr[],System.Int32,System.Int32@)">
+            <summary>
+            [EGL] eglGetConfigs: return a list of all EGL frame buffer configurations for a display
+            </summary>
+            <param name="dpy">
+            A <see cref="T:IntPtr"/>.
+            </param>
+            <param name="configs">
+            Returns a list of configs.
+            </param>
+            <param name="config_size">
+            Specifies the size of the list of configs.
+            </param>
+            <param name="num_config">
+            Returns the number of configs returned.
+            </param>
+        </member>
+        <member name="M:SharpPi.Native.NativeMethods.Egl.GetCurrentDisplay">
+            <summary>
+            [EGL] eglGetCurrentDisplay: return the display for the current EGL rendering context
+            </summary>
+        </member>
+        <member name="M:SharpPi.Native.NativeMethods.Egl.GetCurrentSurface(System.Int32)">
+            <summary>
+            [EGL] eglGetCurrentSurface: return the read or draw surface for the current EGL rendering context
+            </summary>
+            <param name="readdraw">
+            Specifies whether the EGL read or draw surface is to be returned.
+            </param>
+        </member>
+        <member name="M:SharpPi.Native.NativeMethods.Egl.GetDisplay(System.IntPtr)">
+            <summary>
+            [EGL] eglGetDisplay: return an EGL display connection
+            </summary>
+            <param name="display_id">
+            A <see cref="T:IntPtr"/>.
+            </param>
+        </member>
+        <member name="M:SharpPi.Native.NativeMethods.Egl.GetError">
+            <summary>
+            [EGL] eglGetError: return error information
+            </summary>
+        </member>
+        <member name="M:SharpPi.Native.NativeMethods.Egl.GetProcAddress(System.String)">
+            <summary>
+            [EGL] eglGetProcAddress: return a GL or an EGL extension function
+            </summary>
+            <param name="procname">
+            Specifies the name of the function to return.
+            </param>
+        </member>
+        <member name="M:SharpPi.Native.NativeMethods.Egl.Initialize(System.IntPtr,System.Int32@,System.Int32@)">
+            <summary>
+            [EGL] eglInitialize: initialize an EGL display connection
+            </summary>
+            <param name="dpy">
+            A <see cref="T:IntPtr"/>.
+            </param>
+            <param name="major">
+            Returns the major version number of the EGL implementation. May be Egl..
+            </param>
+            <param name="minor">
+            Returns the minor version number of the EGL implementation. May be Egl..
+            </param>
+        </member>
+        <member name="M:SharpPi.Native.NativeMethods.Egl.MakeCurrent(System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)">
+            <summary>
+            [EGL] eglMakeCurrent: attach an EGL rendering context to EGL surfaces
+            </summary>
+            <param name="dpy">
+            A <see cref="T:IntPtr"/>.
+            </param>
+            <param name="draw">
+            Specifies the EGL draw surface.
+            </param>
+            <param name="read">
+            Specifies the EGL read surface.
+            </param>
+            <param name="ctx">
+            A <see cref="T:IntPtr"/>.
+            </param>
+        </member>
+        <member name="M:SharpPi.Native.NativeMethods.Egl.QueryContext(System.IntPtr,System.IntPtr,System.Int32,System.Int32@)">
+            <summary>
+            [EGL] eglQueryContext: return EGL rendering context information
+            </summary>
+            <param name="display">
+            A <see cref="T:IntPtr"/>.
+            </param>
+            <param name="context">
+            A <see cref="T:IntPtr"/>.
+            </param>
+            <param name="attribute">
+            Specifies the EGL rendering context attribute to be returned.
+            </param>
+            <param name="value">
+            Returns the requested value.
+            </param>
+        </member>
+        <member name="M:SharpPi.Native.NativeMethods.Egl.QueryString(System.IntPtr,System.Int32)">
+            <summary>
+            [EGL] eglQueryString: return a string describing an EGL display connection
+            </summary>
+            <param name="dpy">
+            A <see cref="T:IntPtr"/>.
+            </param>
+            <param name="name">
+            Specifies a symbolic constant, one of Egl.CLIENT_APIS, Egl.VENDOR, Egl.VERSION, or Egl.EXTENSIONS.
+            </param>
+        </member>
+        <member name="M:SharpPi.Native.NativeMethods.Egl.QuerySurface(System.IntPtr,System.IntPtr,System.Int32,System.Int32[])">
+            <summary>
+            [EGL] eglQuerySurface: return EGL surface information
+            </summary>
+            <param name="dpy">
+            A <see cref="T:IntPtr"/>.
+            </param>
+            <param name="surface">
+            Specifies the EGL surface to query.
+            </param>
+            <param name="attribute">
+            Specifies the EGL surface attribute to be returned.
+            </param>
+            <param name="value">
+            Returns the requested value.
+            </param>
+        </member>
+        <member name="M:SharpPi.Native.NativeMethods.Egl.SwapBuffers(System.IntPtr,System.IntPtr)">
+            <summary>
+            [EGL] eglSwapBuffers: post EGL surface color buffer to a native window
+            </summary>
+            <param name="dpy">
+            A <see cref="T:IntPtr"/>.
+            </param>
+            <param name="surface">
+            Specifies the EGL drawing surface whose buffers are to be swapped.
+            </param>
+        </member>
+        <member name="M:SharpPi.Native.NativeMethods.Egl.Terminate(System.IntPtr)">
+            <summary>
+            [EGL] eglTerminate: terminate an EGL display connection
+            </summary>
+            <param name="dpy">
+            A <see cref="T:IntPtr"/>.
+            </param>
+        </member>
+        <member name="M:SharpPi.Native.NativeMethods.Egl.WaitGL">
+            <summary>
+            [EGL] eglWaitGL: Complete GL execution prior to subsequent native rendering calls
+            </summary>
+        </member>
+        <member name="M:SharpPi.Native.NativeMethods.Egl.WaitNative(System.Int32)">
+            <summary>
+            [EGL] eglWaitNative: complete native execution prior to subsequent GL rendering calls
+            </summary>
+            <param name="engine">
+            Specifies a particular marking engine to be waited on. Must be Egl.CORE_NATIVE_ENGINE.
+            </param>
+        </member>
+        <member name="M:SharpPi.Native.NativeMethods.VideoCore.bcm_host_get_processor_id">
+            <summary>
+            The processor ID.
+            </summary>
+        </member>
+        <member name="M:SharpPi.Native.NativeMethods.VideoCore.bcm_host_is_kms_active">
+            <summary>
+            Returns 1 if kms is active (dtoverlay=v3d-kms-vc4)
+            </summary>
+        </member>
+        <member name="M:SharpPi.Native.NativeMethods.VideoCore.bcm_host_is_fkms_active">
+            <summary>
+            Returns 1 if fkms is active (dtoverlay=v3d-fkms-vc4)
+            </summary>
+        </member>
+        <member name="M:SharpPi.Native.NativeMethods.VideoCore.bcm_host_is_model_pi4">
+            <summary>
+            Returns 1 if model is Pi4
+            </summary>
+        </member>
+        <member name="M:SharpPi.Native.NativeMethods.VideoCore.bcm_host_get_model_type">
+            <summary>
+            Gets the model of the Raspberry Pi board being used.
+            </summary>
+        </member>
+        <member name="T:SharpPi.Native.NativeMethods.VideoCore.EGL_DISPMANX_WINDOW_T">
+            <summary>
+            The structure expected by eglCreateWindowSurface function.
+            </summary>
+        </member>
+        <member name="T:SharpPi.Native.NativeMethods.DynamicLibrary">
+            <summary>
+            Dynamic Link Library (libdl)
+            </summary>
+        </member>
+        <member name="F:SharpPi.Native.NativeMethods.DynamicLibrary.FLAGS_RTLD_NOW">
+            <summary>
+            I think this means force load all the symbols even if we're not using them yet.
+            </summary>
+        </member>
+        <member name="P:SharpPi.Native.NativeMethods.DynamicLibrary.Location">
+            <summary>
+            The handle to the loaded library.
+            </summary>
+        </member>
+        <member name="M:SharpPi.Native.NativeMethods.DynamicLibrary.Open(System.String,System.Int32)">
+            <summary>
+            Loads the dynamic library file named by the null-terminated string filename and returns an opaque "handle" for the dynamic library.
+            </summary>
+        </member>
+        <member name="M:SharpPi.Native.NativeMethods.DynamicLibrary.Sym(System.IntPtr,System.String)">
+            <summary>
+            TBI
+            </summary>
+        </member>
+        <member name="M:SharpPi.Native.NativeMethods.DynamicLibrary.Close(System.IntPtr)">
+            <summary>
+            Decrements the reference count on the dynamic library handle handle.
+            If the reference count drops to zero and no other loaded libraries use symbols in it, then the dynamic library is unloaded.
+            </summary>
+            <returns>0 on success, and nonzero on error.</returns>
+        </member>
+        <member name="M:SharpPi.Native.NativeMethods.DynamicLibrary.GetError">
+            <summary>
+            Returns a human readable string describing the most recent error that occurred from dlopen(), dlsym() or dlclose() since the last call to dlerror().
+            It returns <see cref="!:null"/> if no errors have occurred since initialization or since it was last called.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:SharpPi.Native.PinnedObject.Address">
+            <summary>
+            Address of the pinned object in memory.
+            </summary>
+        </member>
+        <member name="M:SharpPi.Native.PinnedObject.Dispose">
+            <summary>
+            Releases all resource used by the <see cref="!:MemoryLock"/> object.
+            </summary>
+            <remarks>
+            Call <see cref="M:SharpPi.Native.PinnedObject.Dispose"/> when you are finished using the <see cref="!:MemoryLock"/>.
+            </remarks>
+        </member>
+        <member name="T:SharpPi.ModelType">
+            <summary>
+            The different types of Raspberry Pi board models.
+            </summary>
+        </member>
+        <member name="T:SharpPi.ProcessorType">
+            <summary>
+            The chipset for the processor of this board.
+            </summary>
+        </member>
+        <member name="T:SharpPi.DisplayID">
+            <summary>
+            Default display IDs.
+            Note: if you overwrite with your own dispmanx_platform_init function, you should use IDs you provided during dispmanx_display_attach.
+            </summary>
+        </member>
+        <member name="T:SharpPi.Device.CPU">
+            <summary>
+            Provides real-time data about the CPU on the Raspberry Pi.
+            </summary>
+        </member>
+        <member name="P:SharpPi.Device.CPU.Temperature">
+            <summary>
+            The temperature of the CPU (in degrees centigrade)
+            </summary>
+        </member>
+        <member name="P:SharpPi.Device.CPU.Frequency">
+            <summary>
+            The current frequency of the CPU (in Hz)
+            </summary>
+        </member>
+        <member name="P:SharpPi.Device.Model">
+            <summary>
+            The model of the Raspberry Pi board.
+            </summary>
+        </member>
+        <member name="P:SharpPi.Device.IsPi4">
+            <summary>
+            Determines whether this board is the Raspberry Pi 4. 
+            </summary>
+        </member>
+        <member name="P:SharpPi.Device.KMS">
+            <summary>
+            The Kernal Mode Setting for the board.
+            </summary>
+        </member>
+        <member name="P:SharpPi.Device.Chipset">
+            <summary>
+            The chipset of the processor.
+            </summary>
+        </member>
+        <member name="M:SharpPi.Device.GetNetworkList(System.String)">
+            <summary>
+            iwlist
+            </summary>
+            <param name="_interface">The interface to scan for networks on.</param>
+            <returns>A string that contains information about the wireless networks in area.</returns>
+        </member>
+        <member name="M:SharpPi.Device.GetInterfaceStatus(System.String)">
+            <summary>
+            ifconfig
+            </summary>
+            <param name="_interface">The interface to query</param>
+            <returns>A string that contains information about the interface.</returns>
+        </member>
+        <member name="M:SharpPi.Device.GetWifiStatus(System.String)">
+            <summary>
+            iwconfig
+            </summary>
+            <param name="_interface">The interface to query</param>
+            <returns>A string that contains information about the status of the interface.</returns>
+        </member>
+        <member name="M:SharpPi.Device.GetInterfaceIPv4(System.String)">
+            <summary>
+            Parses the inet address from ifconfig.
+            </summary>
+            <param name="_interface">The interface to query the inet address from.</param>
+            <returns><see cref="T:System.Net.IPAddress"/> if successful, otherwise <see cref="F:System.Net.IPAddress.None"/>.</returns>
+        </member>
+        <member name="M:SharpPi.Device.SetHostname(System.String)">
+            <summary>
+            Set the hostname for this device.
+            </summary>
+            <param name="name">The hostname</param>
+        </member>
+        <member name="T:SharpPi.GPIO">
+            <summary>
+            Class for using the GPIO on the Raspberry Pi.
+            Requires http://www.airspayce.com/mikem/bcm2835/, source should be included.
+            </summary>
+        </member>
+        <member name="T:SharpPi.GPIO.Direction">
+            <summary>
+            Specifies the direction of the GPIO pin (in/out)
+            </summary>
+        </member>
+        <member name="T:SharpPi.GPIO.PinState">
+            <summary>
+            The state of the pin (on/off)
+            </summary>
+        </member>
+        <member name="T:SharpPi.GPIO.Pullup">
+            <summary>
+            The internal pull up-down resistor of the pin (up/down)
+            </summary>
+        </member>
+        <member name="T:SharpPi.GPIO.Pin">
+            <summary>
+            Refer to http://elinux.org/Rpi_Low-level_peripherals for diagram.
+            </summary>
+        </member>
+        <member name="T:SharpPi.GPIO.Pin.Rev2">
+            <summary>
+            Raspberry Pi Rev.2 Models
+            </summary>
+        </member>
+        <member name="T:SharpPi.GPIO.Pin.Rev2.Plus">
+            <summary>
+            Raspberry Pi A+/B+ Models
+            </summary>
+        </member>
+        <member name="F:SharpPi.GPIO.PinNumber">
+            <summary>
+            The currently assigned GPIO pin.
+            </summary>
+        </member>
+        <member name="P:SharpPi.GPIO.PinDirection">
+            <summary>
+            Direction of the GPIO pin. (input/output)
+            </summary>
+        </member>
+        <member name="P:SharpPi.GPIO.State">
+            <summary>
+            The value of the GPIO pin. (on/off)
+            </summary>
+        </member>
+        <member name="P:SharpPi.GPIO.Pull">
+            <summary>
+            Internal pull up-down resistor for this pin.
+            </summary>
+        </member>
+        <member name="P:SharpPi.GPIO.PinMask">
+            <summary>
+            Gets the bit mask of this pin.
+            </summary>
+        </member>
+        <member name="M:SharpPi.GPIO.#ctor(System.UInt32,SharpPi.GPIO.Direction,SharpPi.GPIO.PinState)">
+            <summary>
+            Access to the specified GPIO setup with the specified direction with the specified initial value
+            </summary>
+            <param name="pin">The GPIO pin number. See the <see cref="T:SharpPi.GPIO.Pin"/> class for various pin number constants.</param>
+            <param name="direction">The direction of the pin.</param>
+            <param name="initialValue">Value of the pin once it is initialized.</param>
+        </member>
+        <member name="M:SharpPi.GPIO.Dispose">
+            <summary>
+            Dispose of this GPIO pin instance.
+            </summary>
+        </member>
+        <member name="M:SharpPi.GPIO.SetMulti(SharpPi.GPIO.Pin.Mask)">
+            <summary>
+            Sets any of the first 32 GPIO output pins specified in the mask to HIGH.
+            </summary>
+            <param name="mask">Mask of pins to affect. Use eg: (GPIOPinMask.GPIO_00) | GPIOPinMask.GPIO_01)</param>
+        </member>
+        <member name="M:SharpPi.GPIO.ClearMulti(SharpPi.GPIO.Pin.Mask)">
+            <summary>
+            Sets any of the first 32 GPIO output pins specified in the mask to LOW.
+            </summary>
+            <param name="mask">Mask of pins to affect. Use eg: (GPIOPinMask.GPIO_00) | GPIOPinMask.GPIO_01)</param>
+        </member>
+        <member name="M:SharpPi.GPIO.WriteMulti(SharpPi.GPIO.Pin.Mask,SharpPi.GPIO.PinState)">
+            <summary>
+            Sets any of the first 32 GPIO output pins specified in the mask to value.
+            </summary>
+            <param name="mask">Mask of pins to affect. Use eg: (GPIOPinMask.GPIO_00) | GPIOPinMask.GPIO_01)</param>
+        </member>
+        <member name="T:SharpPi.SPI">
+            <summary>
+            Class for using SPI on the Raspberry Pi.
+            </summary>
+        </member>
+        <member name="M:SharpPi.Graphics.Egl.Initialize(System.IntPtr,System.Int32,System.Int32)">
+            <summary>
+            Initialize EGL display connection.
+            </summary>
+            <param name="display">The display handle</param>
+        </member>
+        <member name="M:SharpPi.Graphics.Egl.GetDisplay(System.IntPtr)">
+            <summary>
+            Get an EGL display connection.
+            </summary>
+        </member>
+        <member name="M:SharpPi.Graphics.Egl.Terminate(System.IntPtr)">
+            <summary>
+            Terminate an EGL connection.
+            </summary>
+        </member>
+        <member name="M:SharpPi.Graphics.Egl.DestroySurface(System.IntPtr,System.IntPtr)">
+            <summary>
+            Destroy an EGL surface.
+            </summary>
+        </member>
+        <member name="M:SharpPi.Graphics.Egl.CreateWindowSurface(System.IntPtr,System.IntPtr,System.IntPtr,System.Int32[])">
+            <summary>
+            Creates a new EGL window surface.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Graphics.EGLContext._NativeSurface">
+            <summary>
+            The native surface used by this device context.
+            </summary>
+        </member>
+        <member name="P:SharpPi.Graphics.EGLContext.Display">
+            <summary>
+            Get the display connection.
+            </summary>
+        </member>
+        <member name="P:SharpPi.Graphics.EGLContext.EglSurface">
+            <summary>
+            Get the EGL surface handle.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Graphics.EGLContext._Config">
+            <summary>
+            The frame buffer configuration.
+            </summary>
+        </member>
+        <member name="P:SharpPi.Graphics.EGLContext.IsPixelFormatSet">
+            <summary>
+            Get the flag indicating whether this DeviceContext has a pixel format defined.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Graphics.EGLContext.IsPBufferSupported">
+            <summary>
+            Determine whether the hosting platform is able to create a P-Buffer.
+            </summary>
+        </member>
+        <member name="M:SharpPi.Graphics.EGLContext.#ctor">
+            <summary>
+            Default constructor.
+            </summary>
+        </member>
+        <member name="M:SharpPi.Graphics.EGLContext.#ctor(System.IntPtr)">
+            <summary>
+            Initializes a new instance of the <see cref="!:DeviceContextEGL"/> class.
+            </summary>
+            <param name='windowHandle'>
+            A <see cref="T:System.IntPtr"/> that specifies the window handle used to create the device context.  If it is <see cref="F:System.IntPtr.Zero"/>
+            the surface referenced by this NativeDeviceContext is a minimal PBuffer, or no surface at all in case EGL_KHR_surfaceless_context
+            </param>
+            <exception cref='T:System.InvalidOperationException'>
+            Is thrown when an operation cannot be performed.
+            </exception>
+        </member>
+        <member name="M:SharpPi.Graphics.EGLContext.#ctor(System.IntPtr,System.IntPtr)">
+            <summary>
+            Initializes a new instance of the <see cref="!:DeviceContextEGL"/> class.
+            </summary>
+            <param name="display">
+            A <see cref="T:System.IntPtr"/> that specifies the display handle used to create <paramref name="windowHandle"/>.
+            </param>
+            <param name='windowHandle'>
+            A <see cref="T:System.IntPtr"/> that specifies the window handle used to create the device context. If it is <see cref="F:System.IntPtr.Zero"/>
+            the surface referenced by this NativeDeviceContext is a minimal PBuffer, or no surface at all in case EGL_KHR_surfaceless_context
+            is supported.
+            </param>
+            <exception cref='T:System.InvalidOperationException'>
+            Is thrown when an operation cannot be performed.
+            </exception>
+        </member>
+        <member name="M:SharpPi.Graphics.EGLContext.#ctor(SharpPi.Graphics.EGLContext.INativePBuffer)">
+            <summary>
+            Initializes a new instance of the <see cref="!:DeviceContextEGL"/> class.
+            </summary>
+            <param name='nativeBuffer'>
+            A <see cref="T:SharpPi.Graphics.EGLContext.INativePBuffer"/> that specifies the P-Buffer used to create the device context.
+            </param>
+            <exception cref="T:System.ArgumentNullException">
+            Exception thrown if <paramref name="nativeBuffer"/> is null.
+            </exception>
+        </member>
+        <member name="M:SharpPi.Graphics.EGLContext.CreateSimpleContext">
+            <summary>
+            Create a simple context.
+            </summary>
+            <returns>
+            A <see cref="T:System.IntPtr"/> that represents the handle of the created context. If the context cannot be
+            created, it returns IntPtr.Zero.
+            </returns>
+        </member>
+        <member name="M:SharpPi.Graphics.EGLContext.CreateContext(System.IntPtr)">
+            <summary>
+            Creates a context.
+            </summary>
+            <param name="sharedContext">
+            A <see cref="T:System.IntPtr"/> that specify a context that will share objects with the returned one. If
+            it is IntPtr.Zero, no sharing is performed.
+            </param>
+            <returns>
+            A <see cref="T:System.IntPtr"/> that represents the handle of the created context. If the context cannot be
+            created, it returns IntPtr.Zero.
+            </returns>
+            <exception cref="T:System.InvalidOperationException">
+            Exception thrown in the case <paramref name="sharedContext"/> is different from IntPtr.Zero, and the objects
+            cannot be shared with it.
+            </exception>
+        </member>
+        <member name="M:SharpPi.Graphics.EGLContext.CreateContextAttrib(System.IntPtr,System.Int32[])">
+            <summary>
+            Creates a context, specifying attributes.
+            </summary>
+            <param name="sharedContext">
+            A <see cref="T:System.IntPtr"/> that specify a context that will share objects with the returned one. If
+            it is IntPtr.Zero, no sharing is performed.
+            </param>
+            <param name="attribsList">
+            A <see cref="T:Int32[]"/> that specifies the attributes list.
+            </param>
+            <param name="api">
+            A <see cref="!:KhronosVersion"/> that specifies the API to be implemented by the returned context. It can be null indicating the
+            default API for this DeviceContext implementation. If it is possible, try to determine the API version also.
+            </param>
+            <returns>
+            A <see cref="T:System.IntPtr"/> that represents the handle of the created context. If the context cannot be
+            created, it returns IntPtr.Zero.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">
+            Exception thrown if <paramref name="attribsList"/> is null.
+            </exception>
+            <exception cref="T:System.ArgumentException">
+            Exception thrown if <paramref name="attribsList"/> length is zero or if the last item of <paramref name="attribsList"/>
+            is not zero.
+            </exception>
+        </member>
+        <member name="M:SharpPi.Graphics.EGLContext.MakeCurrent(System.IntPtr)">
+            <summary>
+            Makes the context current on the calling thread.
+            </summary>
+            <param name="ctx">
+            A <see cref="T:System.IntPtr"/> that specify the context to be current on the calling thread, bound to
+            thise device context. It can be IntPtr.Zero indicating that no context will be current.
+            </param>
+            <returns>
+            It returns a boolean value indicating whether the operation was successful.
+            </returns>
+            <exception cref="T:System.NotSupportedException">
+            Exception thrown if the current platform is not supported.
+            </exception>
+        </member>
+        <member name="M:SharpPi.Graphics.EGLContext.MakeCurrentCore(System.IntPtr)">
+            <summary>
+            Makes the context current on the calling thread.
+            </summary>
+            <param name="ctx">
+            A <see cref="T:System.IntPtr"/> that specify the context to be current on the calling thread, bound to
+            thise device context. It can be IntPtr.Zero indicating that no context will be current.
+            </param>
+            <returns>
+            It returns a boolean value indicating whether the operation was successful.
+            </returns>
+            <exception cref="T:System.NotSupportedException">
+            Exception thrown if the current platform is not supported.
+            </exception>
+        </member>
+        <member name="M:SharpPi.Graphics.EGLContext.DeleteContext(System.IntPtr)">
+            <summary>
+            Deletes a context.
+            </summary>
+            <param name="ctx">
+            A <see cref="T:System.IntPtr"/> that specify the context to be deleted.
+            </param>
+            <returns>
+            It returns a boolean value indicating whether the operation was successful. If it returns false,
+            query the exception by calling <see cref="!:GetPlatformException"/>.
+            </returns>
+            <remarks>
+            <para>The context <paramref name="ctx"/> must not be current on any thread.</para>
+            </remarks>
+            <exception cref="T:System.ArgumentException">
+            Exception thrown if <paramref name="ctx"/> is IntPtr.Zero.
+            </exception>
+        </member>
+        <member name="M:SharpPi.Graphics.EGLContext.SwapBuffers">
+            <summary>
+            Swap the buffers of a device.
+            </summary>
+        </member>
+        <member name="M:SharpPi.Graphics.EGLContext.SwapInterval(System.Int32)">
+            <summary>
+            Control the the buffers swap of a device.
+            </summary>
+            <param name="interval">
+            A <see cref="T:System.Int32"/> that specifies the minimum number of video frames that are displayed
+            before a buffer swap will occur.
+            </param>
+            <returns>
+            It returns a boolean value indicating whether the operation was successful.
+            </returns>
+        </member>
+        <member name="P:SharpPi.Graphics.EGLContext.PixelsFormats">
+            <summary>
+            Get the pixel formats supported by this device.
+            </summary>
+        </member>
+        <member name="M:SharpPi.Graphics.EGLContext.ChoosePixelFormat(SharpPi.Graphics.DevicePixelFormat)">
+            <summary>
+            Set the device pixel format.
+            </summary>
+            <param name="pixelFormat">
+            A <see cref="T:SharpPi.Graphics.DevicePixelFormat"/> that specifies the pixel format to set.
+            </param>
+        </member>
+        <member name="M:SharpPi.Graphics.EGLContext.ChoosePixelFormat(System.IntPtr,SharpPi.Graphics.DevicePixelFormat)">
+            <summary>
+            Set the device pixel format.
+            </summary>
+            <param name="pixelFormat">
+            A <see cref="T:SharpPi.Graphics.DevicePixelFormat"/> that specifies the pixel format to set.
+            </param>
+        </member>
+        <member name="M:SharpPi.Graphics.EGLContext.SetPixelFormat(SharpPi.Graphics.DevicePixelFormat)">
+            <summary>
+            Set the device pixel format.
+            </summary>
+            <param name="pixelFormat">
+            A <see cref="T:SharpPi.Graphics.DevicePixelFormat"/> that specifies the pixel format to set.
+            </param>
+            <exception cref="T:System.ArgumentNullException">
+            Exception thrown if <paramref name="pixelFormat"/> is null.
+            </exception>
+        </member>
+        <member name="M:SharpPi.Graphics.EGLContext.Dispose(System.Boolean)">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting managed/unmanaged resources.
+            </summary>
+            <param name="disposing">
+            A <see cref="T:System.Boolean"/> indicating whether the disposition is requested explictly.
+            </param>
+        </member>
+        <member name="F:SharpPi.Graphics.EGLContext._PixelFormatCache">
+            <summary>
+            Pixel formats available on this DeviceContext (cache).
+            </summary>
+        </member>
+        <member name="T:SharpPi.Graphics.EGLContext.NativeSurface">
+            <summary>
+            Basic native EGL surface.
+            </summary>
+            <remarks>
+            Holds EGL display and version.
+            </remarks>
+        </member>
+        <member name="M:SharpPi.Graphics.EGLContext.NativeSurface.#ctor(System.IntPtr)">
+            <summary>
+            Default constructor.
+            </summary>
+            <param name="display">
+            A <see cref="T:System.IntPtr"/> that specifies the display handle to be passed to <see cref="M:SharpPi.Graphics.Egl.GetDisplay(System.IntPtr)"/>.
+            </param>
+        </member>
+        <member name="F:SharpPi.Graphics.EGLContext.NativeSurface.DefaultDisplay">
+            <summary>
+            The default display handle.
+            </summary>
+        </member>
+        <member name="P:SharpPi.Graphics.EGLContext.NativeSurface.Handle">
+            <summary>
+            Get the native surface handle.
+            </summary>
+        </member>
+        <member name="M:SharpPi.Graphics.EGLContext.NativeSurface.CreateHandle(System.IntPtr,System.Int32[])">
+            <summary>
+            Create the native surface handle.
+            </summary>
+            <param name="configId">
+            A <see cref="T:System.IntPtr"/> that specifies the configuration ID.
+            </param>
+            <param name="attribs">
+            A <see cref="T:int[]"/> that lists the handle attributes.
+            </param>
+            <exception cref="T:System.InvalidOperationException">
+            Exception thrown if the handle is already created.
+            </exception>
+        </member>
+        <member name="F:SharpPi.Graphics.EGLContext.NativeSurface._Display">
+            <summary>
+            Get the display handle associated this instance.
+            </summary>
+        </member>
+        <member name="M:SharpPi.Graphics.EGLContext.NativeSurface.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+        </member>
+        <member name="P:SharpPi.Graphics.EGLContext.INativeWindow.Display">
+            <summary>
+            Get the display handle associated this instance.
+            </summary>
+        </member>
+        <member name="P:SharpPi.Graphics.EGLContext.INativeWindow.Handle">
+            <summary>
+            Get the native window handle.
+            </summary>
+        </member>
+        <member name="T:SharpPi.Graphics.EGLContext.INativePBuffer">
+            <summary>
+            Native P-Buffer interface.
+            </summary>
+        </member>
+        <member name="T:SharpPi.Graphics.EGLContext.NativeWindow">
+            <summary>
+            Native window implementation for Windows.
+            </summary>
+        </member>
+        <member name="M:SharpPi.Graphics.EGLContext.NativeWindow.#ctor(System.IntPtr,System.IntPtr)">
+            <summary>
+            Construct a NativeWindow on an OS window
+            </summary>
+            <param name="display">
+            A <see cref="T:System.IntPtr"/> that specifies the display handle to be passed to <see cref="M:SharpPi.Graphics.Egl.GetDisplay(System.IntPtr)"/>.
+            </param>
+            <param name="windowHandle">
+            A <see cref="T:System.IntPtr"/> that specifies the handle of the OS window.
+            </param>
+        </member>
+        <member name="M:SharpPi.Graphics.EGLContext.NativeWindow.#ctor(System.IntPtr,System.IntPtr,SharpPi.Graphics.DevicePixelFormat)">
+            <summary>
+            Construct a NativeWindow on an OS window.
+            </summary>
+            <param name="display">
+            A <see cref="T:System.IntPtr"/> that specifies the display handle to be passed to <see cref="M:SharpPi.Graphics.Egl.GetDisplay(System.IntPtr)"/>.
+            </param>
+            <param name="windowHandle">
+            A <see cref="T:System.IntPtr"/> that specifies the handle of the OS window.
+            </param>
+            <param name="pixelFormat">
+            A <see cref="T:SharpPi.Graphics.DevicePixelFormat"/> used for choosing the NativeWindow pixel format configuration. It can
+            be null; in this case the pixel format will be set elsewhere.
+            </param>
+        </member>
+        <member name="F:SharpPi.Graphics.EGLContext.NativeWindow._Handle">
+            <summary>
+            The EGL window handle.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Graphics.EGLContext.NativeWindow._WindowHandle">
+            <summary>
+            The OS window handle.
+            </summary>
+        </member>
+        <member name="P:SharpPi.Graphics.EGLContext.NativeWindow.Handle">
+            <summary>
+            Get the EGL window handle.
+            </summary>
+        </member>
+        <member name="M:SharpPi.Graphics.EGLContext.NativeWindow.CreateHandle(System.IntPtr,System.Int32[])">
+            <summary>
+            Create the native surface handle.
+            </summary>
+            <param name="configId">
+            A <see cref="T:System.IntPtr"/> that specifies the configuration ID.
+            </param>
+            <param name="attribs">
+            A <see cref="T:int[]"/> that lists the handle attributes.
+            </param>
+            <exception cref="T:System.InvalidOperationException">
+            Exception thrown if the handle is already created.
+            </exception>
+        </member>
+        <member name="M:SharpPi.Graphics.EGLContext.NativeWindow.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+        </member>
+        <member name="P:SharpPi.Graphics.EGLContext.NativeWindow.SharpPi#Graphics#EGLContext#INativeWindow#Display">
+            <summary>
+            Get the display handle associated this instance.
+            </summary>
+        </member>
+        <member name="P:SharpPi.Graphics.EGLContext.NativeWindow.SharpPi#Graphics#EGLContext#INativeWindow#Handle">
+            <summary>
+            Get the native window handle.
+            </summary>
+        </member>
+        <member name="T:SharpPi.Graphics.EGLContext.NativePBuffer">
+            <summary>
+            P-Buffer implementation for EGL.
+            </summary>
+        </member>
+        <member name="M:SharpPi.Graphics.EGLContext.NativePBuffer.#ctor(SharpPi.Graphics.DevicePixelFormat,System.UInt32,System.UInt32)">
+            <summary>
+            Construct a NativePBuffer with a specific pixel format and size.
+            </summary>
+            <param name="pixelFormat">
+            A <see cref="T:SharpPi.Graphics.DevicePixelFormat"/> that specifies the pixel format and the ancillary buffers required.
+            </param>
+            <param name="width">
+            A <see cref="T:System.UInt32"/> that specifies the width of the P-Buffer, in pixels.
+            </param>
+            <param name="height">
+            A <see cref="T:System.UInt32"/> that specifies the height of the P-Buffer, in pixels.
+            </param>
+        </member>
+        <member name="M:SharpPi.Graphics.EGLContext.NativePBuffer.#ctor(System.IntPtr,SharpPi.Graphics.DevicePixelFormat,System.UInt32,System.UInt32)">
+            <summary>
+            Construct a NativePBuffer with a specific pixel format and size.
+            </summary>
+            <param name="display">
+            
+            </param>
+            <param name="pixelFormat">
+            A <see cref="T:SharpPi.Graphics.DevicePixelFormat"/> that specifies the pixel format and the ancillary buffers required.
+            </param>
+            <param name="width">
+            A <see cref="T:System.UInt32"/> that specifies the width of the P-Buffer, in pixels.
+            </param>
+            <param name="height">
+            A <see cref="T:System.UInt32"/> that specifies the height of the P-Buffer, in pixels.
+            </param>
+        </member>
+        <member name="F:SharpPi.Graphics.EGLContext.NativePBuffer._Handle">
+            <summary>
+            The P-Buffer handle.
+            </summary>
+        </member>
+        <member name="P:SharpPi.Graphics.EGLContext.NativePBuffer.Handle">
+            <summary>
+            Get the EGL window handle.
+            </summary>
+        </member>
+        <member name="M:SharpPi.Graphics.EGLContext.NativePBuffer.CreateHandle(System.IntPtr,System.Int32[])">
+            <summary>
+            Create the native surface handle.
+            </summary>
+            <param name="configId">
+            A <see cref="T:System.IntPtr"/> that specifies the configuration ID.
+            </param>
+            <param name="attribs">
+            A <see cref="T:int[]"/> that lists the handle attributes.
+            </param>
+            <exception cref="T:System.InvalidOperationException">
+            Exception thrown if the handle is already created.
+            </exception>
+        </member>
+        <member name="M:SharpPi.Graphics.EGLContext.NativePBuffer.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+        </member>
+        <member name="P:SharpPi.Graphics.EGLContext.NativePBuffer.SharpPi#Graphics#EGLContext#INativeWindow#Display">
+            <summary>
+            Get the display handle associated this instance.
+            </summary>
+        </member>
+        <member name="P:SharpPi.Graphics.EGLContext.NativePBuffer.SharpPi#Graphics#EGLContext#INativeWindow#Handle">
+            <summary>
+            Get the native window handle.
+            </summary>
+        </member>
+        <member name="T:SharpPi.Graphics.EglException">
+            <summary>
+            Exception thrown by Egl class.
+            </summary>
+        </member>
+        <member name="M:SharpPi.Graphics.EglException.#ctor(System.Int32)">
+            <summary>
+            Construct a EglException.
+            </summary>
+            <param name="errorCode">
+            A <see cref="T:System.Int32"/> that specifies the error code.
+            </param>
+        </member>
+        <member name="M:SharpPi.Graphics.EglException.GetErrorMessage(System.Int32)">
+            <summary>
+            Returns a description of the error code.
+            </summary>
+            <param name="errorCode">
+            A <see cref="T:System.Int32"/> that specifies the error code.
+            </param>
+            <returns>
+            It returns a description of <paramref name="errorCode"/>.
+            </returns>
+        </member>
+        <member name="T:SharpPi.Graphics.GLException">
+            <summary>
+            Exception thrown by Egl class.
+            </summary>
+        </member>
+        <member name="M:SharpPi.Graphics.GLException.#ctor(OpenTK.Graphics.ES20.ErrorCode)">
+            <summary>
+            Construct a GLException.
+            </summary>
+            <param name="errorCode">
+            A <see cref="T:System.Int32"/> that specifies the error code.
+            </param>
+        </member>
+        <member name="M:SharpPi.Graphics.GLException.GetErrorMessage(OpenTK.Graphics.ES20.ErrorCode)">
+            <summary>
+            Returns a description of the error code.
+            </summary>
+            <param name="errorCode">
+            A <see cref="T:System.Int32"/> that specifies the error code.
+            </param>
+            <returns>
+            It returns a description of <paramref name="errorCode"/>.
+            </returns>
+        </member>
+        <member name="M:SharpPi.Graphics.DevicePixelFormat.#ctor">
+            <summary>
+            Parameterless constructor.
+            </summary>
+        </member>
+        <member name="M:SharpPi.Graphics.DevicePixelFormat.#ctor(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="colorBits"></param>
+        </member>
+        <member name="F:SharpPi.Graphics.DevicePixelFormat.FormatIndex">
+            <summary>
+            Pixel format index.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Graphics.DevicePixelFormat.RgbaUnsigned">
+            <summary>
+            Flag indicating whether this pixel format provide canonical (normalized) unsigned integer RGBA color.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Graphics.DevicePixelFormat.RgbaFloat">
+            <summary>
+            Flag indicating whether this pixel format provide RGBA color composed by single-precision floating-point.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Graphics.DevicePixelFormat.RenderWindow">
+            <summary>
+            Pixel format can be used for rendering on windows.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Graphics.DevicePixelFormat.RenderBuffer">
+            <summary>
+            Pixel format can be used for rendering on memory buffers.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Graphics.DevicePixelFormat.RenderPBuffer">
+            <summary>
+            Pixel format can be used for rendering on pixel buffer objects.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Graphics.DevicePixelFormat.DoubleBuffer">
+            <summary>
+            Pixel format support double buffering.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Graphics.DevicePixelFormat.SwapMethod">
+            <summary>
+            Method used for swapping back buffers (WGL only).
+            </summary>
+            <remarks>
+            It can assume the values Wgl.SWAP_EXCHANGE, SWAP_COPY, or SWAP_UNDEFINED in the case DoubleBuffer is false.
+            </remarks>
+        </member>
+        <member name="F:SharpPi.Graphics.DevicePixelFormat.StereoBuffer">
+            <summary>
+            Pixel format support stereo buffering.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Graphics.DevicePixelFormat.ColorBits">
+            <summary>
+            Color bits (without alpha).
+            </summary>
+        </member>
+        <member name="F:SharpPi.Graphics.DevicePixelFormat.RedBits">
+            <summary>
+            Red bits.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Graphics.DevicePixelFormat.GreenBits">
+            <summary>
+            Green bits.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Graphics.DevicePixelFormat.BlueBits">
+            <summary>
+            Blue bits.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Graphics.DevicePixelFormat.AlphaBits">
+            <summary>
+            Alpha bits.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Graphics.DevicePixelFormat.DepthBits">
+            <summary>
+            Depth buffer bits.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Graphics.DevicePixelFormat.StencilBits">
+            <summary>
+            Stencil buffer bits.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Graphics.DevicePixelFormat.MultisampleBits">
+            <summary>
+            Multisample bits.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Graphics.DevicePixelFormat.SRGBCapable">
+            <summary>
+            sRGB conversion capability.
+            </summary>
+        </member>
+        <member name="M:SharpPi.Graphics.DevicePixelFormat.Copy">
+            <summary>
+            Copy this DevicePixelFormat
+            </summary>
+            <returns>
+            It returns a <see cref="T:SharpPi.Graphics.DevicePixelFormat"/> equals to this DevicePixelFormat.
+            </returns>
+        </member>
+        <member name="M:SharpPi.Graphics.DevicePixelFormat.ToString">
+            <summary>
+            Represent this object with a String.
+            </summary>
+            <returns>
+            Guess it.
+            </returns>
+        </member>
+        <member name="M:SharpPi.Graphics.DevicePixelFormatCollection.Choose(SharpPi.Graphics.DevicePixelFormat)">
+            <summary>
+            Choose a <see cref="T:SharpPi.Graphics.DevicePixelFormat"/>
+            </summary>
+            <param name="pixelFormat">
+            A <see cref="T:SharpPi.Graphics.DevicePixelFormat"/> that specify the minimum requirements
+            </param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpPi.Graphics.DevicePixelFormatCollection.GuessChooseError(SharpPi.Graphics.DevicePixelFormat)">
+            <summary>
+            Try to guess why <see cref="M:SharpPi.Graphics.DevicePixelFormatCollection.Choose(SharpPi.Graphics.DevicePixelFormat)"/> is not returning any pixel format.
+            </summary>
+            <param name="pixelFormat">
+            A <see cref="T:SharpPi.Graphics.DevicePixelFormat"/> that specify the minimum requirements
+            </param>
+            <returns>
+            It returns a string indicating the actual reason behind a failure in pixel format selection using <paramref name="pixelFormat"/>.
+            </returns>
+        </member>
+        <member name="M:SharpPi.Graphics.DevicePixelFormatCollection.Copy">
+            <summary>
+            Copy this DevicePixelFormatCollection.
+            </summary>
+            <returns>
+            It returns a <see cref="T:SharpPi.Graphics.DevicePixelFormatCollection"/> equivalent to this DevicePixelFormatCollection.
+            </returns>
+        </member>
+        <member name="T:SharpPi.Graphics.ImGuiController">
+            <summary>
+            A modified version of Veldrid.ImGui's ImGuiRenderer.
+            Manages input for ImGui and handles rendering ImGui's DrawLists with Veldrid.
+            TODO:
+            Add the ability to change fonts on the fly
+            </summary>
+        </member>
+        <member name="M:SharpPi.Graphics.ImGuiController.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Constructs a new ImGuiController.
+            </summary>
+        </member>
+        <member name="M:SharpPi.Graphics.ImGuiController.RecreateFontDeviceTexture">
+            <summary>
+            Recreates the device texture used to render text.
+            </summary>
+        </member>
+        <member name="M:SharpPi.Graphics.ImGuiController.Render">
+            <summary>
+            Renders the ImGui draw list data.
+            This method requires a <see cref="!:GraphicsDevice"/> because it may create new DeviceBuffers if the size of vertex
+            or index data has increased beyond the capacity of the existing buffers.
+            A <see cref="!:CommandList"/> is needed to submit drawing and resource update commands.
+            </summary>
+        </member>
+        <member name="M:SharpPi.Graphics.ImGuiController.Update">
+            <summary>
+            Updates ImGui input and IO configuration state.
+            </summary>
+        </member>
+        <member name="M:SharpPi.Graphics.ImGuiController.SetPerFrameImGuiData">
+            <summary>
+            Sets per-frame data based on the associated window.
+            This is called by Update(float).
+            </summary>
+        </member>
+        <member name="M:SharpPi.Graphics.ImGuiController.Dispose">
+            <summary>
+            Frees all graphics resources used by the renderer.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Graphics.Vertex.Size">
+            <summary>
+            Size of the <see cref="T:SharpPi.Graphics.Vertex"/> struct in bytes.
+            </summary>
+        </member>
+        <member name="T:SharpPi.Graphics.StatusCode">
+            <summary>
+            Return codes, non-zero indicates failure.
+            </summary>
+        </member>
+        <member name="T:SharpPi.Graphics.ProtectionLevel">
+            <summary>
+            Derived from the WM DRM levels, 101-300
+            </summary>
+        </member>
+        <member name="M:SharpPi.Graphics.VideoCore.Initialize">
+            <summary>
+            Initialize the VideoCore driver. Call this before doing anything with VideoCore/OpenGL.
+            </summary>
+        </member>
+        <member name="M:SharpPi.Graphics.VideoCore.Uninitialize">
+            <summary>
+            Shutdown the VideoCore driver. Call this after you are done using VideoCore/OpenGL.
+            </summary>
+        </member>
+        <member name="M:SharpPi.Graphics.VideoCore.Run(SharpPi.Graphics.VideoCoreWindow)">
+            <summary>
+            Begin rendering a <see cref="T:SharpPi.Graphics.VideoCoreWindow"/> instance.
+            </summary>
+        </member>
+        <member name="T:SharpPi.Graphics.VideoCoreWindow">
+            <summary>
+            OpenGL renderer based on VideoCore IV API on RaspberryPi.
+            </summary>
+        </member>
+        <member name="P:SharpPi.Graphics.VideoCoreWindow.DisplayHandle">
+            <summary>
+            The display handle associated this instance. This property is always <see cref="F:System.IntPtr.Zero"/>.
+            </summary>
+        </member>
+        <member name="P:SharpPi.Graphics.VideoCoreWindow.NativeWindowHandle">
+            <summary>
+            The native window handle.
+            </summary>
+        </member>
+        <member name="E:SharpPi.Graphics.VideoCoreWindow.PreUpdate">
+            <summary>
+            Called before <see cref="E:SharpPi.Graphics.VideoCoreWindow.Update"/>, this is where any pre-processsing should be done.
+            </summary>
+        </member>
+        <member name="E:SharpPi.Graphics.VideoCoreWindow.Update">
+            <summary>
+            Called before <see cref="E:SharpPi.Graphics.VideoCoreWindow.UpdateGUI"/>, this is where 3D drawing and frame-by-frame updates should be done.
+            </summary>
+        </member>
+        <member name="E:SharpPi.Graphics.VideoCoreWindow.PostUpdate">
+            <summary>
+            Called after <see cref="E:SharpPi.Graphics.VideoCoreWindow.Update"/> and before <see cref="E:SharpPi.Graphics.VideoCoreWindow.UpdateGUI"/>, this is where any post-processing should be done.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "E:SharpPi.Graphics.VideoCoreWindow.UpdateGUI" -->
+        <member name="T:SharpPi.Graphics.VideoCoreWindow.EGL_DISPMANX_WINDOW_T">
+            <summary>
+            The structure expected by eglCreateWindowSurface function.
+            </summary>
+        </member>
+        <member name="M:SharpPi.Graphics.VideoCoreWindow.#ctor">
+            <summary>
+            Construct a fullscreen window.
+            </summary>
+        </member>
+        <member name="M:SharpPi.Graphics.VideoCoreWindow.Dispose">
+            <summary>
+            Releases all resources used by the <see cref="T:SharpPi.Graphics.VideoCoreWindow"/> object.
+            </summary>
+        </member>
+        <member name="P:SharpPi.Graphics.Time.deltaTime">
+            <summary>
+            The time since the last frame. (in seconds)
+            </summary>
+        </member>
+        <member name="P:SharpPi.Graphics.Time.time">
+            <summary>
+            The time since the start of the application. (in seconds)
+            </summary>
+        </member>
+        <member name="F:SharpPi.Graphics.Time.averageFramerate">
+            <summary>
+            The current average framerate. (average frames per second)
+            </summary>
+        </member>
+        <member name="M:SharpPi.Graphics.Time.Delay(System.Int32)">
+            <summary>
+            Sleep the calling thread for some time.
+            </summary>
+        </member>
+        <member name="T:SharpPi.Imaging.OpenH264.Decoder">
+            <summary>
+            Provides methods for decoding with Cisco's OpenH264 software codec.
+            </summary>
+        </member>
+        <member name="M:SharpPi.Imaging.OpenH264.Decoder.#ctor">
+            <summary>
+            Creates a new <see cref="!:H264Decoder"/> instance.
+            </summary>
+        </member>
+        <member name="M:SharpPi.Imaging.OpenH264.Decoder.Finalize">
+            <summary>
+            Ensures this <see cref="!:H264Decoder"/> instance is disposed by the garbage collector, if not disposed manually before then.
+            </summary>
+        </member>
+        <member name="M:SharpPi.Imaging.OpenH264.Decoder.Dispose">
+            <summary>
+            Releases and cleans up all resources used by this <see cref="!:H264Decoder"/> instance.
+            </summary>
+        </member>
+        <member name="T:SharpPi.Imaging.OpenH264.Encoder">
+            <summary>
+            Provides methods for encoding with Cisco's OpenH264 software codec.
+            </summary>
+        </member>
+        <member name="T:SharpPi.Input.Bluetooth">
+            <summary>
+            Provides methods for interfacing with Bluetooth devices.
+            </summary>
+        </member>
+        <member name="T:SharpPi.Input.KeyboardInputEventData">
+             <summary>
+             'time' is the timestamp, it returns the time at which the event happened.
+             Type is for example EV_REL for relative moment, EV_KEY for a keypress or
+             release. More types are defined in include/uapi/linux/input-event-codes.h.
+            
+             'code' is event code, for example REL_X or KEY_BACKSPACE, again a complete
+             list is in include/uapi/linux/input-event-codes.h.
+            
+             'value' is the value the event carries. Either a relative change for
+             EV_REL, absolute new value for EV_ABS(joysticks...), or 0 for EV_KEY for
+             release, 1 for keypress and 2 for autorepeat.
+             </summary>
+        </member>
+        <member name="F:SharpPi.Input.MouseInputEventData.Size">
+            <summary>
+            Will be 3 bytes for PS/2 mice.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Input.InputDeviceDetails.Id">
+            <summary>
+            Id of the device (struct input_id)
+            https://www.kernel.org/doc/Documentation/input/input.txt
+            </summary>
+        </member>
+        <member name="F:SharpPi.Input.InputDeviceDetails.Name">
+            <summary>
+            Name of the device.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Input.InputDeviceDetails.Path">
+            <summary>
+            Physical path to the device in the system hierarchy.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Input.InputDeviceDetails.SysPath">
+            <summary>
+            Sysfs path
+            </summary>
+        </member>
+        <member name="F:SharpPi.Input.InputDeviceDetails.Uid">
+            <summary>
+            Unique identification code for the device (if device has it)
+            </summary>
+        </member>
+        <member name="F:SharpPi.Input.InputDeviceDetails.Handles">
+            <summary>
+            The input handles associated with the device.
+            </summary>
+        </member>
+        <member name="P:SharpPi.Input.Input.InputDeviceDetails">
+            <summary>
+            The <see cref="P:SharpPi.Input.Input.InputDeviceDetails"/> list from the most recent call to the <see cref="M:SharpPi.Input.Input.GetInputDevices(SharpPi.Input.InputDeviceType)"/> method.
+            </summary>
+        </member>
+        <member name="E:SharpPi.Input.Input.OnDevicePluggedIn">
+            <summary>
+            This event is called when a new input device has been plugged in.
+            </summary>
+        </member>
+        <member name="E:SharpPi.Input.Input.OnDeviceUnplugged">
+            <summary>
+            This event is called when a new input device has been plugged in.
+            </summary>
+        </member>
+        <member name="M:SharpPi.Input.Input.Initialize(System.Numerics.Vector2)">
+            <summary>
+            Initialize the input event processor and starts raising input events.
+            </summary>
+        </member>
+        <member name="T:SharpPi.Input.Input.InputWatcherTask">
+            <summary>
+            Make this more generic?x
+            </summary>
+        </member>
+        <member name="M:SharpPi.Input.Input.InputWatcherTask.Watch(System.String,System.Action{SharpPi.Input.MouseInputEventData},System.Threading.CancellationToken)">
+            <summary>
+            keyboard = event0, mouse = /dev/input/mice
+            should not have to open all of them
+            https://thehackerdiary.wordpress.com/2017/04/21/exploring-devinput-1/
+            </summary>
+        </member>
+        <member name="F:SharpPi.Mathf.PI">
+            <summary>
+            3.141593
+            </summary>
+        </member>
+        <member name="F:SharpPi.Mathf.TwoPI">
+            <summary>
+            6.283186
+            </summary>
+        </member>
+        <member name="F:SharpPi.Mathf.Infinity">
+            <summary>
+            Positive infinity.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Mathf.NegativeInfinity">
+            <summary>
+            Negative infinity.
+            </summary>
+        </member>
+        <member name="F:SharpPi.Mathf.Deg2Rad">
+            <summary>
+            0.01745329
+            </summary>
+        </member>
+        <member name="F:SharpPi.Mathf.Rad2Deg">
+            <summary>
+            57.29578
+            </summary>
+        </member>
+        <member name="M:SharpPi.Mathf.Bearing(OpenTK.Vector2,OpenTK.Vector2)">
+            <summary>
+            Computes the angle (in degrees) from one <see cref="T:OpenTK.Vector2"/> to another <see cref="T:OpenTK.Vector2"/>.
+            </summary>
+            <param name="a">Starting point</param>
+            <param name="b">Ending point</param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpPi.Mathf.Combine(System.Int32,System.Int32)">
+            <summary>
+            Combines two Int32 values into an Int64(long).
+            Example usage: Size attribute.
+            </summary>
+            <param name="left">The first value.</param>
+            <param name="right">The second value.</param>
+        </member>
+        <member name="M:SharpPi.Mathf.Split(System.Int64)">
+            <summary>
+            Split an Int64(long) into two Int32 values.
+            Example usage: Size attribute.
+            </summary>
+            <param name="value">The Int64 to split</param>
+            <returns>A tuple containing the two Int32 values.</returns>
+        </member>
+        <member name="T:SharpPi.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:SharpPi.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:SharpPi.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:SharpPi.Properties.Resources.hosts_template">
+             <summary>
+               Looks up a localized string similar to 127.0.0.1       localhost
+            ::1             localhost ip6-localhost ip6 - loopback
+            ff02::1         ip6 - allnodes
+            ff02::2         ip6 - allrouters
+            
+            127.0.1.1       {0}.
+             </summary>
+        </member>
+        <member name="P:SharpPi.Properties.Resources.supplicant_template">
+             <summary>
+               Looks up a localized string similar to ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+            update_config=1
+            country=US
+            
+            network={{
+                    ssid=&quot;{0}&quot;
+                    psk=&quot;{1}&quot;
+            }}.
+             </summary>
+        </member>
+    </members>
+</doc>

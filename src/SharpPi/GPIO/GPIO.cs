@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SharpPi.Native;
+using System;
 using System.Collections.Generic;
 
 namespace SharpPi
@@ -228,7 +229,7 @@ namespace SharpPi
             {
                 if (!IsDisposed && s_Direction != value)
                 {
-                    NativeMethods.bcm2835_gpio_fsel(PinNumber, (s_Direction = value) == Direction.OUTPUT);
+                    NativeMethods.GPIO.bcm2835_gpio_fsel(PinNumber, (s_Direction = value) == Direction.OUTPUT);
                     if (s_Direction == Direction.INPUT)
                         Pull = Pullup.OFF;
                 }
@@ -245,7 +246,7 @@ namespace SharpPi
             set
             {
                 if (!IsDisposed && s_State != value)
-                    NativeMethods.bcm2835_gpio_write(PinNumber, (s_State = value) == PinState.HIGH);
+                    NativeMethods.GPIO.bcm2835_gpio_write(PinNumber, (s_State = value) == PinState.HIGH);
             }
         }
         private PinState s_State = PinState.LOW;
@@ -260,7 +261,7 @@ namespace SharpPi
             set
             {
                 if (!IsDisposed && s_Pull != value)
-                    NativeMethods.bcm2835_gpio_set_pud(PinNumber, (uint)(s_Pull = value));
+                    NativeMethods.GPIO.bcm2835_gpio_set_pud(PinNumber, (uint)(s_Pull = value));
             }
         }
         private Pullup s_Pull = Pullup.OFF;
@@ -282,7 +283,7 @@ namespace SharpPi
                 throw new ArgumentException("Invalid pin");
 
             if (!Initialized)
-                if (!(Initialized = NativeMethods.bcm2835_init()))
+                if (!(Initialized = NativeMethods.GPIO.bcm2835_init()))
                     throw new InvalidOperationException("Could not initialize GPIO.");
 
             lock (PinCache)
@@ -331,7 +332,7 @@ namespace SharpPi
 		/// <param name="mask">Mask of pins to affect. Use eg: (GPIOPinMask.GPIO_00) | GPIOPinMask.GPIO_01)</param>
 		public static void SetMulti(Pin.Mask mask)
         {
-            NativeMethods.bcm2835_gpio_set_multi((uint)mask);
+            NativeMethods.GPIO.bcm2835_gpio_set_multi((uint)mask);
         }
 
         /// <summary>
@@ -340,7 +341,7 @@ namespace SharpPi
         /// <param name="mask">Mask of pins to affect. Use eg: (GPIOPinMask.GPIO_00) | GPIOPinMask.GPIO_01)</param>
         public static void ClearMulti(Pin.Mask mask)
         {
-            NativeMethods.bcm2835_gpio_clr_multi((uint)mask);
+            NativeMethods.GPIO.bcm2835_gpio_clr_multi((uint)mask);
         }
 
         /// <summary>
@@ -349,7 +350,7 @@ namespace SharpPi
         /// <param name="mask">Mask of pins to affect. Use eg: (GPIOPinMask.GPIO_00) | GPIOPinMask.GPIO_01)</param>
         public static void WriteMulti(Pin.Mask mask, PinState state)
         {
-            NativeMethods.bcm2835_gpio_write_multi((uint)mask, state == PinState.HIGH);
+            NativeMethods.GPIO.bcm2835_gpio_write_multi((uint)mask, state == PinState.HIGH);
         }
     }
 

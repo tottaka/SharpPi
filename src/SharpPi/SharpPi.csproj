@@ -37,7 +37,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ImGui.NET, Version=1.72.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\ImGui.NET\ImGui.NET\bin\Release\netstandard2.0\ImGui.NET.dll</HintPath>
+      <HintPath>C:\Users\Kyle\source\repos\ImGui.NET\ImGui.NET\bin\Release\netstandard2.0\ImGui.NET.dll</HintPath>
       <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
@@ -62,6 +62,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Imaging\OpenH264\Native\Delegates.cs" />
     <Compile Include="OS\Device.cs" />
     <Compile Include="GPIO\GPIO.cs" />
     <Compile Include="GPIO\Native\Constants.cs" />
