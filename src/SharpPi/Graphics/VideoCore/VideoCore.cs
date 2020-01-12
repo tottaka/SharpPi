@@ -189,7 +189,7 @@ namespace SharpPi.Graphics
         private uint _ElementHandle;
         private IntPtr glContext;
         private EGL_DISPMANX_WINDOW_T _NativeWindow;
-        private PinnedObject _NativeWindowLock;
+        private PinnedObject<EGL_DISPMANX_WINDOW_T> _NativeWindowLock;
         private EGLContext Context;
 
         private ImGuiController ImGUIController;
@@ -228,7 +228,7 @@ namespace SharpPi.Graphics
             };
 
             // Keep native window pinned so GC doesn't mess with it...
-            _NativeWindowLock = new PinnedObject(_NativeWindow);
+            _NativeWindowLock = new PinnedObject<EGL_DISPMANX_WINDOW_T>(_NativeWindow);
 
             // Create EGL context
             Context = new EGLContext(DisplayHandle, NativeWindowHandle);

@@ -4,333 +4,194 @@
         <name>SharpPi</name>
     </assembly>
     <members>
+        <member name="T:SharpPi.ModelType">
+            <summary>
+            The different types of Raspberry Pi board models.
+            </summary>
+        </member>
+        <member name="T:SharpPi.ProcessorType">
+            <summary>
+            The chipset for the processor of this board.
+            </summary>
+        </member>
+        <member name="T:SharpPi.DisplayID">
+            <summary>
+            Default display IDs.
+            Note: if you overwrite with your own dispmanx_platform_init function, you should use IDs you provided during dispmanx_display_attach.
+            </summary>
+        </member>
+        <member name="T:SharpPi.Device.CPU">
+            <summary>
+            Provides real-time data about the CPU on the Raspberry Pi.
+            </summary>
+        </member>
+        <member name="P:SharpPi.Device.CPU.Temperature">
+            <summary>
+            The temperature of the CPU (in degrees centigrade)
+            </summary>
+        </member>
+        <member name="P:SharpPi.Device.CPU.Frequency">
+            <summary>
+            The current frequency of the CPU (in Hz)
+            </summary>
+        </member>
+        <member name="P:SharpPi.Device.Model">
+            <summary>
+            The model of the Raspberry Pi board.
+            </summary>
+        </member>
+        <member name="P:SharpPi.Device.IsPi4">
+            <summary>
+            Determines whether this board is the Raspberry Pi 4. 
+            </summary>
+        </member>
+        <member name="P:SharpPi.Device.KMS">
+            <summary>
+            The Kernal Mode Setting for the board.
+            </summary>
+        </member>
+        <member name="P:SharpPi.Device.Chipset">
+            <summary>
+            The chipset of the processor.
+            </summary>
+        </member>
+        <member name="M:SharpPi.Device.GetNetworkList(System.String)">
+            <summary>
+            iwlist
+            </summary>
+            <param name="_interface">The interface to scan for networks on.</param>
+            <returns>A string that contains information about the wireless networks in area.</returns>
+        </member>
+        <member name="M:SharpPi.Device.GetInterfaceStatus(System.String)">
+            <summary>
+            ifconfig
+            </summary>
+            <param name="_interface">The interface to query</param>
+            <returns>A string that contains information about the interface.</returns>
+        </member>
+        <member name="M:SharpPi.Device.GetWifiStatus(System.String)">
+            <summary>
+            iwconfig
+            </summary>
+            <param name="_interface">The interface to query</param>
+            <returns>A string that contains information about the status of the interface.</returns>
+        </member>
+        <member name="M:SharpPi.Device.GetInterfaceIPv4(System.String)">
+            <summary>
+            Parses the inet address from ifconfig.
+            </summary>
+            <param name="_interface">The interface to query the inet address from.</param>
+            <returns><see cref="T:System.Net.IPAddress"/> if successful, otherwise <see cref="F:System.Net.IPAddress.None"/>.</returns>
+        </member>
+        <member name="M:SharpPi.Device.SetHostname(System.String)">
+            <summary>
+            Set the hostname for this device.
+            </summary>
+            <param name="name">The hostname</param>
+        </member>
+        <member name="T:SharpPi.GPIO">
+            <summary>
+            Class for using the GPIO on the Raspberry Pi.
+            Requires http://www.airspayce.com/mikem/bcm2835/, source should be included.
+            </summary>
+        </member>
+        <member name="T:SharpPi.GPIO.Direction">
+            <summary>
+            Specifies the direction of the GPIO pin (in/out)
+            </summary>
+        </member>
+        <member name="T:SharpPi.GPIO.PinState">
+            <summary>
+            The state of the pin (on/off)
+            </summary>
+        </member>
+        <member name="T:SharpPi.GPIO.Pullup">
+            <summary>
+            The internal pull up-down resistor of the pin (up/down)
+            </summary>
+        </member>
+        <member name="T:SharpPi.GPIO.Pin">
+            <summary>
+            Refer to http://elinux.org/Rpi_Low-level_peripherals for diagram.
+            </summary>
+        </member>
+        <member name="T:SharpPi.GPIO.Pin.Rev2">
+            <summary>
+            Raspberry Pi Rev.2 Models
+            </summary>
+        </member>
+        <member name="T:SharpPi.GPIO.Pin.Rev2.Plus">
+            <summary>
+            Raspberry Pi A+/B+ Models
+            </summary>
+        </member>
+        <member name="F:SharpPi.GPIO.PinNumber">
+            <summary>
+            The currently assigned GPIO pin.
+            </summary>
+        </member>
+        <member name="P:SharpPi.GPIO.PinDirection">
+            <summary>
+            Direction of the GPIO pin. (input/output)
+            </summary>
+        </member>
+        <member name="P:SharpPi.GPIO.State">
+            <summary>
+            The value of the GPIO pin. (on/off)
+            </summary>
+        </member>
+        <member name="P:SharpPi.GPIO.Pull">
+            <summary>
+            Internal pull up-down resistor for this pin.
+            </summary>
+        </member>
+        <member name="P:SharpPi.GPIO.PinMask">
+            <summary>
+            Gets the bit mask of this pin.
+            </summary>
+        </member>
+        <member name="M:SharpPi.GPIO.#ctor(System.UInt32,SharpPi.GPIO.Direction,SharpPi.GPIO.PinState)">
+            <summary>
+            Access to the specified GPIO setup with the specified direction with the specified initial value
+            </summary>
+            <param name="pin">The GPIO pin number. See the <see cref="T:SharpPi.GPIO.Pin"/> class for various pin number constants.</param>
+            <param name="direction">The direction of the pin.</param>
+            <param name="initialValue">Value of the pin once it is initialized.</param>
+        </member>
+        <member name="M:SharpPi.GPIO.Dispose">
+            <summary>
+            Dispose of this GPIO pin instance.
+            </summary>
+        </member>
+        <member name="M:SharpPi.GPIO.SetMulti(SharpPi.GPIO.Pin.Mask)">
+            <summary>
+            Sets any of the first 32 GPIO output pins specified in the mask to HIGH.
+            </summary>
+            <param name="mask">Mask of pins to affect. Use eg: (GPIOPinMask.GPIO_00) | GPIOPinMask.GPIO_01)</param>
+        </member>
+        <member name="M:SharpPi.GPIO.ClearMulti(SharpPi.GPIO.Pin.Mask)">
+            <summary>
+            Sets any of the first 32 GPIO output pins specified in the mask to LOW.
+            </summary>
+            <param name="mask">Mask of pins to affect. Use eg: (GPIOPinMask.GPIO_00) | GPIOPinMask.GPIO_01)</param>
+        </member>
+        <member name="M:SharpPi.GPIO.WriteMulti(SharpPi.GPIO.Pin.Mask,SharpPi.GPIO.PinState)">
+            <summary>
+            Sets any of the first 32 GPIO output pins specified in the mask to value.
+            </summary>
+            <param name="mask">Mask of pins to affect. Use eg: (GPIOPinMask.GPIO_00) | GPIOPinMask.GPIO_01)</param>
+        </member>
+        <member name="T:SharpPi.SPI">
+            <summary>
+            Class for using SPI on the Raspberry Pi.
+            </summary>
+        </member>
         <member name="T:SharpPi.Native.NativeMethods">
             <summary>
             Generic native methods
             https://docs.microsoft.com/en-us/dotnet/framework/interop/marshaling-classes-structures-and-unions
             https://limbioliong.wordpress.com/2011/06/03/passing-structures-between-managed-and-unmanaged-code/
             https://www.codeproject.com/Articles/66244/Marshaling-with-C-Chapter-2-Marshaling-Simple-Type
-            </summary>
-        </member>
-        <member name="T:SharpPi.Native.NativeMethods.H264">
-            <summary>
-            Cisco OpenH264
-            </summary>
-        </member>
-        <member name="F:SharpPi.Native.NativeMethods.H264.UCHAR_MAX">
-            <summary>
-            UCHAR_MAX
-            </summary>
-        </member>
-        <member name="T:SharpPi.Native.NativeMethods.H264.DecodingState">
-            <summary>
-            Decoding status
-            </summary>
-        </member>
-        <member name="F:SharpPi.Native.NativeMethods.H264.DecodingState.dsErrorFree">
-            <summary>
-            No error
-            </summary>
-        </member>
-        <member name="F:SharpPi.Native.NativeMethods.H264.DecodingState.dsFramePending">
-            <summary>
-            Need more throughput to generate a frame output.
-            </summary>
-        </member>
-        <member name="F:SharpPi.Native.NativeMethods.H264.DecodingState.dsRefLost">
-            <summary>
-            Layer lost at reference frame with temporal id 0.
-            </summary>
-        </member>
-        <member name="F:SharpPi.Native.NativeMethods.H264.DecodingState.dsBitstreamError">
-            <summary>
-            Bitstream error (maybe broken internal frame?)
-            </summary>
-        </member>
-        <member name="F:SharpPi.Native.NativeMethods.H264.DecodingState.dsDepLayerLost">
-            <summary>
-            Dependented layer is ever lost.
-            </summary>
-        </member>
-        <member name="F:SharpPi.Native.NativeMethods.H264.DecodingState.dsNoParamSets">
-            <summary>
-            No parameter set NALs involved.
-            </summary>
-        </member>
-        <member name="F:SharpPi.Native.NativeMethods.H264.DecodingState.dsDataErrorConcealed">
-            <summary>
-            Current data error concealed specified.
-            </summary>
-        </member>
-        <member name="F:SharpPi.Native.NativeMethods.H264.DecodingState.dsInvalidArgument">
-            <summary>
-            Invalid argument specified.
-            </summary>
-        </member>
-        <member name="F:SharpPi.Native.NativeMethods.H264.DecodingState.dsInitialOptExpected">
-            <summary>
-            Initializing operation is expected.
-            </summary>
-        </member>
-        <member name="F:SharpPi.Native.NativeMethods.H264.DecodingState.dsOutOfMemory">
-            <summary>
-            Out of memory due to new request.
-            </summary>
-        </member>
-        <member name="F:SharpPi.Native.NativeMethods.H264.DecodingState.dsDstBufNeedExpan">
-            <summary>
-            Actual picture size exceeds size of dst pBuffer feed in decoder, resize required.
-            </summary>
-        </member>
-        <member name="T:SharpPi.Native.NativeMethods.H264.DecoderOption">
-            <summary>
-            Option types introduced in decoder application
-            </summary>
-        </member>
-        <member name="F:SharpPi.Native.NativeMethods.H264.DecoderOption.DECODER_OPTION_END_OF_STREAM">
-            <summary>
-            End of stream flag.
-            </summary>
-        </member>
-        <member name="F:SharpPi.Native.NativeMethods.H264.DecoderOption.DECODER_OPTION_VCL_NAL">
-            <summary>
-            Feedback whether or not the current AU for application layer has VCL NAL.
-            </summary>
-        </member>
-        <member name="F:SharpPi.Native.NativeMethods.H264.DecoderOption.DECODER_OPTION_TEMPORAL_ID">
-            <summary>
-            Feedback temporal id for application layer.
-            </summary>
-        </member>
-        <member name="F:SharpPi.Native.NativeMethods.H264.DecoderOption.DECODER_OPTION_FRAME_NUM">
-            <summary>
-            Feedback current decoded frame number.
-            </summary>
-        </member>
-        <member name="F:SharpPi.Native.NativeMethods.H264.DecoderOption.DECODER_OPTION_IDR_PIC_ID">
-            <summary>
-            Feedback current frame belongs to which IDR period.
-            </summary>
-        </member>
-        <member name="F:SharpPi.Native.NativeMethods.H264.DecoderOption.DECODER_OPTION_LTR_MARKING_FLAG">
-            <summary>
-            Feedback whether current frame mark is an LTR.
-            </summary>
-        </member>
-        <member name="F:SharpPi.Native.NativeMethods.H264.DecoderOption.DECODER_OPTION_LTR_MARKED_FRAME_NUM">
-            <summary>
-            Feedback frame num marked by current Frame.
-            </summary>
-        </member>
-        <member name="F:SharpPi.Native.NativeMethods.H264.DecoderOption.DECODER_OPTION_ERROR_CON_IDC">
-            <summary>
-            Indicate decoder error concealment method.
-            </summary>
-        </member>
-        <member name="F:SharpPi.Native.NativeMethods.H264.DecoderOption.DECODER_OPTION_TRACE_LEVEL">
-            <summary>
-            Not Implemented
-            </summary>
-        </member>
-        <member name="F:SharpPi.Native.NativeMethods.H264.DecoderOption.DECODER_OPTION_TRACE_CALLBACK">
-            <summary>
-            A void (*)(void* context, int level, const char* message) function which receives log messages.
-            </summary>
-        </member>
-        <member name="F:SharpPi.Native.NativeMethods.H264.DecoderOption.DECODER_OPTION_TRACE_CALLBACK_CONTEXT">
-            <summary>
-            Context info of trace callback.
-            </summary>
-        </member>
-        <member name="F:SharpPi.Native.NativeMethods.H264.DecoderOption.DECODER_OPTION_GET_STATISTICS">
-            <summary>
-            Feedback decoder statistics.
-            </summary>
-        </member>
-        <member name="F:SharpPi.Native.NativeMethods.H264.DecoderOption.DECODER_OPTION_GET_SAR_INFO">
-            <summary>
-            Feedback decoder Sample Aspect Ratio info in Vui.
-            </summary>
-        </member>
-        <member name="F:SharpPi.Native.NativeMethods.H264.DecoderOption.DECODER_OPTION_PROFILE">
-            <summary>
-            Get current AU profile info (only used in GetOption.)
-            </summary>
-        </member>
-        <member name="F:SharpPi.Native.NativeMethods.H264.DecoderOption.DECODER_OPTION_LEVEL">
-            <summary>
-            Get current AU level info (only used in GetOption.)
-            </summary>
-        </member>
-        <member name="F:SharpPi.Native.NativeMethods.H264.DecoderOption.DECODER_OPTION_STATISTICS_LOG_INTERVAL">
-            <summary>
-            Set log output interval.
-            </summary>
-        </member>
-        <member name="T:SharpPi.Native.NativeMethods.H264.VideoBitstreamType">
-            <summary>
-            Enumerate the type of video bitstream which is provided to decoder.
-            </summary>
-        </member>
-        <member name="T:SharpPi.Native.NativeMethods.H264.ErrorConIDC">
-            <summary>
-            Enumerate the type of error concealment methods
-            </summary>
-        </member>
-        <member name="T:SharpPi.Native.NativeMethods.H264.SVideoProperty">
-            <summary>
-            Define a new struct to show the property of video bitstream.
-            </summary>
-        </member>
-        <member name="F:SharpPi.Native.NativeMethods.H264.SVideoProperty.size">
-            <summary>
-            Size of the struct.
-            </summary>
-        </member>
-        <member name="F:SharpPi.Native.NativeMethods.H264.SVideoProperty.eVideoBsType">
-            <summary>
-            Video stream type (AVC/SVC)
-            </summary>
-        </member>
-        <member name="T:SharpPi.Native.NativeMethods.H264.SDecodingParam">
-            <summary>
-            SVC Decoding Parameters, reserved here and potential applicable in the future.
-            SDecodingParam, *PDecodingParam;
-            </summary>
-        </member>
-        <member name="F:SharpPi.Native.NativeMethods.H264.SDecodingParam.pFileNameRestructed">
-            <summary>
-            File name of reconstructed frame used for PSNR calculation based debug.
-            </summary>
-        </member>
-        <member name="F:SharpPi.Native.NativeMethods.H264.SDecodingParam.uiCpuLoad">
-            <summary>
-            CPU load.
-            </summary>
-        </member>
-        <member name="F:SharpPi.Native.NativeMethods.H264.SDecodingParam.uiTargetDqLayer">
-            <summary>
-            Setting target dq layer id.
-            </summary>
-        </member>
-        <member name="F:SharpPi.Native.NativeMethods.H264.SDecodingParam.eEcActiveIdc">
-            <summary>
-            Whether active error concealment feature in decoder.
-            </summary>
-        </member>
-        <member name="F:SharpPi.Native.NativeMethods.H264.SDecodingParam.bParseOnly">
-            <summary>
-            Decoder for parse only, no reconstruction. When it is true, SPS/PPS size should not exceed SPS_PPS_BS_SIZE (128). Otherwise, it will return error info.
-            </summary>
-        </member>
-        <member name="F:SharpPi.Native.NativeMethods.H264.SDecodingParam.sVideoProperty">
-            <summary>
-            Video stream property.
-            </summary>
-        </member>
-        <member name="T:SharpPi.Native.NativeMethods.H264.SParserBsInfo">
-            <summary>
-            Structure for parse only output.
-            </summary>
-        </member>
-        <member name="F:SharpPi.Native.NativeMethods.H264.SParserBsInfo.iNalNum">
-            <summary>
-            Total NAL number in current AU.
-            </summary>
-        </member>
-        <member name="F:SharpPi.Native.NativeMethods.H264.SParserBsInfo.pNalLenInByte">
-            <summary>
-            Each nal length.
-            </summary>
-        </member>
-        <member name="F:SharpPi.Native.NativeMethods.H264.SParserBsInfo.pDstBuff">
-            <summary>
-            Output dest buffer for parsed bitstream.
-            </summary>
-        </member>
-        <member name="F:SharpPi.Native.NativeMethods.H264.SParserBsInfo.iSpsWidthInPixel">
-            <summary>
-            Required SPS width info.
-            </summary>
-        </member>
-        <member name="F:SharpPi.Native.NativeMethods.H264.SParserBsInfo.iSpsHeightInPixel">
-            <summary>
-            Required SPS height info.
-            </summary>
-        </member>
-        <member name="F:SharpPi.Native.NativeMethods.H264.SParserBsInfo.uiInBsTimeStamp">
-            <summary>
-            Input BS timestamp.
-            </summary>
-        </member>
-        <member name="F:SharpPi.Native.NativeMethods.H264.SParserBsInfo.uiOutBsTimeStamp">
-            <summary>
-            Output BS timestamp.
-            </summary>
-        </member>
-        <member name="T:SharpPi.Native.NativeMethods.H264.SBufferInfo">
-            <summary>
-            Buffer info
-            </summary>
-        </member>
-        <member name="F:SharpPi.Native.NativeMethods.H264.SBufferInfo.iBufferStatus">
-            <summary>
-            0: one frame data is not ready; 1: one frame data is ready.
-            </summary>
-        </member>
-        <member name="F:SharpPi.Native.NativeMethods.H264.SBufferInfo.uiInBsTimeStamp">
-            <summary>
-            input BS timestamp.
-            </summary>
-        </member>
-        <member name="F:SharpPi.Native.NativeMethods.H264.SBufferInfo.uiOutYuvTimeStamp">
-            <summary>
-            Output YUV timestamp, when bufferstatus is 1.
-            </summary>
-        </member>
-        <member name="F:SharpPi.Native.NativeMethods.H264.SBufferInfo.Data">
-            <summary>
-            Output buffer info.
-            </summary>
-        </member>
-        <member name="T:SharpPi.Native.NativeMethods.H264.SSysMEMBuffer">
-            <summary>
-            Structure for decoder memery
-            </summary>
-        </member>
-        <member name="F:SharpPi.Native.NativeMethods.H264.SSysMEMBuffer.iWidth">
-            <summary>
-            Width of decoded pic for display.
-            </summary>
-        </member>
-        <member name="F:SharpPi.Native.NativeMethods.H264.SSysMEMBuffer.iHeight">
-            <summary>
-            Height of decoded pic for display.
-            </summary>
-        </member>
-        <member name="F:SharpPi.Native.NativeMethods.H264.SSysMEMBuffer.iFormat">
-            <summary>
-            Type is "EVideoFormatType"
-            </summary>
-        </member>
-        <member name="F:SharpPi.Native.NativeMethods.H264.SSysMEMBuffer.iStride">
-            <summary>
-            Stride of 2 component.
-            </summary>
-        </member>
-        <member name="T:SharpPi.Native.NativeMethods.H264.UsrData">
-            <summary>
-            Output buffer info
-            </summary>
-        </member>
-        <member name="F:SharpPi.Native.NativeMethods.H264.UsrData.sSystemBuffer">
-            <summary>
-            Memory info for one picture
-            </summary>
-        </member>
-        <member name="T:SharpPi.Native.NativeMethods.Library">
-            <summary>
-            Contains static dependency library locations.
             </summary>
         </member>
         <member name="F:SharpPi.Native.NativeMethods.Library.GPIO">
@@ -346,12 +207,6 @@
         <member name="F:SharpPi.Native.NativeMethods.Library.VideoCore">
             <summary>
             Default: /opt/vc/lib/libbcm_host.so
-            </summary>
-        </member>
-        <member name="F:SharpPi.Native.NativeMethods.Library.OpenH264">
-            <summary>
-            The path to Cisco's OpenH264 library file.
-            Default: /home/pi/scripts/libopenh264.so
             </summary>
         </member>
         <member name="F:SharpPi.Native.NativeMethods.Library.DynamicLink">
@@ -1854,200 +1709,18 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="P:SharpPi.Native.PinnedObject.Address">
+        <member name="P:SharpPi.Native.PinnedObject`1.Address">
             <summary>
             Address of the pinned object in memory.
             </summary>
         </member>
-        <member name="M:SharpPi.Native.PinnedObject.Dispose">
+        <member name="M:SharpPi.Native.PinnedObject`1.Dispose">
             <summary>
             Releases all resource used by the <see cref="!:MemoryLock"/> object.
             </summary>
             <remarks>
-            Call <see cref="M:SharpPi.Native.PinnedObject.Dispose"/> when you are finished using the <see cref="!:MemoryLock"/>.
+            Call <see cref="M:SharpPi.Native.PinnedObject`1.Dispose"/> when you are finished using the <see cref="!:MemoryLock"/>.
             </remarks>
-        </member>
-        <member name="T:SharpPi.ModelType">
-            <summary>
-            The different types of Raspberry Pi board models.
-            </summary>
-        </member>
-        <member name="T:SharpPi.ProcessorType">
-            <summary>
-            The chipset for the processor of this board.
-            </summary>
-        </member>
-        <member name="T:SharpPi.DisplayID">
-            <summary>
-            Default display IDs.
-            Note: if you overwrite with your own dispmanx_platform_init function, you should use IDs you provided during dispmanx_display_attach.
-            </summary>
-        </member>
-        <member name="T:SharpPi.Device.CPU">
-            <summary>
-            Provides real-time data about the CPU on the Raspberry Pi.
-            </summary>
-        </member>
-        <member name="P:SharpPi.Device.CPU.Temperature">
-            <summary>
-            The temperature of the CPU (in degrees centigrade)
-            </summary>
-        </member>
-        <member name="P:SharpPi.Device.CPU.Frequency">
-            <summary>
-            The current frequency of the CPU (in Hz)
-            </summary>
-        </member>
-        <member name="P:SharpPi.Device.Model">
-            <summary>
-            The model of the Raspberry Pi board.
-            </summary>
-        </member>
-        <member name="P:SharpPi.Device.IsPi4">
-            <summary>
-            Determines whether this board is the Raspberry Pi 4. 
-            </summary>
-        </member>
-        <member name="P:SharpPi.Device.KMS">
-            <summary>
-            The Kernal Mode Setting for the board.
-            </summary>
-        </member>
-        <member name="P:SharpPi.Device.Chipset">
-            <summary>
-            The chipset of the processor.
-            </summary>
-        </member>
-        <member name="M:SharpPi.Device.GetNetworkList(System.String)">
-            <summary>
-            iwlist
-            </summary>
-            <param name="_interface">The interface to scan for networks on.</param>
-            <returns>A string that contains information about the wireless networks in area.</returns>
-        </member>
-        <member name="M:SharpPi.Device.GetInterfaceStatus(System.String)">
-            <summary>
-            ifconfig
-            </summary>
-            <param name="_interface">The interface to query</param>
-            <returns>A string that contains information about the interface.</returns>
-        </member>
-        <member name="M:SharpPi.Device.GetWifiStatus(System.String)">
-            <summary>
-            iwconfig
-            </summary>
-            <param name="_interface">The interface to query</param>
-            <returns>A string that contains information about the status of the interface.</returns>
-        </member>
-        <member name="M:SharpPi.Device.GetInterfaceIPv4(System.String)">
-            <summary>
-            Parses the inet address from ifconfig.
-            </summary>
-            <param name="_interface">The interface to query the inet address from.</param>
-            <returns><see cref="T:System.Net.IPAddress"/> if successful, otherwise <see cref="F:System.Net.IPAddress.None"/>.</returns>
-        </member>
-        <member name="M:SharpPi.Device.SetHostname(System.String)">
-            <summary>
-            Set the hostname for this device.
-            </summary>
-            <param name="name">The hostname</param>
-        </member>
-        <member name="T:SharpPi.GPIO">
-            <summary>
-            Class for using the GPIO on the Raspberry Pi.
-            Requires http://www.airspayce.com/mikem/bcm2835/, source should be included.
-            </summary>
-        </member>
-        <member name="T:SharpPi.GPIO.Direction">
-            <summary>
-            Specifies the direction of the GPIO pin (in/out)
-            </summary>
-        </member>
-        <member name="T:SharpPi.GPIO.PinState">
-            <summary>
-            The state of the pin (on/off)
-            </summary>
-        </member>
-        <member name="T:SharpPi.GPIO.Pullup">
-            <summary>
-            The internal pull up-down resistor of the pin (up/down)
-            </summary>
-        </member>
-        <member name="T:SharpPi.GPIO.Pin">
-            <summary>
-            Refer to http://elinux.org/Rpi_Low-level_peripherals for diagram.
-            </summary>
-        </member>
-        <member name="T:SharpPi.GPIO.Pin.Rev2">
-            <summary>
-            Raspberry Pi Rev.2 Models
-            </summary>
-        </member>
-        <member name="T:SharpPi.GPIO.Pin.Rev2.Plus">
-            <summary>
-            Raspberry Pi A+/B+ Models
-            </summary>
-        </member>
-        <member name="F:SharpPi.GPIO.PinNumber">
-            <summary>
-            The currently assigned GPIO pin.
-            </summary>
-        </member>
-        <member name="P:SharpPi.GPIO.PinDirection">
-            <summary>
-            Direction of the GPIO pin. (input/output)
-            </summary>
-        </member>
-        <member name="P:SharpPi.GPIO.State">
-            <summary>
-            The value of the GPIO pin. (on/off)
-            </summary>
-        </member>
-        <member name="P:SharpPi.GPIO.Pull">
-            <summary>
-            Internal pull up-down resistor for this pin.
-            </summary>
-        </member>
-        <member name="P:SharpPi.GPIO.PinMask">
-            <summary>
-            Gets the bit mask of this pin.
-            </summary>
-        </member>
-        <member name="M:SharpPi.GPIO.#ctor(System.UInt32,SharpPi.GPIO.Direction,SharpPi.GPIO.PinState)">
-            <summary>
-            Access to the specified GPIO setup with the specified direction with the specified initial value
-            </summary>
-            <param name="pin">The GPIO pin number. See the <see cref="T:SharpPi.GPIO.Pin"/> class for various pin number constants.</param>
-            <param name="direction">The direction of the pin.</param>
-            <param name="initialValue">Value of the pin once it is initialized.</param>
-        </member>
-        <member name="M:SharpPi.GPIO.Dispose">
-            <summary>
-            Dispose of this GPIO pin instance.
-            </summary>
-        </member>
-        <member name="M:SharpPi.GPIO.SetMulti(SharpPi.GPIO.Pin.Mask)">
-            <summary>
-            Sets any of the first 32 GPIO output pins specified in the mask to HIGH.
-            </summary>
-            <param name="mask">Mask of pins to affect. Use eg: (GPIOPinMask.GPIO_00) | GPIOPinMask.GPIO_01)</param>
-        </member>
-        <member name="M:SharpPi.GPIO.ClearMulti(SharpPi.GPIO.Pin.Mask)">
-            <summary>
-            Sets any of the first 32 GPIO output pins specified in the mask to LOW.
-            </summary>
-            <param name="mask">Mask of pins to affect. Use eg: (GPIOPinMask.GPIO_00) | GPIOPinMask.GPIO_01)</param>
-        </member>
-        <member name="M:SharpPi.GPIO.WriteMulti(SharpPi.GPIO.Pin.Mask,SharpPi.GPIO.PinState)">
-            <summary>
-            Sets any of the first 32 GPIO output pins specified in the mask to value.
-            </summary>
-            <param name="mask">Mask of pins to affect. Use eg: (GPIOPinMask.GPIO_00) | GPIOPinMask.GPIO_01)</param>
-        </member>
-        <member name="T:SharpPi.SPI">
-            <summary>
-            Class for using SPI on the Raspberry Pi.
-            </summary>
         </member>
         <member name="M:SharpPi.Graphics.Egl.Initialize(System.IntPtr,System.Int32,System.Int32)">
             <summary>
@@ -2859,31 +2532,6 @@
         <member name="M:SharpPi.Graphics.Time.Delay(System.Int32)">
             <summary>
             Sleep the calling thread for some time.
-            </summary>
-        </member>
-        <member name="T:SharpPi.Imaging.OpenH264.Decoder">
-            <summary>
-            Provides methods for decoding with Cisco's OpenH264 software codec.
-            </summary>
-        </member>
-        <member name="M:SharpPi.Imaging.OpenH264.Decoder.#ctor">
-            <summary>
-            Creates a new <see cref="!:H264Decoder"/> instance.
-            </summary>
-        </member>
-        <member name="M:SharpPi.Imaging.OpenH264.Decoder.Finalize">
-            <summary>
-            Ensures this <see cref="!:H264Decoder"/> instance is disposed by the garbage collector, if not disposed manually before then.
-            </summary>
-        </member>
-        <member name="M:SharpPi.Imaging.OpenH264.Decoder.Dispose">
-            <summary>
-            Releases and cleans up all resources used by this <see cref="!:H264Decoder"/> instance.
-            </summary>
-        </member>
-        <member name="T:SharpPi.Imaging.OpenH264.Encoder">
-            <summary>
-            Provides methods for encoding with Cisco's OpenH264 software codec.
             </summary>
         </member>
         <member name="T:SharpPi.Input.Bluetooth">

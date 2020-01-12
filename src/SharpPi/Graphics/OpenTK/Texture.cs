@@ -34,8 +34,8 @@ namespace SharpPi.Graphics
             GLTexture = GL.GenTexture();
             BindTexture();
 
-            // TextureComponentCount might be wrong..
-            using (PinnedObject texHandle = new PinnedObject(data))
+            // we might not need to pin this
+            using (PinnedObject<IntPtr> texHandle = new PinnedObject<IntPtr>(data))
                 GL.TexImage2D(TextureTarget2d.Texture2D, 0, TextureComponentCount.Rgba, Width, Height, 0, PixelFormat.Rgba, PixelType.UnsignedByte, data);
 
             SetWrap(TextureCoordinate.S, TextureWrapMode.Repeat);
