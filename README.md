@@ -2,7 +2,7 @@
 A high-level C# wrapper/utility library for Linux on the Raspberry Pi.
 The low-level API will be exposed soon, once it's cleaned up.
 
-What it can do:
+# Features
 - Draw graphics directly to the display (no X11 required) with OpenGL ([OpenTK](https://github.com/opentk/opentk))
 - Integrates [Dear ImGUI](https://github.com/ocornut/imgui) with OpenGL in a simple to use API, using [ImGui.NET](https://github.com/mellinoe/ImGui.NET) as the underlying wrapper.
 - Get raw input directly from Linux kernel (/dev/input), mouse and keyboard support built-in.
@@ -11,13 +11,13 @@ What it can do:
 - Connect to wifi networks, create access points, scan for nearby access points, and more!
 - Tcp client/server abstraction layer with [many options](https://github.com/tottaka/SharpPi).
 
-References:
+# References:
 - OpenTK: https://github.com/opentk/opentk
 - Dear ImGUI: https://github.com/ocornut/imgui
 - ImGui.NET: https://github.com/mellinoe/ImGui.NET
 - MMALSharp: https://github.com/techyian/MMALSharp
 
-Installation:
+# Installation
 ```
 git clone https://github.com/tottaka/SharpPi # Download source code from git
 cd SharpPi									 # Enter the source directory
