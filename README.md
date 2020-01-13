@@ -18,12 +18,13 @@ References:
 - MMALSharp: https://github.com/techyian/MMALSharp
 
 Installation:
-1. Clone the github project
 ```
-git clone https://github.com/tottaka/SharpPi
+git clone https://github.com/tottaka/SharpPi # Download source code from git
+cd SharpPi									 # Enter the source directory
+./setup.sh									 # Run the setup script
 ```
+This will automatically install & compile all dependencies and other resources needed for SharpPi to run.
 
-2. 
 
-Notes:
+# Note
 All of the included compiled native libaries were built on the Raspberry Pi 3B+ in Raspbain Buster
