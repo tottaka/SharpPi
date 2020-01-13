@@ -6,15 +6,9 @@ What it can do:
 - Draw graphics directly to the display (no X11 required) with OpenGL ([OpenTK](https://github.com/opentk/opentk))
 - Integrates [Dear ImGUI](https://github.com/ocornut/imgui) with OpenGL in a simple to use API, using [ImGui.NET](https://github.com/mellinoe/ImGui.NET) as the underlying wrapper.
 - Get raw input directly from Linux kernel (/dev/input), mouse and keyboard support built-in.
-- Encode/Decode H264 video streams using [MMALSharp](https://github.com/techyian/MMALSharp/).
+- Encode/Decode/Manipulate video streams using [MMALSharp](https://github.com/techyian/MMALSharp/).
 - Interface with GPIO pins, Bluetooth/Serial control, and more!
 - Connect to wifi networks, create access points, scan for nearby access points, and more!
-
-Features:
-- A wrapper for encoding/decoding video streams.
-- A wrapper for drawing graphics with OpenGL.
-- A GPIO utility library for interfacing with the Raspberry Pi GPIO.
-- An OS utility library for doing things such as connecting to/scanning for wifi networks, setting device hostname, get rpi model type, start processes/get output, and much more!
 
 References:
 - OpenTK: https://github.com/opentk/opentk
@@ -23,4 +17,4 @@ References:
 - MMALSharp: https://github.com/techyian/MMALSharp
 
 Notes:
-All of the included compiled libaries were built on the Raspberry Pi 3B+ in Raspbain Buster.
+All of the included compiled native libaries were built on the Raspberry Pi 3B+ in Raspbain Buster.
