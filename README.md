@@ -9,6 +9,7 @@ What it can do:
 - Encode/Decode/Manipulate video streams using [MMALSharp](https://github.com/techyian/MMALSharp/).
 - Interface with GPIO pins, Bluetooth/Serial control, and more!
 - Connect to wifi networks, create access points, scan for nearby access points, and more!
+- Tcp client/server abstraction layer with [many options](https://github.com/tottaka/SharpPi).
 
 References:
 - OpenTK: https://github.com/opentk/opentk
@@ -25,4 +26,4 @@ git clone https://github.com/tottaka/SharpPi
 2. 
 
 Notes:
-All of the included compiled native libaries were built on the Raspberry Pi 3B+ in Raspbain Buster.
+All of the included compiled native libaries were built on the Raspberry Pi 3B+ in Raspbain Buster
