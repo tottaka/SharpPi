@@ -16,5 +16,13 @@ References:
 - ImGui.NET: https://github.com/mellinoe/ImGui.NET
 - MMALSharp: https://github.com/techyian/MMALSharp
 
+Installation:
+1. Clone the github project
+```
+git clone https://github.com/tottaka/SharpPi
+```
+
+2. 
+
 Notes:
 All of the included compiled native libaries were built on the Raspberry Pi 3B+ in Raspbain Buster.
