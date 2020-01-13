@@ -1,4 +1,5 @@
 # SharpPi
+SharpPi is a high-level library that aims to bring more C# to the Raspberry Pi coding community. 
 A high-level C# wrapper/utility library for Linux on the Raspberry Pi.
 The low-level API will be exposed soon, once it's cleaned up.
 
