@@ -25,11 +25,8 @@ namespace SharpPi.Imaging
 
 
                 IsDisposed = true;
-
             }
         }
-
-
 
         public async Task DecodeVideoFromFilestream()
         {

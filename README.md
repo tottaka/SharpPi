@@ -21,8 +21,8 @@ The low-level API will be exposed soon, once it's cleaned up.
 # Installation
 ```
 git clone https://github.com/tottaka/SharpPi # Download source code from git
-cd SharpPi									 # Enter the source directory
-./setup.sh									 # Run the setup script
+cd SharpPi                                   # Enter the source directory
+sudo bash setup.sh                           # Run the setup script, certain actions require sudo.
 ```
 This will automatically install & compile all dependencies and other resources needed for SharpPi to run.
 
