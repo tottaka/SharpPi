@@ -16,10 +16,11 @@ using MMALSharp.Handlers;
 using MMALSharp.Native;
 using MMALSharp.Ports;
 using MMALSharp.Ports.Outputs;
+using System.IO;
 
 namespace SharpPi.Imaging
 {
-    public class Camera : IDisposable
+    public class Camera<T> : IDisposable where T : Stream
     {
         /// <summary>
         /// Called when the a new frame has been captured and encoded.
@@ -30,13 +31,13 @@ namespace SharpPi.Imaging
         public bool IsDisposed { get; private set; }
 
         private MMALCamera Instance;
-        private InMemoryCaptureHandler OutputHandler;
+        private GenericStreamCaptureHandler<T> OutputHandler;
         private MMALVideoEncoder VideoEncoder;
         private CancellationTokenSource RecordToken;
 
-        public Camera()
+        public Camera(T outputStream)
         {
-            OutputHandler = new InMemoryCaptureHandler();
+            OutputHandler = new GenericStreamCaptureHandler<T>(outputStream);
             VideoEncoder = new MMALVideoEncoder(OutputHandler);
 
             // Create our component pipeline. Here we are using the H.264 standard with a YUV420 pixel format. The video will be taken at 25Mb/s.
@@ -64,7 +65,8 @@ namespace SharpPi.Imaging
                 Thread.Sleep(2000);
 
                 RecordToken = new CancellationTokenSource();
-                Instance.ProcessAsync(Instance.Camera.VideoPort, RecordToken.Token);
+                Instance.ProcessAsync(Instance.Camera.VideoPort, RecordToken.Token).ContinueWith(Instance_RecordingStopped);
+                IsRecording = true;
             }
         }
 
@@ -85,6 +87,17 @@ namespace SharpPi.Imaging
 
                 IsDisposed = true;
             }
+        }
+
+        private void Instance_RecordingStopped(Task t)
+        {
+            IsRecording = false;
+            RecordToken.Dispose();
+
+            if (t.IsFaulted)
+                throw t.Exception?.InnerException;
+
+            t.Dispose();
         }
     }
 }

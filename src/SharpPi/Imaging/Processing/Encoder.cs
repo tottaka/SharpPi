@@ -53,6 +53,7 @@ namespace SharpPi.Imaging
             {
                 InputCaptureHandler.Dispose();
                 VideoEncoder.Dispose();
+                
 
                 IsDisposed = true;
             }

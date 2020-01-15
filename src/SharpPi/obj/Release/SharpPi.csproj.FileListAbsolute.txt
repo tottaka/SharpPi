@@ -14,3 +14,16 @@ H:\GitHub\SharpPi\src\SharpPi\obj\Release\SharpPi.csproj.CoreCompileInputs.cache
 H:\GitHub\SharpPi\src\SharpPi\obj\Release\SharpPi.csproj.CopyComplete
 H:\GitHub\SharpPi\src\SharpPi\obj\Release\SharpPi.dll
 H:\GitHub\SharpPi\src\SharpPi\obj\Release\SharpPi.pdb
+H:\GitHub\SharpPi\src\SharpPi\bin\Release\MMALSharp.Common.dll
+H:\GitHub\SharpPi\src\SharpPi\bin\Release\MMALSharp.dll
+H:\GitHub\SharpPi\src\SharpPi\bin\Release\MMALSharp.Processing.dll
+H:\GitHub\SharpPi\src\SharpPi\bin\Release\NLog.dll
+H:\GitHub\SharpPi\src\SharpPi\bin\Release\System.Numerics.Vectors.dll
+H:\GitHub\SharpPi\src\SharpPi\bin\Release\System.Threading.Tasks.Extensions.dll
+H:\GitHub\SharpPi\src\SharpPi\bin\Release\MMALSharp.xml
+H:\GitHub\SharpPi\src\SharpPi\bin\Release\MMALSharp.Common.xml
+H:\GitHub\SharpPi\src\SharpPi\bin\Release\MMALSharp.Processing.xml
+H:\GitHub\SharpPi\src\SharpPi\bin\Release\NLog.xml
+H:\GitHub\SharpPi\src\SharpPi\bin\Release\System.Numerics.Vectors.xml
+H:\GitHub\SharpPi\src\SharpPi\bin\Release\System.Threading.Tasks.Extensions.xml
+H:\GitHub\SharpPi\src\SharpPi\obj\Release\SharpPi.csprojAssemblyReference.cache

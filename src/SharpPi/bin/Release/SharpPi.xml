@@ -4,6 +4,21 @@
         <name>SharpPi</name>
     </assembly>
     <members>
+        <member name="E:SharpPi.Imaging.Camera`1.FrameCaptured">
+            <summary>
+            Called when the a new frame has been captured and encoded.
+            </summary>
+        </member>
+        <member name="M:SharpPi.Imaging.Camera`1.Start">
+            <summary>
+            Start recording on the camera.
+            </summary>
+        </member>
+        <member name="M:SharpPi.Imaging.Camera`1.Stop">
+            <summary>
+            Stop recording on the camera.
+            </summary>
+        </member>
         <member name="T:SharpPi.ModelType">
             <summary>
             The different types of Raspberry Pi board models.
