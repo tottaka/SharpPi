@@ -60,9 +60,6 @@ namespace SharpPi.Native
                     return FunctionLocations[procAddress];
 
                 IntPtr location = Sym(Location, procAddress);
-                if (location == IntPtr.Zero)
-                    throw new DllNotFoundException("Unable to load symbol '" + procAddress + "'.");
-
                 FunctionLocations.Add(procAddress, location);
                 return FunctionLocations[procAddress];
             }

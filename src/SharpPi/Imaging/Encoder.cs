@@ -1,8 +1,8 @@
 ﻿using System;
 
-using MMALSharp;
-using MMALSharp.Common;
-using MMALSharp.Handlers;
+//using MMALSharp;
+//using MMALSharp.Common;
+//using MMALSharp.Handlers;
 
 namespace SharpPi.Imaging
 {
@@ -10,7 +10,7 @@ namespace SharpPi.Imaging
     {
         public bool IsDisposed { get; private set; }
 
-        private MemoryStreamCaptureHandler CaptureHandler;
+        //private MemoryStreamCaptureHandler CaptureHandler;
 
         public Encoder()
         {
@@ -28,6 +28,7 @@ namespace SharpPi.Imaging
             }
         }
 
+        /*
         public async Task DecodeVideoFromFilestream()
         {
             MMALStandalone standalone = MMALStandalone.Instance;
@@ -49,5 +50,6 @@ namespace SharpPi.Imaging
             // Only call when you no longer require the MMAL library, i.e. on app shutdown.
             standalone.Cleanup();
         }
+        */
     }
 }
