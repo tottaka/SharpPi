@@ -1,5 +1,5 @@
 # SharpPi
-SharpPi is a high-level C# wrapper/utility library for the Raspberry Pi running [Raspbain Linux](https://www.raspberrypi.org/downloads/raspbian/). 
+SharpPi is a high-level C# wrapper/utility library for the [Raspberry Pi](https://www.raspberrypi.org/) running [Raspbain Linux](https://www.raspberrypi.org/downloads/raspbian/). 
 The low-level API will be exposed soon, once it's cleaned up.
 
 # Features
