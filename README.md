@@ -1,6 +1,5 @@
 # SharpPi
-SharpPi is a high-level library that aims to bring more C# to the Raspberry Pi coding community. 
-A high-level C# wrapper/utility library for Linux on the Raspberry Pi.
+SharpPi is a high-level C# wrapper/utility library for the Raspberry Pi running [Raspbain Linux](https://www.raspberrypi.org/downloads/raspbian/). 
 The low-level API will be exposed soon, once it's cleaned up.
 
 # Features
@@ -15,7 +14,6 @@ The low-level API will be exposed soon, once it's cleaned up.
 
 # Installation
 This will automatically install [Mono](https://www.mono-project.com/) and compile all [dependencies](https://github.com/tottaka/SharpPi/tree/master/deps/) needed for SharpPi to run.
-Note: The setup script was meant to be run on the Raspberry Pi running [Raspbain OS](https://www.raspberrypi.org/downloads/raspbian/).
 ```
 git clone https://github.com/tottaka/SharpPi # Download source code from git
 cd SharpPi                                   # Enter the source directory
