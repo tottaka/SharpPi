@@ -86,6 +86,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Imaging\Camera.cs" />
+    <Compile Include="Imaging\Processing\Decoder.cs" />
     <Compile Include="OS\Device.cs" />
     <Compile Include="GPIO\GPIO.cs" />
     <Compile Include="GPIO\Native\Constants.cs" />
@@ -114,7 +116,7 @@
     </Compile>
     <Compile Include="OS\SubProcess.cs" />
     <Compile Include="Graphics\Time.cs" />
-    <Compile Include="Imaging\Encoder.cs" />
+    <Compile Include="Imaging\Processing\Encoder.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -133,9 +135,7 @@
     <Content Include="Input\TODO.txt" />
     <Content Include="TODO.txt" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Imaging\Processing\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

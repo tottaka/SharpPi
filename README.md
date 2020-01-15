@@ -13,7 +13,9 @@ The low-level API will be exposed soon, once it's cleaned up.
 - Tcp client/server abstraction layer with [many options](https://github.com/tottaka/SharpPi).
 
 # Installation
-This will automatically install [Mono](https://www.mono-project.com/) and compile all [dependencies](https://github.com/tottaka/SharpPi/tree/master/deps/) needed for SharpPi to run.
+I'm trying not to include any prebuilt libraries, so you will have to compile the native libraries on your own.
+I have included a simple setup script to automate the installation and compile process.
+Run the following commands to automatically install [Mono](https://www.mono-project.com/) and compile all [dependencies](https://github.com/tottaka/SharpPi/tree/master/deps/) needed for SharpPi to run.
 ```
 git clone https://github.com/tottaka/SharpPi # Download source code from git
 cd SharpPi                                   # Enter the source directory
