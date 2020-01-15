@@ -6,7 +6,7 @@ The low-level API will be exposed soon, once it's cleaned up.
 # Features
 - Draw graphics directly to the display (no X11 required) with OpenGL ([OpenTK](https://github.com/opentk/opentk))
 - Integrates [Dear ImGUI](https://github.com/ocornut/imgui) with OpenGL in a simple to use API, using [ImGui.NET](https://github.com/mellinoe/ImGui.NET) as the underlying wrapper.
-- Built-in web browser using ImGUI, including [HTML](https://html-agility-pack.net/), [JavaScript](https://github.com/sebastienros/esprima-dotnet), and [CSS](https://github.com/TylerBrinks/ExCSS) parsers.
+- [WIP] Built-in Web Browser using ImGUI, including [HTML](https://html-agility-pack.net/), [JavaScript](https://github.com/sebastienros/esprima-dotnet), and [CSS](https://github.com/TylerBrinks/ExCSS) parsers.
 - Encode/Decode/Manipulate video streams using [MMALSharp](https://github.com/techyian/MMALSharp/).
 - Interface with GPIO pins, Bluetooth/Serial control, and more!
 - Get raw input directly from Linux kernel (/dev/input), mouse and keyboard support built-in.
