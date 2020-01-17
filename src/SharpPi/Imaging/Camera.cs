@@ -40,12 +40,14 @@ namespace SharpPi.Imaging
 
         public Camera(NetworkStream outputStream)
         {
+            //MMALCameraConfig.Debug = true;
             OutputHandler = new NetworkStreamCaptureHandler(outputStream);
             VideoEncoder = new MMALVideoEncoder();
 
             // Create our component pipeline. Here we are using the H.264 standard with a YUV420 pixel format. The video will be taken at 25Mb/s.
             Instance = MMALCamera.Instance;
             Instance.ConfigureCameraSettings();
+            MMALCameraConfig.Debug = true;
 
             MMALPortConfig portConfig = new MMALPortConfig(MMALEncoding.H264, MMALEncoding.I420, 10, MMALVideoEncoder.MaxBitrateLevel4, null);
             VideoEncoder.ConfigureOutputPort(portConfig, OutputHandler);
@@ -84,7 +86,6 @@ namespace SharpPi.Imaging
                 RecordToken.Cancel();
                 RecordingTask.Wait();
                 RecordingTask.Dispose();
-                RecordToken.Dispose();
                 Console.WriteLine("Recording stopped.");
             }
         }

@@ -12,6 +12,7 @@ using MMALSharp.Ports;
 using System.Collections.Generic;
 using MMALSharp.Processors;
 using System.Net.Sockets;
+using MMALSharp.Ports.Outputs;
 
 namespace SharpPi.Imaging
 {
@@ -28,6 +29,7 @@ namespace SharpPi.Imaging
 
         public Decoder(Stream inputStream)
         {
+            //MMALCameraConfig.Debug = true;
             Instance = MMALStandalone.Instance;
 
             InputCaptureHandler = new SharpInputHandler(inputStream);
