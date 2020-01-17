@@ -3,7 +3,7 @@ SharpPi is a high-level C# wrapper/utility library for the [Raspberry Pi](https:
 The low-level API will be exposed soon, once it's cleaned up.
 
 # Features
-- Draw graphics directly to the display (no X11 required) with OpenGL ([OpenTK](https://github.com/opentk/opentk))
+- Draw graphics directly to the display (no X11 required) with [OpenGL](https://www.opengl.org/) ([OpenTK](https://github.com/opentk/opentk))
 - Integrates [Dear ImGUI](https://github.com/ocornut/imgui) with OpenGL in a simple to use API, using [ImGui.NET](https://github.com/mellinoe/ImGui.NET) as the underlying wrapper.
 - [WIP] Built-in Web Browser using ImGUI, including [HTML](https://html-agility-pack.net/), [JavaScript](https://github.com/sebastienros/esprima-dotnet), and [CSS](https://github.com/TylerBrinks/ExCSS) parsers.
 - Encode/Decode/Manipulate video streams using [MMALSharp](https://github.com/techyian/MMALSharp/).
@@ -30,3 +30,4 @@ sudo bash setup.sh                           # Run the setup script, certain act
 - Esprima.NET: https://github.com/sebastienros/esprima-dotnet
 - ExCSS: https://github.com/TylerBrinks/ExCSS
 - Html Agility Pack: https://github.com/zzzprojects/html-agility-pack
+- EmguCV: https://github.com/emgucv/emgucv

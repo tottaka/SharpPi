@@ -4,17 +4,23 @@
         <name>SharpPi</name>
     </assembly>
     <members>
-        <member name="E:SharpPi.Imaging.Camera`1.FrameCaptured">
+        <member name="T:SharpPi.Imaging.Camera">
+            <summary>
+            Record camera output to a <see cref="T:System.IO.Stream"/> of the given type.
+            </summary>
+            <typeparam name="T">The stream type</typeparam>
+        </member>
+        <member name="P:SharpPi.Imaging.Camera.IsRecording">
             <summary>
             Called when the a new frame has been captured and encoded.
             </summary>
         </member>
-        <member name="M:SharpPi.Imaging.Camera`1.Start">
+        <member name="M:SharpPi.Imaging.Camera.Start">
             <summary>
             Start recording on the camera.
             </summary>
         </member>
-        <member name="M:SharpPi.Imaging.Camera`1.Stop">
+        <member name="M:SharpPi.Imaging.Camera.Stop">
             <summary>
             Stop recording on the camera.
             </summary>
