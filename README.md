@@ -16,7 +16,7 @@ The low-level API will be exposed soon, once it's cleaned up.
 # Installation
 I'm trying not to include any prebuilt native libraries, so you will have to compile them on your own.
 I have included a simple script to automate the installation and compile process.
-Run the following commands to automatically install [Mono](https://www.mono-project.com/) and compile all [dependencies](https://github.com/tottaka/SharpPi/tree/master/deps/) needed for SharpPi to run.
+Run the following commands to automatically install [Mono](https://www.mono-project.com/) and compile all [native dependencies](https://github.com/tottaka/SharpPi/tree/master/deps/) needed for SharpPi to run.
 ```
 git clone https://github.com/tottaka/SharpPi # Download source code from git
 cd SharpPi                                   # Enter the source directory
