@@ -7,7 +7,7 @@ The low-level API will be exposed soon, once it's cleaned up.
 - Integrates [Dear ImGUI](https://github.com/ocornut/imgui) with OpenGL in a simple to use API, using [ImGui.NET](https://github.com/mellinoe/ImGui.NET) as the underlying wrapper.
 - [WIP] Built-in Web Browser using ImGUI, including [HTML](https://html-agility-pack.net/), [JavaScript](https://github.com/sebastienros/esprima-dotnet), and [CSS](https://github.com/TylerBrinks/ExCSS) parsers.
 - Encode/Decode/Manipulate video streams using [MMALSharp](https://github.com/techyian/MMALSharp/).
-- Computer Vision using [OpenCV](https://opencv.org/) [EmguCV](https://github.com/emgucv/emgucv)
+- Computer Vision using [OpenCV](https://opencv.org/) ([EmguCV](https://github.com/emgucv/emgucv))
 - Interface with GPIO pins, Bluetooth/Serial control, and more!
 - Get raw input directly from Linux kernel (/dev/input), mouse and keyboard support built-in.
 - Connect to wifi networks, create access points, scan for nearby access points, and more!
