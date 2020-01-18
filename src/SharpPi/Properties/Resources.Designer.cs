@@ -75,6 +75,68 @@ namespace SharpPi.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to #version 100
+        ///
+        ///precision mediump float;
+        ///uniform sampler2D in_fontTexture;
+        ///varying vec4 v_color;
+        ///varying vec2 v_texCoord;
+        ///
+        ///void main()
+        ///{
+        ///	gl_FragColor = v_color * texture2D(in_fontTexture, v_texCoord);
+        ///}.
+        /// </summary>
+        internal static string imgui_fragment_glsl {
+            get {
+                return ResourceManager.GetString("imgui_fragment_glsl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to #version 100
+        ///
+        ///uniform mat4 projection_matrix;
+        ///attribute vec2 in_position;
+        ///attribute vec2 in_texCoord;
+        ///attribute vec4 in_color;
+        ///varying vec4 v_color;
+        ///varying vec2 v_texCoord;
+        ///
+        ///void main()
+        ///{
+        ///	gl_Position = projection_matrix * vec4(in_position, 0, 1);
+        ///	v_color = in_color;
+        ///	v_texCoord = in_texCoord;
+        ///}.
+        /// </summary>
+        internal static string imgui_vertex_glsl {
+            get {
+                return ResourceManager.GetString("imgui_vertex_glsl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] OpenSans_Regular {
+            get {
+                object obj = ResourceManager.GetObject("OpenSans_Regular", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap sharp_pi_banner {
+            get {
+                object obj = ResourceManager.GetObject("sharp_pi_banner", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
         ///update_config=1
         ///country=US

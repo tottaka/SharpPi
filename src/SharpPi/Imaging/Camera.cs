@@ -14,6 +14,7 @@ using MMALSharp.Ports.Outputs;
 using System.Net.Sockets;
 using System.Collections.Generic;
 using MMALSharp.Processors;
+using MMALSharp.Common.Utility;
 
 namespace SharpPi.Imaging
 {
@@ -32,14 +33,18 @@ namespace SharpPi.Imaging
         public bool IsDisposed { get; private set; }
 
         private MMALCamera Instance;
-        //private MMALNullSinkComponent nullSink;
-        private NetworkStreamCaptureHandler OutputHandler;
-        private MMALVideoEncoder VideoEncoder;
+        private MMALNullSinkComponent nullSink;
+        private MMALImageEncoder imgEncoder;
+        private MMALSplitterComponent splitter;
+        private NetworkStreamCaptureHandler imgCaptureHandler;
+        //private NetworkStreamCaptureHandler OutputHandler;
+        //private MMALVideoEncoder VideoEncoder;
         private CancellationTokenSource RecordToken;
         private Task RecordingTask;
 
         public Camera(NetworkStream outputStream)
         {
+            /*
             //MMALCameraConfig.Debug = true;
             OutputHandler = new NetworkStreamCaptureHandler(outputStream);
             VideoEncoder = new MMALVideoEncoder();
@@ -48,6 +53,8 @@ namespace SharpPi.Imaging
             Instance = MMALCamera.Instance;
             Instance.ConfigureCameraSettings();
             MMALCameraConfig.Debug = true;
+            MMALCameraConfig.VideoFramerate = new MMAL_RATIONAL_T(30, 1);
+            //MMALCameraConfig.VideoResolution = new Resolution(810, 648);
 
             MMALPortConfig portConfig = new MMALPortConfig(MMALEncoding.H264, MMALEncoding.I420, 10, MMALVideoEncoder.MaxBitrateLevel4, null);
             VideoEncoder.ConfigureOutputPort(portConfig, OutputHandler);
@@ -55,6 +62,25 @@ namespace SharpPi.Imaging
             //nullSink = new MMALNullSinkComponent();
             //Instance.Camera.PreviewPort.ConnectTo(nullSink);
             Instance.Camera.VideoPort.ConnectTo(VideoEncoder);
+            */
+
+            Instance = MMALCamera.Instance;
+            Instance.ConfigureCameraSettings();
+            MMALCameraConfig.Debug = true;
+            MMALCameraConfig.VideoFramerate = new MMAL_RATIONAL_T(30, 1);
+
+            imgCaptureHandler = new NetworkStreamCaptureHandler(outputStream);
+            splitter = new MMALSplitterComponent();
+            imgEncoder = new MMALImageEncoder(continuousCapture: true);
+            nullSink = new MMALNullSinkComponent();
+
+            // Create our component pipeline.         
+            MMALPortConfig portConfig = new MMALPortConfig(MMALEncoding.JPEG, MMALEncoding.I420, 90);
+            imgEncoder.ConfigureOutputPort(portConfig, imgCaptureHandler);
+
+            Instance.Camera.VideoPort.ConnectTo(splitter);
+            splitter.Outputs[0].ConnectTo(imgEncoder);
+            Instance.Camera.PreviewPort.ConnectTo(nullSink);
         }
 
         ~Camera()
@@ -99,10 +125,13 @@ namespace SharpPi.Imaging
                 if (IsRecording)
                     Stop();
 
-                //nullSink.Dispose();
-                OutputHandler.Dispose();
-                VideoEncoder.Dispose();
-                
+                nullSink.Dispose();
+                imgEncoder.Dispose();
+                splitter.Dispose();
+                imgCaptureHandler.Dispose();
+                //OutputHandler.Dispose();
+                //VideoEncoder.Dispose();
+
                 Instance.Cleanup();
 
                 IsDisposed = true;

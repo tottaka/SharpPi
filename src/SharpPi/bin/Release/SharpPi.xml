@@ -2722,6 +2722,50 @@
             127.0.1.1       {0}.
              </summary>
         </member>
+        <member name="P:SharpPi.Properties.Resources.imgui_fragment_glsl">
+             <summary>
+               Looks up a localized string similar to #version 100
+            
+            precision mediump float;
+            uniform sampler2D in_fontTexture;
+            varying vec4 v_color;
+            varying vec2 v_texCoord;
+            
+            void main()
+            {
+            	gl_FragColor = v_color * texture2D(in_fontTexture, v_texCoord);
+            }.
+             </summary>
+        </member>
+        <member name="P:SharpPi.Properties.Resources.imgui_vertex_glsl">
+             <summary>
+               Looks up a localized string similar to #version 100
+            
+            uniform mat4 projection_matrix;
+            attribute vec2 in_position;
+            attribute vec2 in_texCoord;
+            attribute vec4 in_color;
+            varying vec4 v_color;
+            varying vec2 v_texCoord;
+            
+            void main()
+            {
+            	gl_Position = projection_matrix * vec4(in_position, 0, 1);
+            	v_color = in_color;
+            	v_texCoord = in_texCoord;
+            }.
+             </summary>
+        </member>
+        <member name="P:SharpPi.Properties.Resources.OpenSans_Regular">
+            <summary>
+              Looks up a localized resource of type System.Byte[].
+            </summary>
+        </member>
+        <member name="P:SharpPi.Properties.Resources.sharp_pi_banner">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
         <member name="P:SharpPi.Properties.Resources.supplicant_template">
              <summary>
                Looks up a localized string similar to ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
@@ -2733,6 +2777,18 @@
                     psk=&quot;{1}&quot;
             }}.
              </summary>
+        </member>
+        <member name="M:SharpPi.Text.DictionaryExt.GetKeyValuePairs``1(System.String[],System.Char,System.Func{System.String,``0})">
+            <summary>
+            For each line in the specified <paramref name="lines"/> parameter, the line will get split by the specified <paramref name="splitChar"/> character.
+            The left side will become the key, and the right side will be the value returned by the <paramref name="parseValue"/> function, giving you the ability to do custom value parsing.
+            </summary>
+        </member>
+        <member name="M:SharpPi.Text.DictionaryExt.Dump``2(System.Collections.Generic.Dictionary{``0,``1},System.Action{System.String},System.Boolean)">
+            <summary>
+            For each element in the supplied <see cref="T:System.Collections.Generic.Dictionary`2"/>, <paramref name="writeAction"/> will be called, supplying the method with formatted text of the Key and Value.
+            </summary>
+            <param name="showType">Whether or not to also include the key and value object types in the formatted text for each element.</param>
         </member>
     </members>
 </doc>

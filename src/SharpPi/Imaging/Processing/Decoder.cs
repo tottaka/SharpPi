@@ -21,8 +21,8 @@ namespace SharpPi.Imaging
         public bool IsDisposed { get; private set; }
 
         private SharpInputHandler InputCaptureHandler;
-        private SharpCaptureHandler OutputCaptureHandler;
-        private MMALVideoDecoder VideoDecoder;
+        private NetworkStreamCaptureHandler OutputCaptureHandler;
+        private MMALImageDecoder VideoDecoder;
         private MMALStandalone Instance;
         private Task DecoderTask;
         private CancellationTokenSource DecoderToken;
@@ -33,17 +33,20 @@ namespace SharpPi.Imaging
             Instance = MMALStandalone.Instance;
 
             InputCaptureHandler = new SharpInputHandler(inputStream);
-            OutputCaptureHandler = new SharpCaptureHandler(frame => {
+            OutputCaptureHandler = new NetworkStreamCaptureHandler(frame => {
                 Console.WriteLine("I have a full frame. Clearing working data. DISPLAY THE IMAGE!!! " + frame.Length);
             });
-            VideoDecoder = new MMALVideoDecoder();
+            VideoDecoder = new MMALImageDecoder();
 
 
-            MMALPortConfig inputPortConfig = new MMALPortConfig(MMALEncoding.H264, null, 1280, 720, 25, 0, 1300000, true, null);
-            MMALPortConfig outputPortConfig = new MMALPortConfig(MMALEncoding.RGB16, null, 1280, 720, 25, 0, 1300000, true, null);
+            //MMALPortConfig inputPortConfig = new MMALPortConfig(MMALEncoding.H264, null, 1280, 720, 30, 10, MMALVideoEncoder.MaxBitrateLevel4, true, null);
+            //MMALPortConfig outputPortConfig = new MMALPortConfig(MMALEncoding.RGB16, null, 1280, 720, 30, 10, MMALVideoEncoder.MaxBitrateLevel4, true, null);
+
+            MMALPortConfig inputPortConfig = new MMALPortConfig(MMALEncoding.JPEG, MMALEncoding.I420, 2560, 1920, 0, 0, 0, true, null);
+            MMALPortConfig outputPortConfig = new MMALPortConfig(MMALEncoding.I420, null, 2560, 1920, 0, 0, 0, true, null);
 
             // Create our component pipeline.
-            VideoDecoder.ConfigureInputPort(inputPortConfig, InputCaptureHandler).ConfigureOutputPort(outputPortConfig, OutputCaptureHandler);
+            VideoDecoder.ConfigureInputPort(inputPortConfig, InputCaptureHandler).ConfigureOutputPort<FileEncodeOutputPort>(0, outputPortConfig, OutputCaptureHandler);
 
             DecoderToken = new CancellationTokenSource();
             DecoderTask = Instance.ProcessAsync(VideoDecoder, DecoderToken.Token).ContinueWith(Decoder_ProcessedFinished);
@@ -60,9 +63,9 @@ namespace SharpPi.Imaging
             {
                 DecoderToken.Cancel();
                 DecoderTask.Wait();
-                DecoderToken.Dispose();
                 DecoderTask.Dispose();
 
+                InputCaptureHandler.Dispose();
                 OutputCaptureHandler.Dispose();
                 VideoDecoder.Dispose();
                 Instance = null;
@@ -73,10 +76,10 @@ namespace SharpPi.Imaging
 
         private void Decoder_ProcessedFinished(Task t)
         {
+            Console.WriteLine("Decoder stopped.");
+            DecoderToken.Dispose();
             if (t.IsFaulted)
                 throw t.Exception?.InnerException;
-
-            Console.WriteLine("Decoder stopped.");
 
             t.Dispose();
         }
@@ -91,7 +94,7 @@ namespace SharpPi.Imaging
             public override ProcessResult Process(uint allocSize)
             {
                 ProcessResult result = base.Process(allocSize);
-                Console.WriteLine("InputProcess: " + result.DataLength + " EOF: " + result.EOF);
+                Console.WriteLine("[Input] Process: {0}, EOF = {1}", result.DataLength, result.EOF);
                 return result;
             }
 
@@ -101,13 +104,39 @@ namespace SharpPi.Imaging
             }
         }
 
-        internal class SharpCaptureHandler : OutputCaptureHandler, IVideoCaptureHandler
+        internal class NetworkStreamCaptureHandler : StreamCaptureHandler<NetworkStream>, IOutputCaptureHandler
         {
             public List<byte> WorkingData;
             private readonly Action<byte[]> FrameDecodedCallback;
             private long imageCount = 0;
 
-            public SharpCaptureHandler(Action<byte[]> OnFrameDecoded)
+            public NetworkStreamCaptureHandler(Action<byte[]> OnFrameDecoded)
+            {
+                
+            }
+
+            public override void Process(byte[] data, bool eos)
+            {
+                //base.Process(data, eos);
+                WorkingData.AddRange(data);
+                Console.WriteLine("Process: " + data.Length);
+                if (eos)
+                {
+                    imageCount++;
+                    FrameDecodedCallback?.Invoke(WorkingData.ToArray());
+                    WorkingData.Clear();
+                }
+            }
+        }
+
+        /*
+        internal class NetworkStreamCaptureHandler : StreamCaptureHandler<NetworkStream>, IOutputCaptureHandler
+        {
+            public List<byte> WorkingData;
+            private readonly Action<byte[]> FrameDecodedCallback;
+            private long imageCount = 0;
+
+            public NetworkStreamCaptureHandler(Action<byte[]> OnFrameDecoded)
             {
                 WorkingData = new List<byte>();
                 FrameDecodedCallback = OnFrameDecoded;
@@ -152,5 +181,6 @@ namespace SharpPi.Imaging
                 throw new NotImplementedException();
             }
         }
+        */
     }
 }

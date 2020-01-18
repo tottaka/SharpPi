@@ -22,6 +22,7 @@ git clone https://github.com/tottaka/SharpPi # Download source code from git
 cd SharpPi                                   # Enter the source directory
 sudo bash setup.sh                           # Run the setup script, requires sudo for certain actions.
 ```
+If you do not have git, install it with ```sudo apt install git```
 
 # Credits
 - OpenTK: https://github.com/opentk/opentk

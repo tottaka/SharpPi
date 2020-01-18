@@ -7,6 +7,7 @@ using OpenTK.Graphics.ES20;
 using ImGuiNET;
 
 using Input = SharpPi.Input.Input;
+using SharpPi.Native;
 
 namespace SharpPi.Graphics
 {
@@ -36,9 +37,6 @@ namespace SharpPi.Graphics
 
         private System.Numerics.Vector2 _scaleFactor = System.Numerics.Vector2.One;
 
-        private static readonly string VertexShader = File.ReadAllText("shaders/vertex_shader.glsl");
-        private static readonly string FragmentShader = File.ReadAllText("shaders/fragment_shader.glsl");
-
         /// <summary>
         /// Constructs a new ImGuiController.
         /// </summary>
@@ -50,7 +48,12 @@ namespace SharpPi.Graphics
             IntPtr context = ImGui.CreateContext();
             ImGui.SetCurrentContext(context);
             ImGuiIOPtr io = ImGui.GetIO();
-            io.Fonts.AddFontFromFileTTF("fonts/OpenSans-Regular.ttf", 40.0f);
+
+            byte[] fontData = Properties.Resources.OpenSans_Regular;
+            using (PinnedObject<byte[]> fontObject = new PinnedObject<byte[]>(fontData))
+                io.Fonts.AddFontFromMemoryTTF(fontObject.Address, fontData.Length, 40.0f);
+            fontData = null;
+            //io.Fonts.AddFontFromFileTTF("fonts/OpenSans-Regular.ttf", 40.0f);
             //io.Fonts.AddFontDefault();
 
             CreateDeviceResources();
@@ -59,7 +62,7 @@ namespace SharpPi.Graphics
             ImGui.NewFrame();
             _frameBegun = true;
         }
-
+        
         public void WindowResized(int width, int height)
         {
             _windowWidth = width;
@@ -76,7 +79,7 @@ namespace SharpPi.Graphics
             _vertexBufferSize = 10000;
             _indexBufferSize = 2000;
 
-            _shader = new Shader(VertexShader, FragmentShader);
+            _shader = new Shader(Properties.Resources.imgui_vertex_glsl, Properties.Resources.imgui_fragment_glsl);
 
             // Create VertexBufferVertexArray object
             _vertexBuffer = GL.GenBuffer();

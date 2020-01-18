@@ -120,13 +120,13 @@ namespace SharpPi.Native
     public class PinnedObject<T> : IDisposable
     {
         public GCHandle Handle { get; private set; }
-        public int Size { get; private set; }
+        //public int Size { get; private set; }
         public bool IsDisposed { get; private set; }
 
         public PinnedObject(T obj)
         {
             Handle = GCHandle.Alloc(obj, GCHandleType.Pinned);
-            Size = Marshal.SizeOf<T>();
+            //Size = Marshal.SizeOf<T>();
         }
 
         /// <summary>
