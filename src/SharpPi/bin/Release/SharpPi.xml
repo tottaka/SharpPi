@@ -2696,6 +2696,11 @@
             <param name="value">The Int64 to split</param>
             <returns>A tuple containing the two Int32 values.</returns>
         </member>
+        <member name="T:SharpPi.OS.Kernel">
+            <summary>
+            Interface for the Linux Kernel.
+            </summary>
+        </member>
         <member name="T:SharpPi.Properties.Resources">
             <summary>
               A strongly-typed resource class, for looking up localized strings, etc.

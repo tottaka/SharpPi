@@ -22,14 +22,10 @@ git clone https://github.com/tottaka/SharpPi # Download source code from git
 cd SharpPi                                   # Enter the source directory
 sudo bash setup.sh                           # Run the setup script, requires sudo for certain actions.
 ```
-If you do not have git, install it with ```sudo apt install git```
+If you do not have git, install it with '```sudo apt install git```'
 
 # Credits
 - OpenTK: https://github.com/opentk/opentk
 - Dear ImGUI: https://github.com/ocornut/imgui
 - ImGui.NET: https://github.com/mellinoe/ImGui.NET
 - MMALSharp: https://github.com/techyian/MMALSharp
-- Esprima.NET: https://github.com/sebastienros/esprima-dotnet
-- ExCSS: https://github.com/TylerBrinks/ExCSS
-- Html Agility Pack: https://github.com/zzzprojects/html-agility-pack
-- EmguCV: https://github.com/emgucv/emgucv
