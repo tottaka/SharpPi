@@ -20,13 +20,13 @@ namespace SharpPi.Graphics
 
         public Shader(string vertexShader, string fragmentShader)
         {
-            GLException.CheckError("Start of Shader");
             int vertShader = CompileShader(ShaderType.VertexShader, vertexShader);
-            GLException.CheckError("After vertex shader");
+            GLException.CheckError("Compile vertex shader");
             int fragShader = CompileShader(ShaderType.FragmentShader, fragmentShader);
-            GLException.CheckError("After frag shader");
+            GLException.CheckError("Compile fragment shader");
             Program = GL.CreateProgram();
-            GLException.CheckError("CreateProgram");
+            GLException.CheckError("Create shader program");
+
             GL.AttachShader(Program, vertShader);
             GL.AttachShader(Program, fragShader);
             GL.LinkProgram(Program);

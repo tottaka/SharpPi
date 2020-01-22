@@ -47,15 +47,6 @@
     <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=3.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.3.1.0\lib\netstandard2.0\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
     </Reference>
-    <Reference Include="MMALSharp, Version=0.6.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MMALSharp.0.6.0-293\lib\netstandard2.0\MMALSharp.dll</HintPath>
-    </Reference>
-    <Reference Include="MMALSharp.Common, Version=0.6.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MMALSharp.Common.0.6.0-293\lib\netstandard2.0\MMALSharp.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="MMALSharp.Processing, Version=0.6.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MMALSharp.Processing.0.6.0-293\lib\netstandard2.0\MMALSharp.Processing.dll</HintPath>
-    </Reference>
     <Reference Include="netstandard, Version=2.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51">
       <Private>False</Private>
     </Reference>
@@ -92,8 +83,159 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GPIO\SoftwareSerial.cs" />
     <Compile Include="Imaging\Camera.cs" />
     <Compile Include="Imaging\Processing\Decoder.cs" />
+    <Compile Include="MMALSharp\Callbacks\ConnectionCallbackHandler.cs" />
+    <Compile Include="MMALSharp\Callbacks\DefaultConnectionCallbackHandler.cs" />
+    <Compile Include="MMALSharp\Callbacks\DefaultInputPortCallbackHandler.cs" />
+    <Compile Include="MMALSharp\Callbacks\DefaultOutputPortCallbackHandler.cs" />
+    <Compile Include="MMALSharp\Callbacks\DefaultPortCallbackHandler.cs" />
+    <Compile Include="MMALSharp\Callbacks\FastImageOutputCallbackHandler.cs" />
+    <Compile Include="MMALSharp\Callbacks\ICallbackHandler.cs" />
+    <Compile Include="MMALSharp\Callbacks\IConnectionCallbackHandler.cs" />
+    <Compile Include="MMALSharp\Callbacks\IInputCallbackHandler.cs" />
+    <Compile Include="MMALSharp\Callbacks\InputPortCallbackHandler.cs" />
+    <Compile Include="MMALSharp\Callbacks\IOutputCallbackHandler.cs" />
+    <Compile Include="MMALSharp\Callbacks\PortCallbackHandler.cs" />
+    <Compile Include="MMALSharp\Callbacks\VideoOutputCallbackHandler.cs" />
+    <Compile Include="MMALSharp\Common\CircularBuffer.cs" />
+    <Compile Include="MMALSharp\Common\Enumerations.cs" />
+    <Compile Include="MMALSharp\Common\GenericExtensions.cs" />
+    <Compile Include="MMALSharp\Common\IImageContext.cs" />
+    <Compile Include="MMALSharp\Common\ImageContext.cs" />
+    <Compile Include="MMALSharp\Common\Utility\CancellationTokenExtensions.cs" />
+    <Compile Include="MMALSharp\Common\Utility\Color.cs" />
+    <Compile Include="MMALSharp\Common\Utility\Helpers.cs" />
+    <Compile Include="MMALSharp\Common\Utility\Logging.cs" />
+    <Compile Include="MMALSharp\Common\Utility\Resolution.cs" />
+    <Compile Include="MMALSharp\Components\EncoderComponents\IEncoder.cs" />
+    <Compile Include="MMALSharp\Components\EncoderComponents\IImageDecoder.cs" />
+    <Compile Include="MMALSharp\Components\EncoderComponents\IImageEncoder.cs" />
+    <Compile Include="MMALSharp\Components\EncoderComponents\IMMALConvert.cs" />
+    <Compile Include="MMALSharp\Components\EncoderComponents\IVideoDecoder.cs" />
+    <Compile Include="MMALSharp\Components\EncoderComponents\IVideoEncoder.cs" />
+    <Compile Include="MMALSharp\Components\EncoderComponents\MMALEncoderBase.cs" />
+    <Compile Include="MMALSharp\Components\EncoderComponents\MMALImageDecoder.cs" />
+    <Compile Include="MMALSharp\Components\EncoderComponents\MMALImageEncoder.cs" />
+    <Compile Include="MMALSharp\Components\EncoderComponents\MMALVideoDecoder.cs" />
+    <Compile Include="MMALSharp\Components\EncoderComponents\MMALVideoEncoder.cs" />
+    <Compile Include="MMALSharp\Components\ICameraComponent.cs" />
+    <Compile Include="MMALSharp\Components\ICameraInfoComponent.cs" />
+    <Compile Include="MMALSharp\Components\IComponent.cs" />
+    <Compile Include="MMALSharp\Components\IDownstreamComponent.cs" />
+    <Compile Include="MMALSharp\Components\IDownstreamHandlerComponent.cs" />
+    <Compile Include="MMALSharp\Components\MMALCameraComponent.cs" />
+    <Compile Include="MMALSharp\Components\MMALCameraInfoComponent.cs" />
+    <Compile Include="MMALSharp\Components\MMALComponentBase.cs" />
+    <Compile Include="MMALSharp\Components\MMALDownstreamComponent.cs" />
+    <Compile Include="MMALSharp\Components\MMALDownstreamHandlerComponent.cs" />
+    <Compile Include="MMALSharp\Components\MMALIspComponent.cs" />
+    <Compile Include="MMALSharp\Components\MMALRendererComponent.cs" />
+    <Compile Include="MMALSharp\Components\MMALResizerComponent.cs" />
+    <Compile Include="MMALSharp\Components\MMALSplitterComponent.cs" />
+    <Compile Include="MMALSharp\Config\AnnotateImage.cs" />
+    <Compile Include="MMALSharp\Config\ColourEffects.cs" />
+    <Compile Include="MMALSharp\Config\ExifTag.cs" />
+    <Compile Include="MMALSharp\Config\JpegThumbnail.cs" />
+    <Compile Include="MMALSharp\Config\PreviewConfiguration.cs" />
+    <Compile Include="MMALSharp\Config\PreviewOverlayConfiguration.cs" />
+    <Compile Include="MMALSharp\Config\Split.cs" />
+    <Compile Include="MMALSharp\Config\StereoMode.cs" />
+    <Compile Include="MMALSharp\Config\Timelapse.cs" />
+    <Compile Include="MMALSharp\Config\TimelapseMode.cs" />
+    <Compile Include="MMALSharp\Config\Zoom.cs" />
+    <Compile Include="MMALSharp\Exceptions.cs" />
+    <Compile Include="MMALSharp\IBuffer.cs" />
+    <Compile Include="MMALSharp\IBufferEvent.cs" />
+    <Compile Include="MMALSharp\IBufferPool.cs" />
+    <Compile Include="MMALSharp\IBufferQueue.cs" />
+    <Compile Include="MMALSharp\IConnection.cs" />
+    <Compile Include="MMALSharp\IMMALObject.cs" />
+    <Compile Include="MMALSharp\MMALBootstrapper.cs" />
+    <Compile Include="MMALSharp\MMALBufferImpl.cs" />
+    <Compile Include="MMALSharp\MMALCamera.cs" />
+    <Compile Include="MMALSharp\MMALCameraConfig.cs" />
+    <Compile Include="MMALSharp\MMALCameraExtensions.cs" />
+    <Compile Include="MMALSharp\MMALConnectionImpl.cs" />
+    <Compile Include="MMALSharp\MMALEventFormat.cs" />
+    <Compile Include="MMALSharp\MMALObject.cs" />
+    <Compile Include="MMALSharp\MMALParameterHelpers.cs" />
+    <Compile Include="MMALSharp\MMALPoolImpl.cs" />
+    <Compile Include="MMALSharp\MMALQueueImpl.cs" />
+    <Compile Include="MMALSharp\MMALStandalone.cs" />
+    <Compile Include="MMALSharp\Native\MMALBuffer.cs" />
+    <Compile Include="MMALSharp\Native\MMALClock.cs" />
+    <Compile Include="MMALSharp\Native\MMALCommon.cs" />
+    <Compile Include="MMALSharp\Native\MMALComponent.cs" />
+    <Compile Include="MMALSharp\Native\MMALConnection.cs" />
+    <Compile Include="MMALSharp\Native\MMALEncodings.cs" />
+    <Compile Include="MMALSharp\Native\MMALEvents.cs" />
+    <Compile Include="MMALSharp\Native\MMALFormat.cs" />
+    <Compile Include="MMALSharp\Native\MMALParameters.cs" />
+    <Compile Include="MMALSharp\Native\MMALPool.cs" />
+    <Compile Include="MMALSharp\Native\MMALPort.cs" />
+    <Compile Include="MMALSharp\Native\MMALQueue.cs" />
+    <Compile Include="MMALSharp\Native\MMALUtil.cs" />
+    <Compile Include="MMALSharp\Parameter.cs" />
+    <Compile Include="MMALSharp\Ports\Clocks\ClockPort.cs" />
+    <Compile Include="MMALSharp\Ports\Controls\ControlPort.cs" />
+    <Compile Include="MMALSharp\Ports\Controls\IControlPort.cs" />
+    <Compile Include="MMALSharp\Ports\GenericPort.cs" />
+    <Compile Include="MMALSharp\Ports\Inputs\IInputPort.cs" />
+    <Compile Include="MMALSharp\Ports\Inputs\InputPort.cs" />
+    <Compile Include="MMALSharp\Ports\Inputs\OverlayPort.cs" />
+    <Compile Include="MMALSharp\Ports\IPort.cs" />
+    <Compile Include="MMALSharp\Ports\MMALPortConfig.cs" />
+    <Compile Include="MMALSharp\Ports\Outputs\FastStillPort.cs" />
+    <Compile Include="MMALSharp\Ports\Outputs\FileEncodeOutputPort.cs" />
+    <Compile Include="MMALSharp\Ports\Outputs\IOutputPort.cs" />
+    <Compile Include="MMALSharp\Ports\Outputs\IStillPort.cs" />
+    <Compile Include="MMALSharp\Ports\Outputs\IVideoPort.cs" />
+    <Compile Include="MMALSharp\Ports\Outputs\OutputPort.cs" />
+    <Compile Include="MMALSharp\Ports\Outputs\SplitterVideoPort.cs" />
+    <Compile Include="MMALSharp\Ports\Outputs\StillPort.cs" />
+    <Compile Include="MMALSharp\Ports\Outputs\VideoPort.cs" />
+    <Compile Include="MMALSharp\Ports\PortBase.cs" />
+    <Compile Include="MMALSharp\Ports\PortExtensions.cs" />
+    <Compile Include="MMALSharp\Ports\PortType.cs" />
+    <Compile Include="MMALSharp\Processing\Handlers\CircularBufferCaptureHandler.cs" />
+    <Compile Include="MMALSharp\Processing\Handlers\FileStreamCaptureHandler.cs" />
+    <Compile Include="MMALSharp\Processing\Handlers\ICaptureHandler.cs" />
+    <Compile Include="MMALSharp\Processing\Handlers\IFileStreamCaptureHandler.cs" />
+    <Compile Include="MMALSharp\Processing\Handlers\IInputCaptureHandler.cs" />
+    <Compile Include="MMALSharp\Processing\Handlers\ImageStreamCaptureHandler.cs" />
+    <Compile Include="MMALSharp\Processing\Handlers\IMotionCaptureHandler.cs" />
+    <Compile Include="MMALSharp\Processing\Handlers\IMotionVectorCaptureHandler.cs" />
+    <Compile Include="MMALSharp\Processing\Handlers\InMemoryCaptureHandler.cs" />
+    <Compile Include="MMALSharp\Processing\Handlers\InputCaptureHandler.cs" />
+    <Compile Include="MMALSharp\Processing\Handlers\IOutputCaptureHandler.cs" />
+    <Compile Include="MMALSharp\Processing\Handlers\IVideoCaptureHandler.cs" />
+    <Compile Include="MMALSharp\Processing\Handlers\MemoryStreamCaptureHandler.cs" />
+    <Compile Include="MMALSharp\Processing\Handlers\OutputCaptureHandler.cs" />
+    <Compile Include="MMALSharp\Processing\Handlers\ProcessedFileResult.cs" />
+    <Compile Include="MMALSharp\Processing\Handlers\ProcessResult.cs" />
+    <Compile Include="MMALSharp\Processing\Handlers\StreamCaptureHandler.cs" />
+    <Compile Include="MMALSharp\Processing\Handlers\VideoStreamCaptureHandler.cs" />
+    <Compile Include="MMALSharp\Processing\Processors\Bayer\BayerMetaProcessor.cs" />
+    <Compile Include="MMALSharp\Processing\Processors\Bayer\BayerOperationsExtensions.cs" />
+    <Compile Include="MMALSharp\Processing\Processors\Bayer\DemosaicProcessor.cs" />
+    <Compile Include="MMALSharp\Processing\Processors\Effects\ConvolutionBase.cs" />
+    <Compile Include="MMALSharp\Processing\Processors\Effects\CustomConvolutionProcessor.cs" />
+    <Compile Include="MMALSharp\Processing\Processors\Effects\EdgeDetection.cs" />
+    <Compile Include="MMALSharp\Processing\Processors\Effects\GaussianProcessor.cs" />
+    <Compile Include="MMALSharp\Processing\Processors\Effects\SharpenProcessor.cs" />
+    <Compile Include="MMALSharp\Processing\Processors\Fonts\FontOperationsExtensions.cs" />
+    <Compile Include="MMALSharp\Processing\Processors\Fonts\FontProcessor.cs" />
+    <Compile Include="MMALSharp\Processing\Processors\FrameAnalyser.cs" />
+    <Compile Include="MMALSharp\Processing\Processors\FrameProcessingContext.cs" />
+    <Compile Include="MMALSharp\Processing\Processors\IFrameAnalyser.cs" />
+    <Compile Include="MMALSharp\Processing\Processors\IFrameProcessingContext.cs" />
+    <Compile Include="MMALSharp\Processing\Processors\IFrameProcessor.cs" />
+    <Compile Include="MMALSharp\Processing\Processors\Motion\FrameDiffAnalyser.cs" />
+    <Compile Include="MMALSharp\Processing\Processors\Motion\MotionConfig.cs" />
+    <Compile Include="MMALSharp\Processing\Processors\Motion\MotionType.cs" />
+    <Compile Include="MMALSharp\Processing\Processors\Motion\MotionVectorAnalyser.cs" />
     <Compile Include="OS\Device.cs" />
     <Compile Include="GPIO\GPIO.cs" />
     <Compile Include="GPIO\Native\Constants.cs" />

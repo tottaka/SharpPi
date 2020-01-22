@@ -119,7 +119,9 @@ namespace SharpPi.Graphics
         {
             ImGuiIOPtr io = ImGui.GetIO();
             io.Fonts.GetTexDataAsRGBA32(out IntPtr pixels, out int width, out int height, out int bytesPerPixel);
-            _fontTexture = new Texture2D(width, height, TextureUnit.Texture0, pixels);
+            _fontTexture = new Texture2D(width, height, PixelFormat.Rgba, TextureComponentCount.Rgba, TextureUnit.Texture0, pixels);
+            _fontTexture.SetWrap(TextureCoordinate.S, TextureWrapMode.Repeat);
+            _fontTexture.SetWrap(TextureCoordinate.T, TextureWrapMode.Repeat);
             _fontTexture.SetMagFilter(TextureMagFilter.Linear);
             _fontTexture.SetMinFilter(TextureMinFilter.Linear);
             io.Fonts.SetTexID((IntPtr)_fontTexture.GLTexture);
@@ -315,7 +317,6 @@ namespace SharpPi.Graphics
             // Render command lists
             int vtx_offset = 0;
             int idx_offset = 0;
-            _fontTexture.BindTexture();
             GLException.CheckError("Bind Font Texture");
             for (int n = 0; n < draw_data.CmdListsCount; n++)
             {
@@ -325,6 +326,9 @@ namespace SharpPi.Graphics
                     ImDrawCmdPtr pcmd = cmd_list.CmdBuffer[cmd_i];
                     if (pcmd.UserCallback != IntPtr.Zero)
                         throw new NotImplementedException();
+
+                    GL.ActiveTexture(TextureUnit.Texture0);
+                    GL.BindTexture(TextureTarget.Texture2D, (int)pcmd.TextureId);
 
                     // We do _windowHeight - (int)clip.W instead of (int)clip.Y because gl has flipped Y when it comes to these coordinates
                     var clip = pcmd.ClipRect;
@@ -339,7 +343,7 @@ namespace SharpPi.Graphics
                 vtx_offset += cmd_list.VtxBuffer.Size;
             }
 
-            _fontTexture.UnbindTexture();
+            //_fontTexture.UnbindTexture();
 
             GL.Disable(EnableCap.Blend);
             GL.Disable(EnableCap.ScissorTest);

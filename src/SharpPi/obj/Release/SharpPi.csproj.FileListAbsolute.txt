@@ -4,9 +4,6 @@ H:\GitHub\SharpPi\src\SharpPi\bin\Release\SharpPi.dll
 H:\GitHub\SharpPi\src\SharpPi\bin\Release\SharpPi.pdb
 H:\GitHub\SharpPi\src\SharpPi\bin\Release\ImGui.NET.dll
 H:\GitHub\SharpPi\src\SharpPi\bin\Release\Microsoft.Extensions.Logging.Abstractions.dll
-H:\GitHub\SharpPi\src\SharpPi\bin\Release\MMALSharp.Common.dll
-H:\GitHub\SharpPi\src\SharpPi\bin\Release\MMALSharp.dll
-H:\GitHub\SharpPi\src\SharpPi\bin\Release\MMALSharp.Processing.dll
 H:\GitHub\SharpPi\src\SharpPi\bin\Release\NLog.dll
 H:\GitHub\SharpPi\src\SharpPi\bin\Release\OpenTK.dll
 H:\GitHub\SharpPi\src\SharpPi\bin\Release\System.Drawing.Common.dll
@@ -15,9 +12,6 @@ H:\GitHub\SharpPi\src\SharpPi\bin\Release\System.Threading.Tasks.Extensions.dll
 H:\GitHub\SharpPi\src\SharpPi\bin\Release\ImGui.NET.pdb
 H:\GitHub\SharpPi\src\SharpPi\bin\Release\ImGui.NET.xml
 H:\GitHub\SharpPi\src\SharpPi\bin\Release\Microsoft.Extensions.Logging.Abstractions.xml
-H:\GitHub\SharpPi\src\SharpPi\bin\Release\MMALSharp.xml
-H:\GitHub\SharpPi\src\SharpPi\bin\Release\MMALSharp.Common.xml
-H:\GitHub\SharpPi\src\SharpPi\bin\Release\MMALSharp.Processing.xml
 H:\GitHub\SharpPi\src\SharpPi\bin\Release\NLog.xml
 H:\GitHub\SharpPi\src\SharpPi\bin\Release\OpenTK.pdb
 H:\GitHub\SharpPi\src\SharpPi\bin\Release\OpenTK.xml

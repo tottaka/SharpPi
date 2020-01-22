@@ -134,6 +134,11 @@ namespace SharpPi.Native
         /// </summary>
         public IntPtr Address => Handle.IsAllocated ? Handle.AddrOfPinnedObject() : IntPtr.Zero;
 
+        ~PinnedObject()
+        {
+            Dispose();
+        }
+
         /// <summary>
         /// Releases all resource used by the <see cref="MemoryLock"/> object.
         /// </summary>
@@ -147,6 +152,53 @@ namespace SharpPi.Native
                 if (Handle.IsAllocated)
                     Handle.Free();
 
+                IsDisposed = true;
+            }
+        }
+    }
+
+    public class PinnedBuffer : IDisposable
+    {
+        public byte[] Bits;
+        public bool IsDisposed { get; private set; }
+        public IntPtr BitsPointer { get; private set; }
+        protected GCHandle BitsHandle { get; private set; }
+
+        public PinnedBuffer(int size)
+        {
+            Bits = new byte[size];
+            BitsHandle = GCHandle.Alloc(Bits, GCHandleType.Pinned);
+            BitsPointer = BitsHandle.AddrOfPinnedObject();
+        }
+
+        public PinnedBuffer(byte[] buffer)
+        {
+            Bits = buffer;
+            BitsHandle = GCHandle.Alloc(Bits, GCHandleType.Pinned);
+            BitsPointer = BitsHandle.AddrOfPinnedObject();
+        }
+
+        ~PinnedBuffer()
+        {
+            Dispose();
+        }
+
+        public void Overwrite(byte[] data)
+        {
+            lock (Bits)
+            {
+                if (data.Length > Bits.Length)
+                    throw new InvalidOperationException("Data length cannot be greater than the size of the buffer. (Data: " + data.Length + " / Total: " + Bits.Length + ")");
+
+                Marshal.Copy(data, 0, BitsPointer, data.Length);
+            }
+        }
+
+        public void Dispose()
+        {
+            if (!IsDisposed)
+            {
+                BitsHandle.Free();
                 IsDisposed = true;
             }
         }
