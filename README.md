@@ -22,7 +22,7 @@ cd SharpPi                                   # Enter the source directory
 sudo bash setup.sh                           # Run the setup script, certain actions require sudo.
 ```
 
-# References
+# Credits
 - OpenTK: https://github.com/opentk/opentk
 - Dear ImGUI: https://github.com/ocornut/imgui
 - ImGui.NET: https://github.com/mellinoe/ImGui.NET
