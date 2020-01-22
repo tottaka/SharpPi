@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace SharpPi
+namespace SharpPi.GPIO
 {
     /// <summary>
 	/// Class for using the GPIO on the Raspberry Pi.

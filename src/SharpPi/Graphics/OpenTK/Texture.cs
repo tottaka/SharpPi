@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 using OpenTK.Graphics.ES20;
 using SharpPi.Native;
 
@@ -15,32 +16,24 @@ namespace SharpPi.Graphics
     {
         public readonly int GLTexture;
         public readonly int Width, Height;
+        public readonly PixelFormat PixelFormat;
         public readonly TextureUnit TextureSlot;
+        public readonly TextureComponentCount ComponentCount;
 
-        public Texture2D(int GLTex, int width, int height, TextureUnit slot)
+        public Texture2D(int width, int height, PixelFormat pixelFormat, TextureComponentCount componentCount, TextureUnit slot)
         {
-            GLTexture = GLTex;
             Width = width;
             Height = height;
+            PixelFormat = pixelFormat;
             TextureSlot = slot;
+            ComponentCount = componentCount;
+            GLTexture = GL.GenTexture();
         }
 
-        public Texture2D(int width, int height, TextureUnit slot, IntPtr data)
+        public Texture2D(int width, int height, PixelFormat pixelFormat, TextureComponentCount componentCount, TextureUnit slot, IntPtr data) : this(width, height, pixelFormat, componentCount, slot)
         {
-            Width = width;
-            Height = height;
-            TextureSlot = slot;
-
-            GLTexture = GL.GenTexture();
             BindTexture();
-
-            // we might not need to pin this
-            using (PinnedObject<IntPtr> texHandle = new PinnedObject<IntPtr>(data))
-                GL.TexImage2D(TextureTarget2d.Texture2D, 0, TextureComponentCount.Rgba, Width, Height, 0, PixelFormat.Rgba, PixelType.UnsignedByte, data);
-
-            SetWrap(TextureCoordinate.S, TextureWrapMode.Repeat);
-            SetWrap(TextureCoordinate.T, TextureWrapMode.Repeat);
-
+            Copy(data);
             UnbindTexture();
         }
 
@@ -74,6 +67,20 @@ namespace SharpPi.Graphics
             UnbindTexture();
         }
 
+        public void SetPixelStore(PixelStoreParameter pixelStore, int param)
+        {
+            BindTexture();
+            GL.PixelStore(PixelStoreParameter.UnpackRowLength, param);
+            UnbindTexture();
+        }
+
+        public void Copy(IntPtr source)
+        {
+            BindTexture();
+            GL.TexImage2D(TextureTarget2d.Texture2D, 0, ComponentCount, Width, Height, 0, PixelFormat, PixelType.UnsignedByte, source);
+            UnbindTexture();
+        }
+
         public void Dispose()
         {
             GL.DeleteTexture(GLTexture);
@@ -88,6 +95,33 @@ namespace SharpPi.Graphics
         public void UnbindTexture()
         {
             GL.BindTexture(TextureTarget.Texture2D, 0);
+        }
+
+        /// <summary>
+        /// Executes the supplied function while this <see cref="Texture2D"/> instance has context.
+        /// The <see cref="Texture2D"/> instance is first bound before executing the function, then unbound after the provided function is finished executing.
+        /// </summary>
+        /// <typeparam name="T">The return value of the function.</typeparam>
+        /// <param name="action">The function to execute with texture context.</param>
+        /// <returns>The value returned by the provided <paramref name="action"/>.</returns>
+        public T BindWhile<T>(Func<T> action)
+        {
+            BindTexture();
+            T result = action();
+            UnbindTexture();
+            return result;
+        }
+
+        /// <summary>
+        /// Executes the supplied action while this <see cref="Texture2D"/> instance has context.
+        /// The <see cref="Texture2D"/> instance is first bound before executing the action, then unbound after the provided action is finished executing.
+        /// </summary>
+        /// <param name="action">The action to execute with texture context.</param>
+        public void BindWhile(Action action)
+        {
+            BindTexture();
+            action();
+            UnbindTexture();
         }
     }
 }

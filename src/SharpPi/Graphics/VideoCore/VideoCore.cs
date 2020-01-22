@@ -24,11 +24,20 @@ namespace SharpPi.Graphics
     {
         public static bool Initialized { get; private set; }
         public static OpenTK.Graphics.Color4 ClearColor = OpenTK.Graphics.Color4.CornflowerBlue;
-        public static double TargetFramerate = 30.0;
+        private static double s_Framerate = 30.0;
+        public static double TargetFramerate
+        {
+            get => s_Framerate;
+            set
+            {
+                s_Framerate = value;
+                frameInterval = TimeSpan.FromSeconds(1.0 / s_Framerate);
+            }
+        }
 
         private static DateTime startTime = DateTime.Now;
         private static DateTime lastFrameTime = DateTime.Now;
-        private static TimeSpan frameInterval = TimeSpan.FromSeconds(1 / TargetFramerate);
+        private static TimeSpan frameInterval = TimeSpan.Zero;
         private static TimeSpan timeTillNextFrame = TimeSpan.Zero;
 
         private static int frameCount = 0;
@@ -126,6 +135,12 @@ namespace SharpPi.Graphics
                 Uninitialize();
             }
         }
+
+        public static void SetFramerate(double framerate)
+        {
+            frameInterval = TimeSpan.FromSeconds(1 / TargetFramerate);
+        }
+
     }
 
     /// <summary>

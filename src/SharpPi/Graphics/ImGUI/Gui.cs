@@ -7,6 +7,7 @@ using OpenTK.Graphics.ES20;
 using ImGuiNET;
 
 using Input = SharpPi.Input.Input;
+using SharpPi.Native;
 
 namespace SharpPi.Graphics
 {
@@ -36,9 +37,6 @@ namespace SharpPi.Graphics
 
         private System.Numerics.Vector2 _scaleFactor = System.Numerics.Vector2.One;
 
-        private static readonly string VertexShader = File.ReadAllText("shaders/vertex_shader.glsl");
-        private static readonly string FragmentShader = File.ReadAllText("shaders/fragment_shader.glsl");
-
         /// <summary>
         /// Constructs a new ImGuiController.
         /// </summary>
@@ -50,7 +48,12 @@ namespace SharpPi.Graphics
             IntPtr context = ImGui.CreateContext();
             ImGui.SetCurrentContext(context);
             ImGuiIOPtr io = ImGui.GetIO();
-            io.Fonts.AddFontFromFileTTF("fonts/OpenSans-Regular.ttf", 40.0f);
+
+            byte[] fontData = Properties.Resources.OpenSans_Regular;
+            using (PinnedObject<byte[]> fontObject = new PinnedObject<byte[]>(fontData))
+                io.Fonts.AddFontFromMemoryTTF(fontObject.Address, fontData.Length, 40.0f);
+            fontData = null;
+            //io.Fonts.AddFontFromFileTTF("fonts/OpenSans-Regular.ttf", 40.0f);
             //io.Fonts.AddFontDefault();
 
             CreateDeviceResources();
@@ -59,7 +62,7 @@ namespace SharpPi.Graphics
             ImGui.NewFrame();
             _frameBegun = true;
         }
-
+        
         public void WindowResized(int width, int height)
         {
             _windowWidth = width;
@@ -76,7 +79,7 @@ namespace SharpPi.Graphics
             _vertexBufferSize = 10000;
             _indexBufferSize = 2000;
 
-            _shader = new Shader(VertexShader, FragmentShader);
+            _shader = new Shader(Properties.Resources.imgui_vertex_glsl, Properties.Resources.imgui_fragment_glsl);
 
             // Create VertexBufferVertexArray object
             _vertexBuffer = GL.GenBuffer();
@@ -116,7 +119,9 @@ namespace SharpPi.Graphics
         {
             ImGuiIOPtr io = ImGui.GetIO();
             io.Fonts.GetTexDataAsRGBA32(out IntPtr pixels, out int width, out int height, out int bytesPerPixel);
-            _fontTexture = new Texture2D(width, height, TextureUnit.Texture0, pixels);
+            _fontTexture = new Texture2D(width, height, PixelFormat.Rgba, TextureComponentCount.Rgba, TextureUnit.Texture0, pixels);
+            _fontTexture.SetWrap(TextureCoordinate.S, TextureWrapMode.Repeat);
+            _fontTexture.SetWrap(TextureCoordinate.T, TextureWrapMode.Repeat);
             _fontTexture.SetMagFilter(TextureMagFilter.Linear);
             _fontTexture.SetMinFilter(TextureMinFilter.Linear);
             io.Fonts.SetTexID((IntPtr)_fontTexture.GLTexture);
@@ -312,7 +317,6 @@ namespace SharpPi.Graphics
             // Render command lists
             int vtx_offset = 0;
             int idx_offset = 0;
-            _fontTexture.BindTexture();
             GLException.CheckError("Bind Font Texture");
             for (int n = 0; n < draw_data.CmdListsCount; n++)
             {
@@ -322,6 +326,9 @@ namespace SharpPi.Graphics
                     ImDrawCmdPtr pcmd = cmd_list.CmdBuffer[cmd_i];
                     if (pcmd.UserCallback != IntPtr.Zero)
                         throw new NotImplementedException();
+
+                    GL.ActiveTexture(TextureUnit.Texture0);
+                    GL.BindTexture(TextureTarget.Texture2D, (int)pcmd.TextureId);
 
                     // We do _windowHeight - (int)clip.W instead of (int)clip.Y because gl has flipped Y when it comes to these coordinates
                     var clip = pcmd.ClipRect;
@@ -336,7 +343,7 @@ namespace SharpPi.Graphics
                 vtx_offset += cmd_list.VtxBuffer.Size;
             }
 
-            _fontTexture.UnbindTexture();
+            //_fontTexture.UnbindTexture();
 
             GL.Disable(EnableCap.Blend);
             GL.Disable(EnableCap.ScissorTest);

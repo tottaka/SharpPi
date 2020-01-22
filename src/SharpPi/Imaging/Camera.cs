@@ -1,51 +1,61 @@
-﻿using MMALSharp;
-using MMALSharp.Components;
-using MMALSharp.Native;
-using MMALSharp.Ports;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System;
+using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Collections.Generic;
+using System.Net.Sockets;
 
-using MMALSharp.Common;
-using MMALSharp.Callbacks;
+using MMALSharp;
 using MMALSharp.Components;
 using MMALSharp.Handlers;
 using MMALSharp.Native;
 using MMALSharp.Ports;
-using MMALSharp.Ports.Outputs;
-using System.IO;
+using MMALSharp.Processors;
+using MMALSharp.Common.Utility;
+using System.Numerics;
 
 namespace SharpPi.Imaging
 {
-    public class Camera<T> : IDisposable where T : Stream
+    /// <summary>
+    /// Record camera output to a <see cref="Stream"/> of the given type.
+    /// </summary>
+    /// <typeparam name="T">The stream type</typeparam>
+    public class Camera : IDisposable
     {
         /// <summary>
         /// Called when the a new frame has been captured and encoded.
         /// </summary>
-        public event EventHandler<byte[]> FrameCaptured;
+        public event EventHandler<byte[]> OnFrameCaptured;
 
         public bool IsRecording { get; private set; }
         public bool IsDisposed { get; private set; }
 
         private MMALCamera Instance;
-        private GenericStreamCaptureHandler<T> OutputHandler;
         private MMALVideoEncoder VideoEncoder;
+        private NetworkStreamCaptureHandler OutputHandler;
+        private MMALNullSinkComponent nullSink;
         private CancellationTokenSource RecordToken;
-
-        public Camera(T outputStream)
+        private Task RecordingTask;
+        
+        public Camera(NetworkStream outputStream, Vector2 resolution, int bitrate = 1300000, int frameRate = 25, int quality = 0, EventHandler<byte[]> frameCaptured = null)
         {
-            OutputHandler = new GenericStreamCaptureHandler<T>(outputStream);
-            VideoEncoder = new MMALVideoEncoder(OutputHandler);
+            OnFrameCaptured = frameCaptured;
+
+            MMALCameraConfig.VideoResolution = new Resolution((int)resolution.X, (int)resolution.Y);
+            MMALCameraConfig.VideoFramerate = new MMAL_RATIONAL_T(frameRate, 1);
+
+            OutputHandler = new NetworkStreamCaptureHandler(outputStream);
+            VideoEncoder = new MMALVideoEncoder();
 
             // Create our component pipeline. Here we are using the H.264 standard with a YUV420 pixel format. The video will be taken at 25Mb/s.
             Instance = MMALCamera.Instance;
-
-            MMALPortConfig portConfig = new MMALPortConfig(MMALEncoding.H264, MMALEncoding.I420, 10, MMALVideoEncoder.MaxBitrateLevel4, null);
             Instance.ConfigureCameraSettings();
-            VideoEncoder.ConfigureOutputPort(portConfig);
+
+            MMALPortConfig portConfig = new MMALPortConfig(MMALEncoding.H264, MMALEncoding.I420, quality, bitrate, null);
+            VideoEncoder.ConfigureOutputPort(portConfig, OutputHandler);
+
+            nullSink = new MMALNullSinkComponent();
+            Instance.Camera.PreviewPort.ConnectTo(nullSink);
             Instance.Camera.VideoPort.ConnectTo(VideoEncoder);
         }
 
@@ -59,13 +69,10 @@ namespace SharpPi.Imaging
         /// </summary>
         public void Start()
         {
-            if (IsRecording)
+            if (!IsRecording)
             {
-                // Camera warm up time
-                Thread.Sleep(2000);
-
                 RecordToken = new CancellationTokenSource();
-                Instance.ProcessAsync(Instance.Camera.VideoPort, RecordToken.Token).ContinueWith(Instance_RecordingStopped);
+                RecordingTask = Instance.ProcessAsync(Instance.Camera.VideoPort, RecordToken.Token).ContinueWith(Instance_RecordingStopped);
                 IsRecording = true;
             }
         }
@@ -75,7 +82,12 @@ namespace SharpPi.Imaging
         /// </summary>
         public void Stop()
         {
-            RecordToken.Cancel();
+            if (IsRecording)
+            {
+                RecordToken.Cancel();
+                RecordingTask.Wait();
+                RecordingTask.Dispose();
+            }
         }
 
         public void Dispose()
@@ -83,6 +95,14 @@ namespace SharpPi.Imaging
             if (!IsDisposed)
             {
                 // Only call when you no longer require the camera, i.e. on app shutdown.
+
+                if (IsRecording)
+                    Stop();
+
+                OutputHandler.Dispose();
+                VideoEncoder.Dispose();
+                nullSink.Dispose();
+
                 Instance.Cleanup();
 
                 IsDisposed = true;
@@ -98,6 +118,50 @@ namespace SharpPi.Imaging
                 throw t.Exception?.InnerException;
 
             t.Dispose();
+        }
+
+        private void Encoder_FrameEncoded(byte[] frameData)
+        {
+            OnFrameCaptured?.Invoke(this, frameData);
+        }
+
+        public class NetworkStreamCaptureHandler : StreamCaptureHandler<NetworkStream>, IVideoCaptureHandler
+        {
+            private long imageCount = 0;
+
+            public NetworkStreamCaptureHandler(NetworkStream outputStream)
+            {
+                CurrentStream = outputStream;
+            }
+
+            public override void Process(byte[] data, bool eos)
+            {
+                base.Process(data, eos);
+
+                if (eos)
+                {
+                    imageCount++;
+                }
+            }
+
+            public override void PostProcess()
+            {
+            }
+
+            public override string TotalProcessed()
+            {
+                return $"{imageCount}";
+            }
+
+            public override void Dispose()
+            {
+                Console.WriteLine($"Successfully processed {imageCount} images.");
+            }
+
+            public void Split()
+            {
+                throw new NotImplementedException();
+            }
         }
     }
 }

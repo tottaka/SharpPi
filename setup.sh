@@ -1,15 +1,15 @@
 #!/bin/bash
 
 # make sure we're up to date on everything
-sudo apt-get update
-sudo apt-get upgrade
+sudo apt-get update -y
+sudo apt-get upgrade -y
 
 # install mono first
-sudo apt install apt-transport-https dirmngr gnupg ca-certificates
+sudo apt install apt-transport-https dirmngr gnupg ca-certificates -y
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
 echo "deb https://download.mono-project.com/repo/debian stable-raspbianbuster main" | sudo tee /etc/apt/sources.list.d/mono-official-stable.list
-sudo apt update
-sudo apt install mono-complete
+sudo apt update -y
+sudo apt install mono-complete -y
 
 cd deps
 
