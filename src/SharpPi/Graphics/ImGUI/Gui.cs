@@ -8,6 +8,7 @@ using ImGuiNET;
 
 using Input = SharpPi.Input.Input;
 using SharpPi.Native;
+using System.Collections.Generic;
 
 namespace SharpPi.Graphics
 {
@@ -20,6 +21,8 @@ namespace SharpPi.Graphics
     public class ImGuiController : IDisposable
     {
         public const int IM_DRAW_VERT_SIZE = 20;
+
+        public readonly Dictionary<string, ImFontPtr> Fonts = new Dictionary<string, ImFontPtr>();
 
         private bool _frameBegun;
 
@@ -37,6 +40,8 @@ namespace SharpPi.Graphics
 
         private System.Numerics.Vector2 _scaleFactor = System.Numerics.Vector2.One;
 
+        private List<Tuple<string, byte[], float>> FontCreationQueue = new List<Tuple<string, byte[], float>>();
+
         /// <summary>
         /// Constructs a new ImGuiController.
         /// </summary>
@@ -48,13 +53,14 @@ namespace SharpPi.Graphics
             IntPtr context = ImGui.CreateContext();
             ImGui.SetCurrentContext(context);
             ImGuiIOPtr io = ImGui.GetIO();
-
+            io.WantSaveIniSettings = false;
+            /*
             byte[] fontData = Properties.Resources.OpenSans_Regular;
             using (PinnedObject<byte[]> fontObject = new PinnedObject<byte[]>(fontData))
                 io.Fonts.AddFontFromMemoryTTF(fontObject.Address, fontData.Length, 40.0f);
             fontData = null;
-            //io.Fonts.AddFontFromFileTTF("fonts/OpenSans-Regular.ttf", 40.0f);
-            //io.Fonts.AddFontDefault();
+            */
+            Fonts.Add("default", io.Fonts.AddFontDefault());
 
             CreateDeviceResources();
             //SetKeyMappings();
@@ -159,6 +165,14 @@ namespace SharpPi.Graphics
             ImGui.NewFrame();
         }
 
+        public void AddFont(string name, byte[] data, float pixelSize)
+        {
+            if (Fonts.ContainsKey(name))
+                return;
+
+            FontCreationQueue.Add(new Tuple<string, byte[], float>(name, data, pixelSize));
+        }
+
         /// <summary>
         /// Sets per-frame data based on the associated window.
         /// This is called by Update(float).
@@ -169,6 +183,18 @@ namespace SharpPi.Graphics
             io.DisplaySize = new System.Numerics.Vector2(_windowWidth / _scaleFactor.X, _windowHeight / _scaleFactor.Y);
             io.DisplayFramebufferScale = _scaleFactor;
             io.DeltaTime = Time.deltaTime == 0.0f ? (1f / 60f) : Time.deltaTime; // DeltaTime is in seconds.
+
+            if(FontCreationQueue.Count > 0)
+            {
+                foreach(Tuple<string, byte[], float> font in FontCreationQueue)
+                {
+                    using (PinnedObject<byte[]> fontObject = new PinnedObject<byte[]>(font.Item2))
+                        Fonts.Add(font.Item1, io.Fonts.AddFontFromMemoryTTF(fontObject.Address, font.Item2.Length, font.Item3));
+                }
+
+                FontCreationQueue.Clear();
+                RecreateFontDeviceTexture();
+            }
         }
 
         private void UpdateImGuiInput()

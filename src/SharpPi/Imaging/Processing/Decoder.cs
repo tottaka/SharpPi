@@ -25,6 +25,9 @@ namespace SharpPi.Imaging
         public int Bitrate { get; private set; }
         public bool IsDisposed { get; private set; }
 
+        public Action<Decoder, byte[]> OnFrameReceived;
+        public Action<Decoder, byte[]> OnFrameDecoded;
+
         private SharpInputHandler InputCaptureHandler;
         private SharpOutputHandler OutputCaptureHandler;
         private MMALVideoDecoder VideoDecoder;
@@ -32,7 +35,9 @@ namespace SharpPi.Imaging
         private Task DecoderTask;
         private CancellationTokenSource DecoderToken;
 
-        public Decoder(NetworkStream inputStream, Vector2 resolution, int framerate = 25, int quality = 0, int bitrate = 1300000, Action<byte[]> frameDecoded = null)
+        private List<byte> WorkingData = new List<byte>();
+
+        public Decoder(NetworkStream inputStream, Vector2 resolution, int framerate = 25, int quality = 0, int bitrate = 1300000)
         {
             Resolution = resolution;
             Framerate = framerate;
@@ -40,10 +45,10 @@ namespace SharpPi.Imaging
             Bitrate = bitrate;
             Instance = MMALStandalone.Instance;
 
-            InputCaptureHandler = new SharpInputHandler(inputStream);
-            OutputCaptureHandler = new SharpOutputHandler(frameDecoded);
+            InputCaptureHandler = new SharpInputHandler(inputStream, Decoder_FrameReceived);
+            OutputCaptureHandler = new SharpOutputHandler(Decoder_FrameDecoded);
             VideoDecoder = new MMALVideoDecoder();
-
+            
             MMALPortConfig inputPortConfig = new MMALPortConfig(MMALEncoding.H264, MMALEncoding.I420, (int)Resolution.X, (int)Resolution.Y, Framerate, Quality, Bitrate, true, null);
             MMALPortConfig outputPortConfig = new MMALPortConfig(MMALEncoding.RGB16, MMALEncoding.RGB16, (int)Resolution.X, (int)Resolution.Y, Framerate, Quality, Bitrate, true, null);
 
@@ -70,6 +75,7 @@ namespace SharpPi.Imaging
                 InputCaptureHandler.Dispose();
                 OutputCaptureHandler.Dispose();
                 VideoDecoder.Dispose();
+                WorkingData.Clear();
                 Instance = null;
 
                 IsDisposed = true;
@@ -86,30 +92,36 @@ namespace SharpPi.Imaging
             t.Dispose();
         }
 
+        private void Decoder_FrameReceived(ProcessResult result)
+        {
+            // should be used to write encoded frame data to file if desired
+            WorkingData.AddRange(result.BufferFeed);
+            if (result.EOF)
+                OnFrameReceived?.Invoke(this, WorkingData.ToArray());
+        }
+
+        private void Decoder_FrameDecoded(byte[] frame)
+        {
+            // should be used to display decoded frame data on screen or whatever
+            OnFrameDecoded?.Invoke(this, frame);
+        }
+
         internal class SharpInputHandler : InputCaptureHandler
         {
-            public SharpInputHandler(NetworkStream inputStream) : base(inputStream)
-            {
+            public readonly Action<ProcessResult> inputCallback;
 
+            public SharpInputHandler(NetworkStream inputStream, Action<ProcessResult> callback = null) : base(inputStream)
+            {
+                inputCallback = callback;
             }
 
             public override ProcessResult Process(uint allocSize)
             {
                 NetworkStream stream = (NetworkStream)CurrentStream;
+                ProcessResult result = stream.DataAvailable ? base.Process(allocSize) : new ProcessResult() { BufferFeed = new byte[1] { 0 }, DataLength = 0, Success = true };
+                inputCallback?.Invoke(result);
 
-                if (stream.DataAvailable)
-                {
-                    ProcessResult result = base.Process(allocSize);
-                    return result;
-                }
-                else
-                {
-                    return new ProcessResult() {
-                        BufferFeed = new byte[1] { 0 },
-                        DataLength = 0,
-                        Success = true
-                    };
-                }
+                return result;
             }
         }
 
@@ -159,7 +171,6 @@ namespace SharpPi.Imaging
             }
         }
 
-        /*
         public static PinnedBuffer Rgb16ToRgb24(byte[] imageData, int width, int height)
         {
             int imageSize = width * height * 3;
@@ -176,6 +187,5 @@ namespace SharpPi.Imaging
 
             return buffer;
         }
-        */
     }
 }

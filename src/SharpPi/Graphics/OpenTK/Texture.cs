@@ -20,6 +20,7 @@ namespace SharpPi.Graphics
         public readonly TextureUnit TextureSlot;
         public readonly TextureComponentCount ComponentCount;
 
+
         public Texture2D(int width, int height, PixelFormat pixelFormat, TextureComponentCount componentCount, TextureUnit slot)
         {
             Width = width;
@@ -28,13 +29,13 @@ namespace SharpPi.Graphics
             TextureSlot = slot;
             ComponentCount = componentCount;
             GLTexture = GL.GenTexture();
+            GLException.CheckError("Texture2D");
         }
 
         public Texture2D(int width, int height, PixelFormat pixelFormat, TextureComponentCount componentCount, TextureUnit slot, IntPtr data) : this(width, height, pixelFormat, componentCount, slot)
         {
-            BindTexture();
             Copy(data);
-            UnbindTexture();
+            GLException.CheckError("Texture2D");
         }
 
         public void SetMinFilter(TextureMinFilter filter)
@@ -78,6 +79,10 @@ namespace SharpPi.Graphics
         {
             BindTexture();
             GL.TexImage2D(TextureTarget2d.Texture2D, 0, ComponentCount, Width, Height, 0, PixelFormat, PixelType.UnsignedByte, source);
+            GLException.CheckError("Copy(TexImage2D)");
+
+            GL.TexSubImage2D(TextureTarget2d.Texture2D, 0, 0, 0, Width, Height, PixelFormat, PixelType.UnsignedByte, source);
+            GLException.CheckError("Copy(TexSubImage2D)");
             UnbindTexture();
         }
 

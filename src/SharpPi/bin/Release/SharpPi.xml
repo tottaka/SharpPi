@@ -127,6 +127,26 @@
             Stop recording on the camera.
             </summary>
         </member>
+        <member name="T:SharpPi.Net.HTTP">
+            <summary>
+            HTTP helper class
+            </summary>
+        </member>
+        <member name="M:SharpPi.Net.HTTP.Get(System.String)">
+            <summary>
+            Sends an HTTP GET request.
+            </summary>
+        </member>
+        <member name="M:SharpPi.Net.HTTP.GetAsync(System.String)">
+            <summary>
+            Sends an asynchronous HTTP GET request.
+            </summary>
+        </member>
+        <member name="M:SharpPi.Net.HTTP.GetAsync(System.String,System.Action{System.Byte[]})">
+            <summary>
+            Sends an asynchronous HTTP GET request.
+            </summary>
+        </member>
         <member name="T:SharpPi.ModelType">
             <summary>
             The different types of Raspberry Pi board models.
@@ -2782,7 +2802,52 @@
             }.
              </summary>
         </member>
+        <member name="P:SharpPi.Properties.Resources.OpenSans_Bold">
+            <summary>
+              Looks up a localized resource of type System.Byte[].
+            </summary>
+        </member>
+        <member name="P:SharpPi.Properties.Resources.OpenSans_BoldItalic">
+            <summary>
+              Looks up a localized resource of type System.Byte[].
+            </summary>
+        </member>
+        <member name="P:SharpPi.Properties.Resources.OpenSans_ExtraBold">
+            <summary>
+              Looks up a localized resource of type System.Byte[].
+            </summary>
+        </member>
+        <member name="P:SharpPi.Properties.Resources.OpenSans_ExtraBoldItalic">
+            <summary>
+              Looks up a localized resource of type System.Byte[].
+            </summary>
+        </member>
+        <member name="P:SharpPi.Properties.Resources.OpenSans_Italic">
+            <summary>
+              Looks up a localized resource of type System.Byte[].
+            </summary>
+        </member>
+        <member name="P:SharpPi.Properties.Resources.OpenSans_Light">
+            <summary>
+              Looks up a localized resource of type System.Byte[].
+            </summary>
+        </member>
+        <member name="P:SharpPi.Properties.Resources.OpenSans_LightItalic">
+            <summary>
+              Looks up a localized resource of type System.Byte[].
+            </summary>
+        </member>
         <member name="P:SharpPi.Properties.Resources.OpenSans_Regular">
+            <summary>
+              Looks up a localized resource of type System.Byte[].
+            </summary>
+        </member>
+        <member name="P:SharpPi.Properties.Resources.OpenSans_SemiBold">
+            <summary>
+              Looks up a localized resource of type System.Byte[].
+            </summary>
+        </member>
+        <member name="P:SharpPi.Properties.Resources.OpenSans_SemiBoldItalic">
             <summary>
               Looks up a localized resource of type System.Byte[].
             </summary>
@@ -2815,6 +2880,11 @@
             For each element in the supplied <see cref="T:System.Collections.Generic.Dictionary`2"/>, <paramref name="writeAction"/> will be called, supplying the method with formatted text of the Key and Value.
             </summary>
             <param name="showType">Whether or not to also include the key and value object types in the formatted text for each element.</param>
+        </member>
+        <member name="M:SharpPi.Text.String.CountOf(System.String,System.String[])">
+            <summary>
+            Returns the number of times any of the strings supplied to <paramref name="any"/> occure in the input string.
+            </summary>
         </member>
         <member name="T:MMALSharp.Callbacks.ConnectionCallbackHandler">
             <summary>

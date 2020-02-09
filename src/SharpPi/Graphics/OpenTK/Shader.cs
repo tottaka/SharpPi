@@ -36,6 +36,7 @@ namespace SharpPi.Graphics
 
             GL.DeleteShader(vertShader);
             GL.DeleteShader(fragShader);
+            GLException.CheckError("Shader");
         }
 
         public void UseShader()

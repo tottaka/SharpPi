@@ -22,7 +22,7 @@ namespace SharpPi.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace SharpPi.Properties {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SharpPi.Properties.Resources", typeof(Resources).Assembly);
@@ -51,7 +51,7 @@ namespace SharpPi.Properties {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -68,7 +68,7 @@ namespace SharpPi.Properties {
         ///
         ///127.0.1.1       {0}.
         /// </summary>
-        internal static string hosts_template {
+        public static string hosts_template {
             get {
                 return ResourceManager.GetString("hosts_template", resourceCulture);
             }
@@ -87,7 +87,7 @@ namespace SharpPi.Properties {
         ///	gl_FragColor = v_color * texture2D(in_fontTexture, v_texCoord);
         ///}.
         /// </summary>
-        internal static string imgui_fragment_glsl {
+        public static string imgui_fragment_glsl {
             get {
                 return ResourceManager.GetString("imgui_fragment_glsl", resourceCulture);
             }
@@ -110,7 +110,7 @@ namespace SharpPi.Properties {
         ///	v_texCoord = in_texCoord;
         ///}.
         /// </summary>
-        internal static string imgui_vertex_glsl {
+        public static string imgui_vertex_glsl {
             get {
                 return ResourceManager.GetString("imgui_vertex_glsl", resourceCulture);
             }
@@ -119,7 +119,77 @@ namespace SharpPi.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] OpenSans_Regular {
+        public static byte[] OpenSans_Bold {
+            get {
+                object obj = ResourceManager.GetObject("OpenSans_Bold", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        public static byte[] OpenSans_BoldItalic {
+            get {
+                object obj = ResourceManager.GetObject("OpenSans_BoldItalic", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        public static byte[] OpenSans_ExtraBold {
+            get {
+                object obj = ResourceManager.GetObject("OpenSans_ExtraBold", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        public static byte[] OpenSans_ExtraBoldItalic {
+            get {
+                object obj = ResourceManager.GetObject("OpenSans_ExtraBoldItalic", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        public static byte[] OpenSans_Italic {
+            get {
+                object obj = ResourceManager.GetObject("OpenSans_Italic", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        public static byte[] OpenSans_Light {
+            get {
+                object obj = ResourceManager.GetObject("OpenSans_Light", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        public static byte[] OpenSans_LightItalic {
+            get {
+                object obj = ResourceManager.GetObject("OpenSans_LightItalic", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        public static byte[] OpenSans_Regular {
             get {
                 object obj = ResourceManager.GetObject("OpenSans_Regular", resourceCulture);
                 return ((byte[])(obj));
@@ -127,9 +197,29 @@ namespace SharpPi.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        public static byte[] OpenSans_SemiBold {
+            get {
+                object obj = ResourceManager.GetObject("OpenSans_SemiBold", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        public static byte[] OpenSans_SemiBoldItalic {
+            get {
+                object obj = ResourceManager.GetObject("OpenSans_SemiBoldItalic", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap sharp_pi_banner {
+        public static System.Drawing.Bitmap sharp_pi_banner {
             get {
                 object obj = ResourceManager.GetObject("sharp_pi_banner", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -146,7 +236,7 @@ namespace SharpPi.Properties {
         ///        psk=&quot;{1}&quot;
         ///}}.
         /// </summary>
-        internal static string supplicant_template {
+        public static string supplicant_template {
             get {
                 return ResourceManager.GetString("supplicant_template", resourceCulture);
             }

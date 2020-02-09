@@ -194,6 +194,17 @@ namespace SharpPi.Native
             }
         }
 
+        public void CopyTo(byte[] destination, int startIndex = 0)
+        {
+            lock (Bits)
+            {
+                if (destination.Length < Bits.Length)
+                    throw new ArgumentOutOfRangeException("Destination length is not big enough for this buffer. (Destination: " + destination.Length + " / Instance: " + Bits.Length + ")");
+
+                Marshal.Copy(BitsPointer, destination, startIndex, Bits.Length);
+            }
+        }
+
         public void Dispose()
         {
             if (!IsDisposed)

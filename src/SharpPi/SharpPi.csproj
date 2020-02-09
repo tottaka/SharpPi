@@ -85,6 +85,7 @@
   <ItemGroup>
     <Compile Include="GPIO\SoftwareSerial.cs" />
     <Compile Include="Imaging\Camera.cs" />
+    <Compile Include="Networking\HTTP.cs" />
     <Compile Include="Imaging\Processing\Decoder.cs" />
     <Compile Include="MMALSharp\Callbacks\ConnectionCallbackHandler.cs" />
     <Compile Include="MMALSharp\Callbacks\DefaultConnectionCallbackHandler.cs" />
@@ -266,10 +267,11 @@
     <Compile Include="OS\SubProcess.cs" />
     <Compile Include="Graphics\Time.cs" />
     <Compile Include="Text\Dictionary.cs" />
+    <Compile Include="Text\String.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
@@ -279,11 +281,20 @@
     </None>
     <None Include="OpenTK.dll.config" />
     <None Include="packages.config" />
-    <None Include="Resources\OpenSans-Regular.ttf" />
+    <None Include="Resources\OpenSans-Bold.ttf" />
+    <None Include="Resources\OpenSans-BoldItalic.ttf" />
+    <None Include="Resources\OpenSans-ExtraBold.ttf" />
+    <None Include="Resources\OpenSans-ExtraBoldItalic.ttf" />
+    <None Include="Resources\OpenSans-Italic.ttf" />
+    <None Include="Resources\OpenSans-Light.ttf" />
+    <None Include="Resources\OpenSans-LightItalic.ttf" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Input\TODO.txt" />
     <None Include="Resources\Banner.bmp" />
+    <None Include="Resources\OpenSans-Regular.ttf" />
+    <None Include="Resources\OpenSans-SemiBold.ttf" />
+    <None Include="Resources\OpenSans-SemiBoldItalic.ttf" />
     <None Include="Resources\sharp-pi-banner.png" />
     <Content Include="TODO.txt" />
   </ItemGroup>

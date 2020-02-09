@@ -7,6 +7,8 @@ using GraphicsContext = OpenTK.Graphics.GraphicsContext;
 
 using SharpPi.Native;
 using ImGuiNET;
+using System.IO;
+using System.Collections.Generic;
 
 namespace SharpPi.Graphics
 {
@@ -31,7 +33,7 @@ namespace SharpPi.Graphics
             set
             {
                 s_Framerate = value;
-                frameInterval = TimeSpan.FromSeconds(1.0 / s_Framerate);
+                SetFramerate(s_Framerate);
             }
         }
 
@@ -138,7 +140,7 @@ namespace SharpPi.Graphics
 
         public static void SetFramerate(double framerate)
         {
-            frameInterval = TimeSpan.FromSeconds(1 / TargetFramerate);
+            frameInterval = framerate > 0 ? TimeSpan.FromSeconds(1 / TargetFramerate) : TimeSpan.Zero;
         }
 
     }
@@ -281,6 +283,15 @@ namespace SharpPi.Graphics
         {
             // Gui.Dispose();
             Context.DeleteContext(glContext);
+        }
+
+        public ImFontPtr GetFont(string fontName) => ImGUIController.Fonts.ContainsKey(fontName) ? ImGUIController.Fonts[fontName] : ImGUIController.Fonts["default"];
+        public void AddFont(string fontName, byte[] fontData, float size_pixels = 24) => ImGUIController.AddFont(fontName, fontData, size_pixels);
+        public void AddFont(string filePath, float size_pixels = 24)
+        {
+            string fontName = Path.GetFileNameWithoutExtension(filePath);
+            byte[] fontData = File.ReadAllBytes(filePath);
+            AddFont(fontName, fontData, size_pixels);
         }
 
         /// <summary>

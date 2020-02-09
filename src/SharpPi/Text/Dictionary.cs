@@ -10,13 +10,13 @@ namespace SharpPi.Text
         /// For each line in the specified <paramref name="lines"/> parameter, the line will get split by the specified <paramref name="splitChar"/> character.
         /// The left side will become the key, and the right side will be the value returned by the <paramref name="parseValue"/> function, giving you the ability to do custom value parsing.
         /// </summary>
-        public static Dictionary<string, T> GetKeyValuePairs<T>(this string[] lines, char splitChar, Func<string, T> parseValue)
+        public static Dictionary<string, T> GetKeyValuePairs<T>(string[] lines, char splitChar, Func<string, T> parseValue) where T : class
         {
             Dictionary<string, T> dict = new Dictionary<string, T>();
             foreach (string line in lines)
             {
-                string[] kvPair = line.Split(new char[] { splitChar }, 1, StringSplitOptions.RemoveEmptyEntries);
-                dict.Add(kvPair[0].Trim(), parseValue(kvPair[1].Trim()));
+                string[] kvPair = line.Split(new char[] { splitChar }, 2, StringSplitOptions.RemoveEmptyEntries);
+                dict.Add(kvPair[0].Trim(), kvPair.Length > 1 ? parseValue(string.Join(splitChar.ToString(), kvPair, 1, kvPair.Length - 1)) : null);
             }
             return dict;
         }
