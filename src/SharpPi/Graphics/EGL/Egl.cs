@@ -38,7 +38,7 @@ namespace SharpPi.Graphics
 
     internal class EGLContext : IDisposable
     {
-        public const string gl_lib = "/opt/vc/lib/libbrcmGLESv2.so";
+        public const string gl_lib = "/usr/local/lib/arm-linux-gnueabihf/libGLESv2.so";
 
         public bool IsDisposed { get; private set; }
 
@@ -537,7 +537,7 @@ namespace SharpPi.Graphics
                     if ((param & NativeMethods.Egl.SWAP_BEHAVIOR_PRESERVED_BIT) != 0) { }
                     if ((param & NativeMethods.Egl.VG_ALPHA_FORMAT_PRE_BIT) != 0) { }
                     if ((param & NativeMethods.Egl.VG_COLORSPACE_LINEAR_BIT) != 0) { }
-
+                    
                     if ((param & NativeMethods.Egl.WINDOW_BIT) == 0)
                         pixelFormat.RenderWindow = false;
 
@@ -829,7 +829,7 @@ namespace SharpPi.Graphics
             /// </param>
             public NativeWindow(IntPtr display, IntPtr windowHandle) : this(display, windowHandle, null)
             {
-
+                
             }
 
             /// <summary>

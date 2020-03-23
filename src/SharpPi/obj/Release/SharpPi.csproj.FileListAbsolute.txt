@@ -2,15 +2,12 @@ H:\GitHub\SharpPi\src\SharpPi\bin\Release\SharpPi.dll.config
 H:\GitHub\SharpPi\src\SharpPi\bin\Release\SharpPi.xml
 H:\GitHub\SharpPi\src\SharpPi\bin\Release\SharpPi.dll
 H:\GitHub\SharpPi\src\SharpPi\bin\Release\SharpPi.pdb
-H:\GitHub\SharpPi\src\SharpPi\bin\Release\ImGui.NET.dll
 H:\GitHub\SharpPi\src\SharpPi\bin\Release\Microsoft.Extensions.Logging.Abstractions.dll
 H:\GitHub\SharpPi\src\SharpPi\bin\Release\NLog.dll
 H:\GitHub\SharpPi\src\SharpPi\bin\Release\OpenTK.dll
 H:\GitHub\SharpPi\src\SharpPi\bin\Release\System.Drawing.Common.dll
 H:\GitHub\SharpPi\src\SharpPi\bin\Release\System.Numerics.Vectors.dll
 H:\GitHub\SharpPi\src\SharpPi\bin\Release\System.Threading.Tasks.Extensions.dll
-H:\GitHub\SharpPi\src\SharpPi\bin\Release\ImGui.NET.pdb
-H:\GitHub\SharpPi\src\SharpPi\bin\Release\ImGui.NET.xml
 H:\GitHub\SharpPi\src\SharpPi\bin\Release\Microsoft.Extensions.Logging.Abstractions.xml
 H:\GitHub\SharpPi\src\SharpPi\bin\Release\NLog.xml
 H:\GitHub\SharpPi\src\SharpPi\bin\Release\OpenTK.pdb
@@ -19,7 +16,6 @@ H:\GitHub\SharpPi\src\SharpPi\bin\Release\System.Numerics.Vectors.xml
 H:\GitHub\SharpPi\src\SharpPi\bin\Release\System.Threading.Tasks.Extensions.xml
 H:\GitHub\SharpPi\src\SharpPi\obj\Release\SharpPi.Properties.Resources.resources
 H:\GitHub\SharpPi\src\SharpPi\obj\Release\SharpPi.csproj.GenerateResource.cache
-H:\GitHub\SharpPi\src\SharpPi\obj\Release\SharpPi.csproj.CoreCompileInputs.cache
 H:\GitHub\SharpPi\src\SharpPi\obj\Release\SharpPi.csproj.CopyComplete
 H:\GitHub\SharpPi\src\SharpPi\obj\Release\SharpPi.dll
 H:\GitHub\SharpPi\src\SharpPi\obj\Release\SharpPi.pdb

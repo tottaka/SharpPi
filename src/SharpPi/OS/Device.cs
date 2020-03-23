@@ -76,12 +76,12 @@ namespace SharpPi
         /// </summary>
         public static bool IsPi4 => NativeMethods.VideoCore.bcm_host_is_model_pi4() == 1;
 
-        public enum KMS_Status { DISABLED = 0, FAKE = 1, FULL = 2 };
+        public enum KernelModeSetting { DISABLED = 0, FAKE = 1, FULL = 2 };
 
         /// <summary>
         /// The Kernal Mode Setting for the board.
         /// </summary>
-        public static KMS_Status KMS => NativeMethods.VideoCore.bcm_host_is_fkms_active() == 1 ? KMS_Status.FAKE : NativeMethods.VideoCore.bcm_host_is_kms_active() == 1 ? KMS_Status.FULL : KMS_Status.DISABLED;
+        public static KernelModeSetting KMS => NativeMethods.VideoCore.bcm_host_is_fkms_active() == 1 ? KernelModeSetting.FAKE : NativeMethods.VideoCore.bcm_host_is_kms_active() == 1 ? KernelModeSetting.FULL : KernelModeSetting.DISABLED;
 
         /// <summary>
         /// The chipset of the processor.

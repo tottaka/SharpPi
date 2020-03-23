@@ -250,7 +250,7 @@
             Default: /opt/vc/lib/libbrcmEGL.so
             </summary>
         </member>
-        <member name="F:SharpPi.Native.NativeMethods.Library.VideoCore">
+        <member name="F:SharpPi.Native.NativeMethods.Library.BcmHost">
             <summary>
             Default: /opt/vc/lib/libbcm_host.so
             </summary>

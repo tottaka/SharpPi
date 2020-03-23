@@ -54,6 +54,11 @@ namespace SharpPi.Native
                 Dispose();
             }
 
+            /// <summary>
+            /// Get a pointer to the specified function.
+            /// </summary>
+            /// <param name="procAddress">The name of the function</param>
+            /// <returns>An <see cref="IntPtr"/> to the specified function.</returns>
             public IntPtr GetFunctionLocation(string procAddress)
             {
                 if (FunctionLocations.ContainsKey(procAddress))
@@ -94,7 +99,7 @@ namespace SharpPi.Native
             private static extern IntPtr Open(string fileName, int flags);
 
             /// <summary>
-            /// TBI
+            /// Get a pointer to the specified function name.
             /// </summary>
             [DllImport(Library.DynamicLink, EntryPoint = "dlsym")]
             private static extern IntPtr Sym(IntPtr handle, string funcName);

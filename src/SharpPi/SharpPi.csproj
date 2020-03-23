@@ -84,6 +84,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GPIO\SoftwareSerial.cs" />
+    <Compile Include="Graphics\DRM\Drm.cs" />
+    <Compile Include="Graphics\DRM\Native\Constants.cs" />
+    <Compile Include="Graphics\DRM\Native\Methods.cs" />
+    <Compile Include="Graphics\DRM\Native\Structs.cs" />
     <Compile Include="Imaging\Camera.cs" />
     <Compile Include="Networking\HTTP.cs" />
     <Compile Include="Imaging\Processing\Decoder.cs" />

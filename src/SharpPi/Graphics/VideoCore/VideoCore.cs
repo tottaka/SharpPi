@@ -49,7 +49,11 @@ namespace SharpPi.Graphics
         private static readonly object RenderLock = new object();
         internal static readonly ContextHandle DummyHandle = new ContextHandle(new IntPtr(0xDEADBEEF));
         internal static ContextHandle GetContext() => DummyHandle;
-        internal static IntPtr GetProcAddress(string procName) => EGLContext.GLESv2_Lib.GetFunctionLocation(procName);
+        internal static IntPtr GetProcAddress(string procName) {
+            IntPtr ptr = EGLContext.GLESv2_Lib.GetFunctionLocation(procName);
+            Console.WriteLine("[GetProcAddress]: {0}", ptr);
+            return ptr;
+        }
 
         /// <summary>
         /// Initialize the VideoCore driver. Call this before doing anything with VideoCore/OpenGL.
@@ -60,7 +64,7 @@ namespace SharpPi.Graphics
             {
                 if (!Initialized)
                 {
-                    NativeMethods.VideoCore.Initialize();
+                    //NativeMethods.VideoCore.Initialize();
                     Initialized = true;
                 }
             }
@@ -75,7 +79,7 @@ namespace SharpPi.Graphics
             {
                 if (Initialized)
                 {
-                    NativeMethods.VideoCore.Uninitialize();
+                    //NativeMethods.VideoCore.Uninitialize();
                     Initialized = false;
                 }
             }
@@ -217,24 +221,29 @@ namespace SharpPi.Graphics
         public VideoCoreWindow()
         {
             VideoCore.Initialize();
-            if (NativeMethods.VideoCore.GetDisplaySize(DisplayID.HDMI, out int width, out int height) < 0)
-                throw new InvalidOperationException("Unable to get HDMI display size");
+            /*
+            if (NativeMethods.VideoCore.GetDisplaySize(DisplayID.LCD, out int width, out int height) < 0)
+                throw new InvalidOperationException("Unable to get display size");
 
             Width = width;
             Height = height;
 
+            Console.WriteLine("Display Size: {0}x{1}.", Width, Height);
+
             NativeMethods.VideoCore.VC_RECT_T dstRect = new NativeMethods.VideoCore.VC_RECT_T(0, 0, width, height);
             NativeMethods.VideoCore.VC_RECT_T srcRect = new NativeMethods.VideoCore.VC_RECT_T(0, 0, width << 16, height << 16);
 
-            if ((DispmanHandle = NativeMethods.VideoCore.vc_dispmanx_display_open((uint)DisplayID.HDMI)) == 0)
+            if ((DispmanHandle = NativeMethods.VideoCore.vc_dispmanx_display_open((uint)DisplayID.LCD)) == 0)
                 throw new InvalidOperationException("Unable to open display");
 
             // Update - Add element
-            uint updateHandle = NativeMethods.VideoCore.vc_dispmanx_update_start(0);
-            _ElementHandle = NativeMethods.VideoCore.vc_dispmanx_element_add(updateHandle, DispmanHandle, 0, ref dstRect, 0, ref srcRect, 0, IntPtr.Zero, IntPtr.Zero, NativeMethods.VideoCore.DISPMANX_TRANSFORM_T.DISPMANX_NO_ROTATE);
+            uint updateHandle = NativeMethods.VideoCore.vc_dispmanx_update_start(1);
+            _ElementHandle = NativeMethods.VideoCore.vc_dispmanx_element_add(updateHandle, DispmanHandle, 9, ref dstRect, 0, ref srcRect, 0, IntPtr.Zero, IntPtr.Zero, NativeMethods.VideoCore.DISPMANX_TRANSFORM_T.DISPMANX_NO_ROTATE);
+
+            Console.WriteLine("Update/Element Handles: {0} / {1}.", updateHandle, _ElementHandle);
 
             // check if this returns an error code??
-            NativeMethods.VideoCore.vc_dispmanx_update_submit_sync(updateHandle);
+            Console.WriteLine("Submit Sync: " + NativeMethods.VideoCore.vc_dispmanx_update_submit_sync(updateHandle));
 
             // Native window
             _NativeWindow = new EGL_DISPMANX_WINDOW_T
@@ -247,10 +256,12 @@ namespace SharpPi.Graphics
             // Keep native window pinned so GC doesn't mess with it...
             _NativeWindowLock = new PinnedObject<EGL_DISPMANX_WINDOW_T>(_NativeWindow);
 
+            Console.WriteLine("Create EGL context...");
             // Create EGL context
             Context = new EGLContext(DisplayHandle, NativeWindowHandle);
-            Context.ChoosePixelFormat(new DevicePixelFormat(32));
-
+            Console.WriteLine("Done.");
+            Context.ChoosePixelFormat(new DevicePixelFormat(24));
+            Console.WriteLine("Pixel Format set.");
             glContext = Context.CreateContext(IntPtr.Zero);
             Context.MakeCurrent(glContext);
             //Context.SwapInterval(1);
@@ -258,8 +269,11 @@ namespace SharpPi.Graphics
             // Create OpenGL context
             GLContext = new GraphicsContext(VideoCore.DummyHandle, VideoCore.GetProcAddress, VideoCore.GetContext);
 
+            Console.WriteLine("We got here! 2");
+
             GLException.CheckError();
             ImGUIController = new ImGuiController(Width, Height);
+            */
         }
 
         internal void InternalUpdate()
@@ -303,7 +317,7 @@ namespace SharpPi.Graphics
             {
                 if (!IsDisposed)
                     throw new ObjectDisposedException(typeof(VideoCoreWindow).Name);
-
+                /*
                 //InternalClose();
                 GLContext.Dispose();
                 Context.Dispose();
@@ -326,7 +340,7 @@ namespace SharpPi.Graphics
                     _NativeWindowLock.Dispose();
                     _NativeWindowLock = null;
                 }
-
+                */
                 // Dispose of everything here
                 IsDisposed = true;
             }
