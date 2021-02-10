@@ -29,8 +29,7 @@ sudo bash setup.sh                           # Run the setup script, requires su
 If you do not have git, install it with '```sudo apt install git```'
 
 # Credits
-- OpenTK: https://github.com/opentk/opentk
-- Dear ImGUI: https://github.com/ocornut/imgui
-- ImGui.NET: https://github.com/mellinoe/ImGui.NET
-- MMALSharp: https://github.com/techyian/MMALSharp
-- WebRenderer: https://html-agility-pack.net/, https://github.com/sebastienros/esprima-dotnet, and https://github.com/TylerBrinks/ExCSS.
+- [OpenTK v3](https://github.com/opentk/opentk)
+- [Dear ImGUI](https://github.com/ocornut/imgui), [ImGui.NET](https://github.com/mellinoe/ImGui.NET)
+- [MMALSharp](https://github.com/techyian/MMALSharp
+- WebRenderer: [HAP](https://html-agility-pack.net/), [Jint](https://github.com/sebastienros/jint), and [ExCSS](https://github.com/TylerBrinks/ExCSS).
