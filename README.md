@@ -6,8 +6,8 @@ SharpPi is a large project, and the low-level API will be exposed eventually - o
 Many things:
 - [x] Create hardware-accelerated 2D GUI (and 3D games/simulations.)
 - [x] Stream/Encode H.264 camera video over networks.
-- [ ] Play/decode video with FFmpeg.
 - [x] Play/decode video with hardware-accelerated H.264.
+- [ ] Play/decode video with FFmpeg.
 - [ ] Render web pages using the hardware-accelerated 2D rendering engine in OpenGL. (with WebGL support on the roadmap)
 - [x] Connect to/create WiFi networks, manage network firewalls(via ip-tables), scan for nearby access points, and more!
 - [x] Read/Write to input devices such as Mouse, Keyboard, Gamepads (such as Xbox, and PlayStation controllers), and custom/proprietary devices.
