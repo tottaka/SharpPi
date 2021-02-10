@@ -1,10 +1,7 @@
 # SharpPi
 Forget Python, we're bringing practical C# to the [Raspberry Pi](https://www.raspberrypi.org/) by combining many wrapper/utility libraries into a simple to use, high-level API. It was designed to run on [Raspbain Linux](https://www.raspberrypi.org/software/operating-systems/) (Typically the Lite version.) But is usable with any device that is running Linux with [Mono (6.12)](https://www.mono-project.com/).
-
 SharpPi is a large project, and the low-level API will be exposed eventually - once it's cleaned up.
 
-# Features
-- Draw graphics directly to the display (no X11 required)
 # What can I do with this?
 Many things:
 - [x] Create hardware-accelerated 2D GUI (and 3D games/simulations.)
