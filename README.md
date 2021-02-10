@@ -1,5 +1,5 @@
 # SharpPi
-Forget Python, we're bringing practical C# to the [Raspberry Pi](https://www.raspberrypi.org/) by combining many wrapper/utility libraries into a simple to use, high-level API. It was designed to run on [Raspbain Linux](https://www.raspberrypi.org/software/operating-systems/) (Typically the Lite version.) But is usable with any device that is running Linux with [Mono (6.12)](https://www.mono-project.com/).
+Forget Python, we're bringing practical C# to the [Raspberry Pi](https://www.raspberrypi.org/) by combining many wrapper/utility libraries into a simple to use, high-level API. It was designed to run on [Raspbain Linux](https://www.raspberrypi.org/software/operating-systems/) (Typically the Lite version.) However, it's usable with any device that is running Linux with [Mono (6.12)](https://www.mono-project.com/).
 SharpPi is a large project, and the low-level API will be exposed eventually - once it's cleaned up.
 
 # What can I do with this?
